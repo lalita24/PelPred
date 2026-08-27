@@ -1,0 +1,91 @@
+body {
+    font-family: 'Prompt', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+}
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+.sidebar {
+    width: 250px;
+    background-color: #005b9f; /* สีน้ำเงินแบบวิชาการ */
+    color: white;
+    padding: 20px;
+}
+.menu-list {
+    list-style: none;
+    padding: 0;
+}
+.menu-list li {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.menu-list li:hover, .menu-list li.active {
+    background-color: #f1c40f; /* สีเหลืองทองตัดน้ำเงิน */
+    color: #005b9f;
+    font-weight: bold;
+}
+.main-content {
+    flex: 1;
+    padding: 40px;
+    background-color: white;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+}
+.main-title {
+    text-align: center;
+    color: #005b9f;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+.info-box {
+    text-align: center;
+    background-color: #e8f4f8;
+    padding: 20px;
+    border-radius: 8px;
+    color: #005b9f;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    border-left: 5px solid #005b9f;
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.5s; }
+.guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.guide-card { padding: 20px; border-radius: 8px; }
+.guide-card.success { background-color: #e8f8f5; border: 1px solid #2ecc71; }
+.guide-card.error { background-color: #fdedec; border: 1px solid #e74c3c; }
+.step-box { margin-bottom: 20px; }
+select, input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-family: 'Prompt', sans-serif;
+}
+.primary-btn, .secondary-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-family: 'Prompt', sans-serif;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.primary-btn { background-color: #005b9f; color: white; }
+.primary-btn:hover { background-color: #00427a; }
+.secondary-btn { background-color: #95a5a6; color: white; }
+.result-box {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f0f8ff;
+    border-left: 5px solid #e74c3c;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }

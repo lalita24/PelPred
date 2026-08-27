@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PelPred </title>
+    <!-- เรียกใช้ฟอนต์ Prompt -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- เมนูด้านซ้าย -->
+        <aside class="sidebar">
+            <h3>📌 เมนู</h3>
+            <ul class="menu-list">
+                <li class="active" onclick="switchTab('guide')">1. วิธีการใช้งาน</li>
+                <li onclick="switchTab('predict')">2. การจำแนกเพศ</li>
+            </ul>
+        </aside>
+
+        <!-- เนื้อหาหลัก -->
+        <main class="main-content">
+            <h2 class="main-title">ระบบจำแนกเพศจากโครงกระดูกส่วนสะโพก<br>ด้วยเทคนิคการประมวลผลภาพ</h2>
+            
+            <div class="info-box">
+                <strong>ℹ️ รายละเอียด:</strong><br>
+                ระบบนี้วิเคราะห์ และจำแนกเพศของโครงกระดูกโดยใช้เทคนิคการประมวลผลภาพ (Image Processing) ร่วมกับ Deep Learning เพื่อจำแนกเพศจากภาพถ่ายโครงกระดูกส่วนสะโพก ปัจจุบันโมเดลมีความแม่นยำในการทดสอบอยู่ที่ประมาณ XX%
+                <br>แต่อย่างไรก็ตาม ระบบจำแนกเพศอาจมีข้อจำกัดในบางกรณี และควรวิเคราะห์ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญ
+            </div>
+
+            <!-- หน้า 1: วิธีการใช้งาน -->
+            <section id="guide" class="tab-content active">
+                <h3>📖 วิธีการใช้งานระบบ</h3>
+                <p>เพื่อให้ได้ผลลัพธ์ที่แม่นยำที่สุด กรุณาเตรียมรูปภาพตามคำแนะนำด้านล่างนี้</p>
+                
+                <div class="guide-grid">
+                    <div class="guide-card success">
+                        <h4>✅ ตัวอย่างภาพที่ทำนายแล้วมีประสิทธิภาพที่สุด</h4>
+                        <ul>
+                            <li>1. ภาพกระดูกด้านหน้า</li>
+                            <li>2. กระดูกวางตรง ไม่เอียง</li>
+                            <li>3. พื้นหลังเรียบ สีเข้ม</li>
+                            <li>4. ไม่มีสิ่งรบกวน</li>
+                        </ul>
+                    </div>
+                    <div class="guide-card error">
+                        <h4>❌ ตัวอย่างภาพที่ผลการทำนายมีประสิทธิภาพลดลง</h4>
+                        <ul>
+                            <li>1. วางกระดูกเอียง</li>
+                            <li>2. พื้นหลังขรุขระ สีโทนสว่าง</li>
+                            <li>3. มีสิ่งรบกวน</li>
+                            <li>4. ภาพไม่ชัด</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- หน้า 2: การจำแนกเพศ -->
+            <section id="predict" class="tab-content">
+                <h3>เริ่มทำการวิเคราะห์</h3>
+                
+                <div class="step-box">
+                    <label><strong>STEP 1 : เลือกบริเวณกระดูกที่ต้องการวิเคราะห์</strong></label>
+                    <select id="part-select">
+                        <option value="Greater Sciatic Notch">Greater Sciatic Notch</option>
+                        <option value="Obturator Foramen">Obturator Foramen</option>
+                        <option value="Greater Sciatic Notch & Obturator Foramen">Greater Sciatic Notch & Obturator Foramen</option>
+                    </select>
+                </div>
+
+                <div class="step-box">
+                    <label><strong>STEP 2 : Upload รูปภาพที่ต้องการทดสอบ</strong></label>
+                    <p class="text-sm">คำแนะนำ: ควรใช้ภาพกระดูกด้านหน้า วางตรง พื้นหลังเรียบสีเข้ม และไม่มีสิ่งรบกวน</p>
+                    <input type="file" id="image-upload" accept=".jpg, .jpeg, .png">
+                </div>
+
+                <button id="submit-btn" class="primary-btn">🔍 วิเคราะห์</button>
+
+                <!-- ส่วนแสดงผลลัพธ์ -->
+                <div id="result-section" style="display: none; margin-top: 30px;">
+                    <h3>ผลการทำนาย</h3>
+                    <div class="result-box">
+                        จากการวิเคราะห์ สรุปได้ว่า กระดูกชิ้นนี้มีลักษณะเป็น<br>
+                        <strong id="result-gender" style="font-size:1.5rem; color:#e74c3c;"></strong><br>
+                        ด้วยความเชื่อมั่น <strong id="result-conf"></strong><strong>%</strong>
+                    </div>
+                    <button onclick="resetApp()" class="secondary-btn">🔄 ทำการวิเคราะห์อีกครั้ง</button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
