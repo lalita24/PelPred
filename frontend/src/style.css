@@ -1,91 +1,321 @@
+/* --- Global Styles --- */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Prompt', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
     margin: 0;
+    background-color: #f0f2f5;
+    color: #333;
 }
+
+h2, h3, h4 {
+    margin-top: 0;
+    font-weight: 600;
+}
+
+/* --- App Layout --- */
 .app-container {
     display: flex;
     min-height: 100vh;
 }
+
+/* --- Sidebar Style --- */
 .sidebar {
-    width: 250px;
-    background-color: #005b9f; /* สีน้ำเงินแบบวิชาการ */
+    width: 260px;
+    background-color: #00427a; /* Deep Blue - University style */
     color: white;
-    padding: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
 }
+
+.sidebar-header {
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 15px;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    color: #f1c40f; /* Gold accent */
+}
+
 .menu-list {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
+
 .menu-list li {
-    padding: 15px;
-    margin-bottom: 10px;
-    background-color: rgba(255,255,255,0.1);
-    border-radius: 5px;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    background-color: rgba(255,255,255,0.05);
+    border-radius: 8px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
-.menu-list li:hover, .menu-list li.active {
-    background-color: #f1c40f; /* สีเหลืองทองตัดน้ำเงิน */
-    color: #005b9f;
+
+.menu-list li:hover {
+    background-color: rgba(255,255,255,0.15);
+}
+
+.menu-list li.active {
+    background-color: #f1c40f; /* Gold accent for Active */
+    color: #00427a;
     font-weight: bold;
 }
+
+/* --- Main Content Style --- */
 .main-content {
     flex: 1;
-    padding: 40px;
     background-color: white;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.03);
 }
+
+.header-banner {
+    background-color: white;
+    padding: 30px 40px;
+    border-bottom: 1px solid #eee;
+}
+
 .main-title {
-    text-align: center;
+    color: #00427a;
+    font-size: 1.8rem;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.container {
+    padding: 40px;
+    max-width: 1000px;
+}
+
+/* --- Tabs Content Style --- */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+/* --- Common UI Elements --- */
+.divider {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 30px 0;
+}
+
+.info-box {
+    background-color: #e8f4f8;
+    padding: 20px 30px;
+    border-radius: 10px;
     color: #005b9f;
-    font-size: 2.2rem;
+    line-height: 1.7;
+    border-left: 5px solid #00427a;
     margin-bottom: 20px;
 }
-.info-box {
-    text-align: center;
-    background-color: #e8f4f8;
-    padding: 20px;
-    border-radius: 8px;
-    color: #005b9f;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    border-left: 5px solid #005b9f;
+
+.text-sm {
+    font-size: 0.9rem;
+    color: #7f8c8d;
 }
-.tab-content { display: none; }
-.tab-content.active { display: block; animation: fadeIn 0.5s; }
-.guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.guide-card { padding: 20px; border-radius: 8px; }
-.guide-card.success { background-color: #e8f8f5; border: 1px solid #2ecc71; }
-.guide-card.error { background-color: #fdedec; border: 1px solid #e74c3c; }
-.step-box { margin-bottom: 20px; }
-select, input[type="file"] {
+
+/* --- Guide Section Style --- */
+.guide-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.guide-card {
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid;
+}
+
+.guide-card h4 {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 10px;
+}
+
+.guide-card.success {
+    background-color: #e8f8f5;
+    color: #27ae60;
+    border-color: #2ecc71;
+}
+
+.guide-card.error {
+    background-color: #fdedec;
+    color: #c0392b;
+    border-color: #e74c3c;
+}
+
+.guide-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.guide-card li {
+    margin-bottom: 8px;
+}
+
+.guide-img {
     width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    font-family: 'Prompt', sans-serif;
+    margin-top: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.1);
 }
+
+/* --- Input Section Style --- */
+.input-card {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    margin-bottom: 30px;
+}
+
+.step-box {
+    margin-bottom: 25px;
+}
+
+.step-box label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+select {
+    width: 100%;
+    padding: 12px 20px;
+    font-family: 'Prompt', sans-serif;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: white;
+}
+
+/* --- Drag & Drop Upload Zone --- */
+.upload-dropzone {
+    border: 2px dashed #00427a;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.upload-dropzone:hover, .upload-dropzone.dragover {
+    background-color: #e8f4f8;
+    border-color: #f1c40f;
+}
+
+#image-preview {
+    max-width: 250px;
+    max-height: 250px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-top: 10px;
+}
+
+/* --- Buttons Style --- */
+.button-container {
+    text-align: center;
+    margin-top: 25px;
+}
+
 .primary-btn, .secondary-btn {
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.primary-btn {
+    width: auto;
+    min-width: 200px;
+    padding: 12px 40px;
+    background-color: #00427a;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 66, 122, 0.2);
+}
+
+.primary-btn:hover {
+    background-color: #003360;
+    box-shadow: 0 6px 12px rgba(0, 66, 122, 0.3);
+}
+
+.secondary-btn {
     width: 100%;
     padding: 15px;
-    font-size: 1.1rem;
-    font-family: 'Prompt', sans-serif;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
+    background-color: #bdc3c7;
+    color: #333;
 }
-.primary-btn { background-color: #005b9f; color: white; }
-.primary-btn:hover { background-color: #00427a; }
-.secondary-btn { background-color: #95a5a6; color: white; }
+
+.secondary-btn:hover {
+    background-color: #abb2b9;
+}
+
+/* --- Result Style --- */
+.result-card {
+    background-color: #fff9e6; /* light gold hint */
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid #f1c40f;
+    margin-top: 30px;
+    animation: slideUp 0.4s ease;
+}
+
 .result-box {
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #f0f8ff;
-    border-left: 5px solid #e74c3c;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #f1c40f;
     text-align: center;
-    font-size: 1.2rem;
+    border-left: 5px solid #00427a;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     margin-bottom: 20px;
 }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.gender-text {
+    font-size: 2.2rem;
+    color: #e74c3c;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+#result-conf {
+    font-size: 1.5rem;
+    color: #00427a;
+}
+
+.percent {
+    font-size: 1rem;
+    color: #00427a;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

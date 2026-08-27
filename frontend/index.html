@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PelPred </title>
+    <title>🦴 PelPred </title>
     <!-- เรียกใช้ฟอนต์ Prompt -->
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
@@ -14,8 +14,8 @@
         <aside class="sidebar">
             <h3>📌 เมนู</h3>
             <ul class="menu-list">
-                <li class="active" onclick="switchTab('guide')">1. วิธีการใช้งาน</li>
-                <li onclick="switchTab('predict')">2. การจำแนกเพศ</li>
+                <li class="active" onclick="switchTab('guide')">คู่มือแนะนำการใช้งาน</li>
+                <li onclick="switchTab('predict')">กระบวนการจำแนกเพศ</li>
             </ul>
         </aside>
 
@@ -29,20 +29,21 @@
                 <br>แต่อย่างไรก็ตาม ระบบจำแนกเพศอาจมีข้อจำกัดในบางกรณี และควรวิเคราะห์ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญ
             </div>
 
-            <!-- หน้า 1: วิธีการใช้งาน -->
+            <!-- หน้า 1: คู่มือแนะนำการใช้งาน -->
             <section id="guide" class="tab-content active">
-                <h3>📖 วิธีการใช้งานระบบ</h3>
+                <h3>📖 คู่มือแนะนำการใช้งาน</h3>
                 <p>เพื่อให้ได้ผลลัพธ์ที่แม่นยำที่สุด กรุณาเตรียมรูปภาพตามคำแนะนำด้านล่างนี้</p>
                 
                 <div class="guide-grid">
                     <div class="guide-card success">
-                        <h4>✅ ตัวอย่างภาพที่ทำนายแล้วมีประสิทธิภาพที่สุด</h4>
+                        <h4>✅ ตัวอย่างภาพที่ทำนายแล้วมีประสิทธิภาพดีที่สุด</h4>
                         <ul>
                             <li>1. ภาพกระดูกด้านหน้า</li>
                             <li>2. กระดูกวางตรง ไม่เอียง</li>
                             <li>3. พื้นหลังเรียบ สีเข้ม</li>
                             <li>4. ไม่มีสิ่งรบกวน</li>
                         </ul>
+                        <img src="/images/eg.goodBone.jpg" alt="ตัวอย่างกระดูกที่ควรใช้" class="guide-img">
                     </div>
                     <div class="guide-card error">
                         <h4>❌ ตัวอย่างภาพที่ผลการทำนายมีประสิทธิภาพลดลง</h4>
@@ -52,11 +53,12 @@
                             <li>3. มีสิ่งรบกวน</li>
                             <li>4. ภาพไม่ชัด</li>
                         </ul>
+                        <img src="/images/eg.badBone.jpg" alt="ตัวอย่างกระดูกที่ไม่ควรใช้" class="guide-img">
                     </div>
                 </div>
             </section>
 
-            <!-- หน้า 2: การจำแนกเพศ -->
+            <!-- หน้า 2: กระบวนการจำแนกเพศ -->
             <section id="predict" class="tab-content">
                 <h3>เริ่มทำการวิเคราะห์</h3>
                 
@@ -70,12 +72,26 @@
                 </div>
 
                 <div class="step-box">
-                    <label><strong>STEP 2 : Upload รูปภาพที่ต้องการทดสอบ</strong></label>
+                    <label><strong>ขั้นตอนที่ 2 : Upload รูปภาพที่ต้องการทดสอบ</strong></label>
                     <p class="text-sm">คำแนะนำ: ควรใช้ภาพกระดูกด้านหน้า วางตรง พื้นหลังเรียบสีเข้ม และไม่มีสิ่งรบกวน</p>
-                    <input type="file" id="image-upload" accept=".jpg, .jpeg, .png">
+                    
+                    <!-- พื้นที่สำหรับอัปโหลดและพรีวิว -->
+                    <div id="dropzone" class="upload-dropzone">
+                        <input type="file" id="image-upload" accept=".jpg, .jpeg, .png" hidden>
+                        
+                        <div id="dropzone-content">
+                            <div style="font-size: 2.5rem; margin-bottom: 10px;">📥</div>
+                            <p style="margin: 0;">ลากและปล่อยไฟล์ที่นี่<br>หรือ <strong style="color: #00427a;">คลิกเพื่อเลือกไฟล์</strong></p>
+                        </div>
+                        
+                        <img id="image-preview" src="" alt="Preview" style="display: none;">
+                    </div>
                 </div>
 
-                <button id="submit-btn" class="primary-btn">🔍 วิเคราะห์</button>
+                <!-- ปรับให้ปุ่มอยู่กึ่งกลาง -->
+                <div class="button-container">
+                    <button id="submit-btn" class="primary-btn">🔍 วิเคราะห์ผล</button>
+                </div>
 
                 <!-- ส่วนแสดงผลลัพธ์ -->
                 <div id="result-section" style="display: none; margin-top: 30px;">
@@ -90,6 +106,6 @@
             </section>
         </main>
     </div>
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>
