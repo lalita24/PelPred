@@ -6,145 +6,174 @@
 body {
     font-family: 'Prompt', sans-serif;
     margin: 0;
-    background-color: #f0f2f5;
+    background-color: #f4f6f8;
     color: #333;
 }
 
-h2, h3, h4 {
+h2,
+h3,
+h4 {
     margin-top: 0;
     font-weight: 600;
 }
 
-/* --- App Layout --- */
-.app-container {
-    display: flex;
-    min-height: 100vh;
-}
-
-/* --- Sidebar Style --- */
-.sidebar {
-    width: 260px;
-    background-color: #00427a; /* Deep Blue - University style */
-    color: white;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-}
-
-.sidebar-header {
-    margin-bottom: 40px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 15px;
-}
-
-.sidebar-header h3 {
-    margin: 0;
-    color: #f1c40f; /* Gold accent */
-}
-
-.menu-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.menu-list li {
-    padding: 15px 20px;
-    margin-bottom: 12px;
-    background-color: rgba(255,255,255,0.05);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.menu-list li:hover {
-    background-color: rgba(255,255,255,0.15);
-}
-
-.menu-list li.active {
-    background-color: #f1c40f; /* Gold accent for Active */
-    color: #00427a;
-    font-weight: bold;
-}
-
-/* --- Main Content Style --- */
-.main-content {
-    flex: 1;
-    background-color: white;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.03);
-}
-
-/* --- Header Banner Style --- */
+/* --- Header Banner --- */
 .header-banner {
-    /* พื้นหลังไล่สีจากน้ำเงินเข้มไปน้ำเงินสว่าง */
-    background: linear-gradient(to bottom, #4d4c4b 50%, #676666 100%); /*#ff7b00*/
+    background: linear-gradient(to bottom, #4d4c4b 0%, #333333 100%);
     padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .banner-text {
     text-align: left;
-    flex: 1; /* ขยายพื้นที่ตรงกลางให้เต็ม */
+    flex: 1;
     padding: 0 20px;
 }
 
 .banner-title {
     margin: 0;
     font-size: 1.8rem;
-    color: #ffffff; /* สีทอง */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: #f39c12;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .banner-subtitle {
     margin: 10px 0 0 0;
     font-size: 1.2rem;
     font-weight: 400;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .banner-logo {
-    height: 150px; 
-    width: auto;
-    object-fit: contain;
-}
-
-/* --- กลุ่มโลโก้ด้านขวา --- */
-.banner-scilogo {
-    height: 100px; 
-    width: auto;
-    object-fit: contain;
-}
-
-.banner-medscilogo {
-    height: 70px; 
+    height: 150px;
     width: auto;
     object-fit: contain;
 }
 
 .banner-csitlogo {
-    height: 60px; 
+    height: 60px;
     width: auto;
     object-fit: contain;
 }
 
 .banner-right {
     display: flex;
-    gap: 15px; /* ระยะห่างระหว่างโลโก้ทั้ง 3 อัน */
-    /*align-self: flex-start;  สั่งให้เฉพาะกลุ่มนี้ดันขึ้นไปชิดบนสุด */
-    margin-top: 10px; 
+    gap: 15px;
+    margin-top: 10px;
 }
 
+/* --- Top Navigation Menu --- */
+.top-nav {
+    background-color: #ffffff;
+    border-bottom: 4px solid #e67e22;
+    display: flex;
+    justify-content: space-between;
+    /* แยกซ้าย-ขวา */
+    align-items: center;
+    padding: 0 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* กลุ่มโลโก้ 4 อันฝั่งซ้าย */
+.nav-logos {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-logos img {
+    height: 40px;
+    /* ปรับขนาดโลโก้ในเมนูตามต้องการ */
+    width: auto;
+    object-fit: contain;
+}
+
+.menu-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-list li {
+    padding: 16px 30px;
+    color: #4d4c4b;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    /* สำหรับ dropdown */
+}
+
+.menu-list li:hover {
+    background-color: #f0f2f5;
+    color: #e67e22;
+}
+
+.menu-list li.active {
+    background-color: #e67e22;
+    color: white;
+}
+
+/* Dropdown Styles */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: #4d4c4b;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f2f5;
+    color: #e67e22;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* --- Main Content --- */
+.main-content {
+    padding: 40px 20px;
+}
 
 .container {
-    padding: 40px;
-    max-width: 1000px;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-/* --- Tabs Content Style --- */
+.section-title {
+    color: #4d4c4b;
+    border-bottom: 2px solid #e67e22;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+/* --- Tabs Content --- */
 .tab-content {
     display: none;
 }
@@ -154,21 +183,16 @@ h2, h3, h4 {
     animation: fadeIn 0.4s ease;
 }
 
-/* --- Common UI Elements --- */
-.divider {
-    border: 0;
-    border-top: 1px solid #eee;
-    margin: 30px 0;
-}
-
+/* --- Info Box --- */
 .info-box {
-    background-color: #e8f4f8;
-    padding: 20px 30px;
+    background-color: #ffffff;
+    padding: 30px;
     border-radius: 10px;
-    color: #005b9f;
-    line-height: 1.7;
-    border-left: 5px solid #00427a;
+    line-height: 1.8;
+    border-left: 6px solid #e67e22;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     margin-bottom: 20px;
+    font-size: 1.1rem;
 }
 
 .text-sm {
@@ -176,7 +200,7 @@ h2, h3, h4 {
     color: #7f8c8d;
 }
 
-/* --- Guide Section Style --- */
+/* --- Guide Section --- */
 .guide-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -188,23 +212,28 @@ h2, h3, h4 {
     padding: 25px;
     border-radius: 12px;
     border: 1px solid;
+    background: white;
 }
 
 .guide-card h4 {
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     padding-bottom: 10px;
 }
 
 .guide-card.success {
-    background-color: #e8f8f5;
-    color: #27ae60;
     border-color: #2ecc71;
 }
 
+.guide-card.success h4 {
+    color: #27ae60;
+}
+
 .guide-card.error {
-    background-color: #fdedec;
-    color: #c0392b;
     border-color: #e74c3c;
+}
+
+.guide-card.error h4 {
+    color: #c0392b;
 }
 
 .guide-card ul {
@@ -213,23 +242,20 @@ h2, h3, h4 {
     margin: 15px 0;
 }
 
-.guide-card li {
-    margin-bottom: 8px;
-}
-
 .guide-img {
     width: 100%;
     margin-top: 15px;
     border-radius: 8px;
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* --- Input Section Style --- */
+/* --- Input Section --- */
 .input-card {
-    background-color: #f8f9fa;
+    background-color: #ffffff;
     padding: 30px;
     border-radius: 12px;
     border: 1px solid #eee;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     margin-bottom: 30px;
 }
 
@@ -240,6 +266,8 @@ h2, h3, h4 {
 .step-box label {
     display: block;
     margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #4d4c4b;
 }
 
 select {
@@ -248,126 +276,360 @@ select {
     font-family: 'Prompt', sans-serif;
     border-radius: 8px;
     border: 1px solid #ddd;
-    background-color: white;
+    background-color: #f9f9f9;
 }
 
-/* --- Drag & Drop Upload Zone --- */
+/* --- Upload Zone --- */
 .upload-dropzone {
-    border: 2px dashed #00427a;
+    border: 2px dashed #b2babb;
     border-radius: 12px;
     padding: 30px;
     text-align: center;
-    background-color: white;
+    background-color: #f5f6fa;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-height: 220px;
+    min-height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
-.upload-dropzone:hover, .upload-dropzone.dragover {
-    background-color: #dddbdb;
-    border-color: #717171;
+.upload-dropzone:hover,
+.upload-dropzone.dragover {
+    background-color: #fffaf0;
+    border-color: #e67e22;
 }
 
 #image-preview {
     max-width: 100%;
-    max-height: 500px;
+    max-height: 200px;
     object-fit: contain;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
 }
 
-/* --- Buttons Style --- */
+/* --- Result Layout (แบ่งซ้าย-ขวา) --- */
+.result-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #e67e22;
+    margin-top: 30px;
+    animation: slideUp 0.4s ease;
+    box-shadow: 0 4px 15px rgba(230, 126, 34, 0.1);
+}
+
+.result-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+    background-color: #fdfdfd;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.result-image-box {
+    flex: 1;
+    text-align: center;
+}
+
+#result-image {
+    max-width: 100%;
+    max-height: 600px;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.result-text-box {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    border-left: 5px solid #4d4c4b;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    font-size: 1.2rem;
+}
+
+.gender-text {
+    font-size: 2.8rem;
+    color: #e67e22;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+#result-conf {
+    font-size: 2rem;
+    color: #4d4c4b;
+}
+
+.percent {
+    font-size: 1.2rem;
+    color: #4d4c4b;
+}
+
+/* --- Buttons & Export Area --- */
 .button-container {
     text-align: center;
     margin-top: 25px;
 }
 
-.primary-btn, .secondary-btn {
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.export-select {
+    width: auto;
+    padding: 12px;
+}
+
+.primary-btn,
+.secondary-btn {
     font-family: 'Prompt', sans-serif;
     font-size: 1.1rem;
     font-weight: 600;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .primary-btn {
-    width: auto;
-    min-width: 200px;
-    padding: 12px 40px;
-    background-color: #00427a;
+    padding: 12px 30px;
+    background-color: #e67e22;
     color: white;
-    box-shadow: 0 4px 6px rgba(0, 66, 122, 0.2);
+    box-shadow: 0 4px 6px rgba(230, 126, 34, 0.2);
 }
 
 .primary-btn:hover {
-    background-color: #003360;
-    box-shadow: 0 6px 12px rgba(0, 66, 122, 0.3);
+    background-color: #d35400;
+    box-shadow: 0 6px 12px rgba(211, 84, 0, 0.3);
 }
 
 .secondary-btn {
-    width: 100%;
-    padding: 15px;
+    padding: 12px 30px;
     background-color: #bdc3c7;
     color: #333;
 }
 
 .secondary-btn:hover {
-    background-color: #abb2b9;
-}
-
-/* --- Result Style --- */
-.result-card {
-    background-color: #fff9e6; /* light gold hint */
-    padding: 30px;
-    border-radius: 12px;
-    border: 2px solid #f1c40f;
-    margin-top: 30px;
-    animation: slideUp 0.4s ease;
-}
-
-.result-box {
-    padding: 30px;
-    background-color: white;
-    border-radius: 8px;
-    border: 1px solid #f1c40f;
-    text-align: center;
-    border-left: 5px solid #00427a;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    margin-bottom: 20px;
-}
-
-.gender-text {
-    font-size: 2.2rem;
-    color: #e74c3c;
-    margin-top: 10px;
-    display: inline-block;
-}
-
-#result-conf {
-    font-size: 1.5rem;
-    color: #00427a;
-}
-
-.percent {
-    font-size: 1rem;
-    color: #00427a;
+    background-color: #95a5a6;
+    color: white;
 }
 
 /* --- Animations --- */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive สำหรับมือถือให้กล่องเรียงลงมาแทน */
+@media (max-width: 768px) {
+    .result-layout {
+        flex-direction: column;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+/* --- Hidden Report Template (A4 format) --- */
+#export-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 794px;
+    z-index: -1000;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.a4-report {
+    width: 794px;
+    height: 1123px;
+    background-color: white;
+    padding: 50px 60px;
+    font-family: 'Prompt', sans-serif;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.report-header {
+    margin-bottom: 30px;
+}
+
+/* จัดเรียงโลโก้และข้อความให้อยู่แนวนอนเดียวกัน */
+.report-title-container {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* ระยะห่างระหว่างโลโก้กับข้อความ */
+    margin-bottom: 15px;
+}
+
+.report-logo {
+    width: 70px;
+    height: auto;
+    object-fit: contain;
+}
+
+.report-header h3 {
+    color: #4d4c4b;
+    font-size: 26px;
+    margin: 0;
+    font-weight: 600;
+    text-align: left;
+}
+
+.report-header hr {
+    border: 0;
+    border-top: 2px solid #4d4c4b;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.report-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+#report-image {
+    max-width: 100%;
+    height: 480px;
+    object-fit: contain;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.report-conclusion {
+    background-color: #fdfaf6;
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid #e67e22;
+    width: 85%;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.report-conclusion p {
+    font-size: 22px;
+    margin: 10px 0;
+    color: #4d4c4b;
+}
+
+#report-gender {
+    color: #e67e22;
+    font-size: 38px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+#report-conf {
+    font-weight: bold;
+    font-size: 26px;
+    color: #333;
+}
+
+.report-footer {
+    margin-top: auto;
+    font-size: 14px;
+    color: #7f8c8d;
+    text-align: center;
+}
+
+.report-footer hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+/* --- Custom Select Dropdown --- */
+.custom-select {
+    position: relative;
+    font-family: 'Prompt', sans-serif;
+}
+
+.select-selected {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px 20px;
+    cursor: pointer;
+    color: #4d4c4b;
+    user-select: none;
+}
+
+.select-selected::after {
+    content: ' ▾';
+    float: right;
+    font-weight: bold;
+}
+
+.select-items {
+    position: absolute;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.select-items div {
+    color: #4d4c4b;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+/* เปลี่ยนสีตอนเอาเมาส์ชี้เป็นสีส้ม */
+.select-items div:hover {
+    background-color: #e67e22;
+    color: white;
+}
+
+.select-hide {
+    display: none;
 }

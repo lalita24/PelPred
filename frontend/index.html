@@ -1,59 +1,80 @@
 <!DOCTYPE html>
-
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/images/LogoPelvic_nbg.png">
-    <title>PelPred </title>
-    <!-- เรียกใช้ฟอนต์ Prompt -->
+    <title>PelPred</title>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
-</head>
-<header class="header-banner">
-    <!-- โลโก้ด้านซ้าย -->
-    <img src="/images/LogoPelvic_w.png" alt="PelPred" class="banner-logo">
     
-    <!-- ชื่อระบบตรงกลาง -->
-    <div class="banner-text">
-        <h1 class="banner-title">ระบบจำแนกเพศจากโครงกระดูกส่วนสะโพกด้วยเทคนิคการประมวลผลภาพ</h1>
-        <h2 class="banner-subtitle">Sex Classification from Hip Bone Images Using Image Processing Techniques</h2>
-    </div>
-
-    <!-- โลโก้คณะด้านขวา -->
-    <div class="banner-right">
-        <!-- <img src="/images/logo-sci.png" alt="logo-sci" class="banner-scilogo"> -->
-        <!-- <img src="/images/Medsci-logo.png" alt="logo-medsci" class="banner-medscilogo"> -->
-        <img src="/images/CSIT-logo-1.png" alt="logo-csit" class="banner-csitlogo">
-    </div>
-</header>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
 <body>
-    <div class="app-container">
-        <!-- เมนูด้านซ้าย -->
-        <aside class="sidebar">
-            <h3>📌 เมนู</h3>
-            <ul class="menu-list">
-                <li class="active" onclick="switchTab('guide')">คู่มือแนะนำการใช้งาน</li>
-                <li onclick="switchTab('predict')">กระบวนการจำแนกเพศ</li>
-            </ul>
-        </aside>
+    <!-- ส่วนบนสุด: Banner -->
+    <header class="header-banner">
+        <img src="/images/LogoPelvic_w.png" alt="PelPred" class="banner-logo">
+        <div class="banner-text">
+            <h1 class="banner-title">ระบบจำแนกเพศจากโครงกระดูกส่วนสะโพกด้วยเทคนิคการประมวลผลภาพ</h1>
+            <h2 class="banner-subtitle">Sex Classification from Hip Bone Images Using Image Processing Techniques</h2>
+        </div>
+        <div class="banner-right">
+            <img src="/images/CSIT-logo-1.png" alt="logo-csit" class="banner-csitlogo">
+        </div>
+    </header>
 
-        <!-- เนื้อหาหลัก -->
-        <main class="main-content">
-            <div class="info-box">
-                <strong>ℹ️ รายละเอียด:</strong><br>
-                ระบบนี้วิเคราะห์ และจำแนกเพศของโครงกระดูกโดยใช้เทคนิคการประมวลผลภาพ (Image Processing) ร่วมกับ Deep Learning เพื่อจำแนกเพศจากภาพถ่ายโครงกระดูกส่วนสะโพก ปัจจุบันโมเดลมีความแม่นยำในการทดสอบอยู่ที่ประมาณ XX%
-                <br>แต่อย่างไรก็ตาม ระบบจำแนกเพศอาจมีข้อจำกัดในบางกรณี และควรวิเคราะห์ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญ
-            </div>
+    <!-- แถบเมนูแนวนอน (Top Navigation) -->
+    <nav class="top-nav">
+        <div class="nav-logos">
+            <img src="/images/logo1.png" alt="Logo 1"> 
+            <img src="/images/logo2.png" alt="Logo 2">
+            <img src="/images/logo3.png" alt="Logo 3">
+            <img src="/images/logo4.png" alt="Logo 4">
+        </div>
 
-            <!-- หน้า 1: คู่มือแนะนำการใช้งาน -->
-            <section id="guide" class="tab-content active">
-                <h3>📖 คู่มือแนะนำการใช้งาน</h3>
-                <p>เพื่อให้ได้ผลลัพธ์ที่แม่นยำที่สุด กรุณาเตรียมรูปภาพตามคำแนะนำด้านล่างนี้</p>
-                
+        <ul class="menu-list">
+            <li class="active" onclick="switchTab('home', this)">🏠 หน้าหลัก</li>
+            <li class="dropdown">
+                <span class="dropbtn">📖 แนะนำ ▾</span>
+                <div class="dropdown-content">
+                    <a onclick="switchTab('guide-usage', this.parentElement.parentElement)">แนะนำการใช้งาน</a>
+                    <a onclick="switchTab('guide-examples', this.parentElement.parentElement)">ตัวอย่างภาพ</a>
+                </div>
+            </li>
+            <li onclick="switchTab('predict', this)">🔍 วิเคราะห์</li>
+        </ul>
+    </nav>
+
+    <!-- เนื้อหาหลัก -->
+    <main class="main-content">
+        <div class="container">
+            <!-- แท็บ 1: หน้าหลัก -->
+            <section id="home" class="tab-content active">
+                <div class="info-box">
+                    <h3 style="color: #e67e22; margin-top: 0; margin-bottom: 10px;">ℹ️ รายละเอียดระบบ</h3>
+                    <p>ระบบนี้วิเคราะห์ และจำแนกเพศของโครงกระดูกโดยใช้เทคนิคการประมวลผลภาพ (Image Processing) ร่วมกับ Deep Learning เพื่อจำแนกเพศจากภาพถ่ายโครงกระดูกส่วนสะโพก ปัจจุบันโมเดลมีความแม่นยำในการทดสอบสูง</p>
+                    <p><strong>หมายเหตุ:</strong> ระบบจำแนกเพศอาจมีข้อจำกัดในบางกรณี และควรวิเคราะห์ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญ</p>
+                </div>
+            </section>
+
+            <!-- แท็บ 2: แนะนำการใช้งาน -->
+            <section id="guide-usage" class="tab-content">
+                <h3 class="section-title">แนะนำการใช้งาน</h3>
+                <div class="info-box">
+                    <p><strong>ขั้นตอนที่ 1:</strong> เลือกบริเวณกระดูกที่ต้องการวิเคราะห์จาก Dropdown Menu (Greater Sciatic Notch, Obturator Foramen หรือทั้งสองส่วน)</p>
+                    <p><strong>ขั้นตอนที่ 2:</strong> อัปโหลดรูปภาพกระดูกสะโพกที่ต้องการทดสอบ</p>
+                    <p><strong>ขั้นตอนที่ 3:</strong> กดปุ่ม "วิเคราะห์ผล" และรอระบบประมวลผล</p>
+                    <p><strong>ขั้นตอนที่ 4:</strong> ตรวจสอบผลลัพธ์และสามารถดาวน์โหลดเก็บไว้เป็นไฟล์ PDF หรือ PNG ได้</p>
+                </div>
+            </section>
+
+            <!-- แท็บ 3: ตัวอย่างภาพ -->
+            <section id="guide-examples" class="tab-content">
+                <h3 class="section-title">ตัวอย่างภาพที่ใช้ในการวิเคราะห์</h3>
                 <div class="guide-grid">
                     <div class="guide-card success">
-                        <h4>✅ ตัวอย่างภาพที่ทำนายแล้วมีประสิทธิภาพดีที่สุด</h4>
+                        <h4>✅ ภาพที่ประสิทธิภาพดีที่สุด</h4>
                         <ul>
                             <li>1. ภาพกระดูกด้านหน้า</li>
                             <li>2. กระดูกวางตรง ไม่เอียง</li>
@@ -63,7 +84,7 @@
                         <img src="/images/eg.goodBone.jpg" alt="ตัวอย่างกระดูกที่ควรใช้" class="guide-img">
                     </div>
                     <div class="guide-card error">
-                        <h4>❌ ตัวอย่างภาพที่ผลการทำนายมีประสิทธิภาพลดลง</h4>
+                        <h4>❌ ภาพที่ประสิทธิภาพลดลง</h4>
                         <ul>
                             <li>1. วางกระดูกเอียง</li>
                             <li>2. พื้นหลังขรุขระ สีโทนสว่าง</li>
@@ -75,54 +96,108 @@
                 </div>
             </section>
 
-            <!-- หน้า 2: กระบวนการจำแนกเพศ -->
+            <!-- แท็บ 4: วิเคราะห์ -->
             <section id="predict" class="tab-content">
-                <h3>เริ่มทำการวิเคราะห์</h3>
-                
-                <div class="step-box">
-                    <label><strong>STEP 1 : เลือกบริเวณกระดูกที่ต้องการวิเคราะห์</strong></label>
-                    <select id="part-select">
-                        <option value="Greater Sciatic Notch">Greater Sciatic Notch</option>
-                        <option value="Obturator Foramen">Obturator Foramen</option>
-                        <option value="Greater Sciatic Notch & Obturator Foramen">Greater Sciatic Notch & Obturator Foramen</option>
-                    </select>
-                </div>
-
-                <div class="step-box">
-                    <label><strong>ขั้นตอนที่ 2 : Upload รูปภาพที่ต้องการทดสอบ</strong></label>
-                    <p class="text-sm">คำแนะนำ: ควรใช้ภาพกระดูกด้านหน้า วางตรง พื้นหลังเรียบสีเข้ม และไม่มีสิ่งรบกวน</p>
-                    
-                    <!-- พื้นที่สำหรับอัปโหลดและพรีวิว -->
-                    <div id="dropzone" class="upload-dropzone">
-                        <input type="file" id="image-upload" accept=".jpg, .jpeg, .png" hidden>
-                        
-                        <div id="dropzone-content">
-                            <div style="font-size: 2.5rem; margin-bottom: 10px;">📥</div>
-                            <p style="margin: 0;">ลากและปล่อยไฟล์ที่นี่<br>หรือ <strong style="color: #00427a;">คลิกเพื่อเลือกไฟล์</strong></p>
+                <h3 class="section-title">เริ่มทำการวิเคราะห์</h3>
+                <div class="input-card">
+                    <div class="step-box">
+                        <label><strong>ขั้นตอนที่ 1 : เลือกบริเวณที่ต้องการวิเคราะห์</strong></label>
+                        <!-- สร้าง Dropdown แบบ Custom ขึ้นมาใหม่ -->
+                        <div class="custom-select" id="custom-part-select">
+                            <div class="select-selected">Greater Sciatic Notch</div>
+                            <div class="select-items select-hide">
+                                <div data-value="Greater Sciatic Notch">Greater Sciatic Notch</div>
+                                <div data-value="Obturator Foramen">Obturator Foramen</div>
+                                <div data-value="Greater Sciatic Notch & Obturator Foramen">Greater Sciatic Notch & Obturator Foramen</div>
+                            </div>
                         </div>
+
+                        <!-- ซ่อน Select เดิมไว้เพื่อให้ระบบหลังบ้านยังดึงค่าไปใช้ได้ปกติ -->
+                        <select id="part-select" style="display: none;">
+                            <option value="Greater Sciatic Notch">Greater Sciatic Notch</option>
+                            <option value="Obturator Foramen">Obturator Foramen</option>
+                            <option value="Greater Sciatic Notch & Obturator Foramen">Greater Sciatic Notch & Obturator Foramen</option>
+                        </select>
+                    </div>
+
+                    <div class="step-box">
+                        <label><strong>ขั้นตอนที่ 2 : นำเข้ารูปภาพที่ต้องการทดสอบ</strong></label>
+                        <p class="text-sm">คำแนะนำ: ควรใช้ภาพกระดูกด้านหน้า วางตรง พื้นหลังเรียบสีเข้ม และไม่มีสิ่งรบกวน</p>
                         
-                        <img id="image-preview" src="" alt="Preview" style="display: none;">
+                        <div id="dropzone" class="upload-dropzone">
+                            <input type="file" id="image-upload" accept=".jpg, .jpeg, .png" hidden>
+                            <div id="dropzone-content">
+                                <div style="font-size: 2.5rem; margin-bottom: 10px; color:#e67e22;">📥</div>
+                                <p style="margin: 0;">ลากและปล่อยไฟล์ที่นี่<br>หรือ <strong style="color: #e67e22;">คลิกเพื่อเลือกไฟล์</strong></p>
+                            </div>
+                            <img id="image-preview" src="" alt="Preview" style="display: none;">
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <button id="submit-btn" class="primary-btn">🔍 วิเคราะห์ผล</button>
                     </div>
                 </div>
 
-                <!-- ปรับให้ปุ่มอยู่กึ่งกลาง -->
-                <div class="button-container">
-                    <button id="submit-btn" class="primary-btn">🔍 วิเคราะห์ผล</button>
-                </div>
-
-                <!-- ส่วนแสดงผลลัพธ์ -->
-                <div id="result-section" style="display: none; margin-top: 30px;">
-                    <h3>ผลการทำนาย</h3>
-                    <div class="result-box">
-                        จากการวิเคราะห์ สรุปได้ว่า กระดูกชิ้นนี้มีลักษณะเป็น<br>
-                        <strong id="result-gender" style="font-size:1.5rem; color:#e74c3c;"></strong><br>
-                        ด้วยความเชื่อมั่น <strong id="result-conf"></strong><strong>%</strong>
+                <!-- ส่วนแสดงผลลัพธ์ (UI บนเว็บ) -->
+                <div id="result-section" class="result-card" style="display: none;">
+                    <div id="export-area" style="background: white; padding: 20px;">
+                        <h3 style="text-align: center; color: #4d4c4b; margin-bottom: 20px;">ผลการวิเคราะห์</h3>
+                        <div class="result-layout">
+                            <div class="result-image-box">
+                                <img id="result-image" src="" alt="Result Image">
+                            </div>
+                            <div class="result-text-box">
+                                <p>จากการวิเคราะห์ สรุปได้ว่า กระดูกส่วนนี้มีลักษณะเป็น</p>
+                                <strong id="result-gender" class="gender-text"></strong><br>
+                                <p style="margin-top: 15px;">ด้วยความเชื่อมั่น <strong id="result-conf"></strong><strong class="percent">%</strong></p>
+                            </div>
+                        </div>
                     </div>
-                    <button onclick="resetApp()" class="secondary-btn">🔄 ทำการวิเคราะห์อีกครั้ง</button>
+
+                    <div class="action-buttons">
+                        <select id="export-format" class="export-select">
+                            <option value="pdf">📄 ดาวน์โหลดเป็น PDF </option>
+                            <option value="png">🖼️ ดาวน์โหลดเป็น PNG </option>
+                        </select>
+                        <button onclick="exportResult()" class="primary-btn" style="min-width: 150px; background-color: #e67e22;">💾 บันทึกผล</button>
+                        <button onclick="resetApp()" class="secondary-btn" style="min-width: 150px;">🔄 วิเคราะห์อีกครั้ง</button>
+                    </div>
                 </div>
             </section>
-        </main>
+        </div>
+    </main>
+
+    <!-- แบบฟอร์มซ่อนสำหรับ Export เป็น A4 -->
+    <div id="export-container">
+        <div id="hidden-report-template" class="a4-report">
+            <div class="report-header">
+                <!-- จัดกลุ่มโลโก้และข้อความให้อยู่บรรทัดเดียวกัน -->
+                <div class="report-title-container">
+                    <img src="/images/LogoPelvic_nbg.png" alt="PelPred" class="report-logo">
+                    <h3>ผลการวิเคราะห์โครงกระดูกส่วนสะโพกด้วยเทคนิคการประมวลผลภาพ</h3>
+                </div>
+                <hr>
+            </div>
+            <div class="report-body">
+                <img id="report-image" src="" alt="Analyzed Bone">
+                <div class="report-conclusion">
+                    <p>จากการวิเคราะห์กระดูกส่วนนี้ สรุปได้ว่า มีลักษณะเป็น</p>
+                    <h3 id="report-gender"></h3>
+                    <p>ด้วยความเชื่อมั่น <span id="report-conf"></span>%</p>
+                </div>
+            </div>
+            <div class="report-footer">
+                <hr>
+                <p>
+                    เอกสารฉบับนี้จัดทำโดย Pelvic Predict ระบบจำแนกเพศจากโครงกระดูกส่วนสะโพกด้วยเทคนิคการประมวลผลภาพ
+                    <br><strong>หมายเหตุ:</strong> ระบบจำแนกเพศอาจมีข้อจำกัดในบางกรณี และควรวิเคราะห์ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญ
+                    <br>อ้างอิง: https://website-url.th/
+                </p>
+            </div>
+        </div>
     </div>
+
     <script type="module" src="/src/main.js"></script>
 </body>
 </html>
