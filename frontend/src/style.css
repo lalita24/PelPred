@@ -93,14 +93,14 @@ h2, h3, h4 {
 
 .banner-title {
     margin: 0;
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     color: #ffffff; /* สีทอง */
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .banner-subtitle {
     margin: 10px 0 0 0;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 400;
     color: white;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -120,13 +120,13 @@ h2, h3, h4 {
 }
 
 .banner-medscilogo {
-    height: 80px; 
+    height: 70px; 
     width: auto;
     object-fit: contain;
 }
 
 .banner-csitlogo {
-    height: 70px; 
+    height: 60px; 
     width: auto;
     object-fit: contain;
 }
@@ -134,7 +134,7 @@ h2, h3, h4 {
 .banner-right {
     display: flex;
     gap: 15px; /* ระยะห่างระหว่างโลโก้ทั้ง 3 อัน */
-    align-self: flex-start; /* สั่งให้เฉพาะกลุ่มนี้ดันขึ้นไปชิดบนสุด */
+    /*align-self: flex-start;  สั่งให้เฉพาะกลุ่มนี้ดันขึ้นไปชิดบนสุด */
     margin-top: 10px; 
 }
 
@@ -265,17 +265,17 @@ select {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .upload-dropzone:hover, .upload-dropzone.dragover {
-    background-color: #e8f4f8;
-    border-color: #f1c40f;
+    background-color: #dddbdb;
+    border-color: #717171;
 }
 
 #image-preview {
-    max-width: 250px;
-    max-height: 250px;
+    max-width: 100%;
+    max-height: 500px;
     object-fit: contain;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);

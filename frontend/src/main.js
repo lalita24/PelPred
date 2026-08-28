@@ -79,9 +79,15 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
         
         const data = await response.json();
         
-        // แสดงผลลัพธ์
+        // แสดงผลลัพธ์เพศและความมั่นใจ
         document.getElementById('result-gender').innerText = data.gender;
         document.getElementById('result-conf').innerText = data.confidence;
+        
+        // เปลี่ยนรูปพรีวิวให้กลายเป็นรูปที่ถูกตีกรอบจากโมเดล YOLO
+        if (data.image_base64) {
+            document.getElementById('image-preview').src = data.image_base64;
+        }
+
         document.getElementById('result-section').style.display = "block";
         btn.style.display = "none"; // ซ่อนปุ่มเดิม
         
