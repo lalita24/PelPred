@@ -74,18 +74,70 @@ h2, h3, h4 {
     box-shadow: -5px 0 15px rgba(0,0,0,0.03);
 }
 
+/* --- Header Banner Style --- */
 .header-banner {
-    background-color: white;
-    padding: 30px 40px;
-    border-bottom: 1px solid #eee;
+    /* พื้นหลังไล่สีจากน้ำเงินเข้มไปน้ำเงินสว่าง */
+    background: linear-gradient(to bottom, #4d4c4b 50%, #676666 100%); /*#ff7b00*/
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.main-title {
-    color: #00427a;
-    font-size: 1.8rem;
-    line-height: 1.4;
+.banner-text {
     text-align: left;
+    flex: 1; /* ขยายพื้นที่ตรงกลางให้เต็ม */
+    padding: 0 20px;
 }
+
+.banner-title {
+    margin: 0;
+    font-size: 2.2rem;
+    color: #ffffff; /* สีทอง */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.banner-subtitle {
+    margin: 10px 0 0 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.banner-logo {
+    height: 150px; 
+    width: auto;
+    object-fit: contain;
+}
+
+/* --- กลุ่มโลโก้ด้านขวา --- */
+.banner-scilogo {
+    height: 100px; 
+    width: auto;
+    object-fit: contain;
+}
+
+.banner-medscilogo {
+    height: 80px; 
+    width: auto;
+    object-fit: contain;
+}
+
+.banner-csitlogo {
+    height: 70px; 
+    width: auto;
+    object-fit: contain;
+}
+
+.banner-right {
+    display: flex;
+    gap: 15px; /* ระยะห่างระหว่างโลโก้ทั้ง 3 อัน */
+    align-self: flex-start; /* สั่งให้เฉพาะกลุ่มนี้ดันขึ้นไปชิดบนสุด */
+    margin-top: 10px; 
+}
+
 
 .container {
     padding: 40px;
