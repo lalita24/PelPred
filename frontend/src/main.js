@@ -1,43 +1,51 @@
 import './style.css';
 
-// --- ระบบจัดการ Custom Dropdown ---
+// --- ระบบจัดการ Custom Dropdown ทั้งหมด (ขั้นตอนที่ 1 และ ปุ่มดาวน์โหลด) ---
 document.addEventListener("DOMContentLoaded", () => {
-    const customSelect = document.getElementById("custom-part-select");
-    if (!customSelect) return;
-    
-    const selected = customSelect.querySelector(".select-selected");
-    const items = customSelect.querySelector(".select-items");
-    const realSelect = document.getElementById("part-select");
+    // ฟังก์ชันจัดการ Generic Dropdown
+    function setupCustomDropdown(selectId, containerId) {
+        const customSelect = document.getElementById(containerId);
+        if (!customSelect) return;
+        
+        const selected = customSelect.querySelector(".select-selected");
+        const items = customSelect.querySelector(".select-items");
+        const realSelect = document.getElementById(selectId);
 
-    // เปิด/ปิด Dropdown เมื่อคลิก
-    selected.addEventListener("click", function() {
-        items.classList.toggle("select-hide");
-    });
-
-    // อัปเดตค่าเมื่อคลิกเลือกตัวเลือก
-    items.querySelectorAll("div").forEach(item => {
-        item.addEventListener("click", function() {
-            selected.innerHTML = this.innerHTML; // เปลี่ยนข้อความที่แสดง
-            realSelect.value = this.getAttribute("data-value"); // ส่งค่าให้ Select ที่ซ่อนอยู่
-            items.classList.add("select-hide"); // ปิด Dropdown
+        selected.addEventListener("click", function(e) {
+            e.stopPropagation();
+            // ปิด dropdown อื่นๆ ก่อน
+            document.querySelectorAll('.select-items').forEach(el => {
+                if (el !== items) el.classList.add('select-hide');
+            });
+            items.classList.toggle("select-hide");
         });
-    });
 
-    // ปิด Dropdown เมื่อคลิกที่อื่นบนหน้าเว็บ
-    document.addEventListener("click", function(e) {
-        if (!customSelect.contains(e.target)) {
-            items.classList.add("select-hide");
-        }
+        items.querySelectorAll("div").forEach(item => {
+            item.addEventListener("click", function() {
+                selected.innerHTML = this.innerHTML;
+                realSelect.value = this.getAttribute("data-value");
+                items.classList.add("select-hide");
+            });
+        });
+    }
+
+    // เรียกใช้งานฟังก์ชันสำหรับทั้ง 2 จุด
+    setupCustomDropdown("part-select", "custom-part-select");
+    setupCustomDropdown("export-format", "custom-export-select");
+
+    // ปิด dropdown ทั้งหมดเมื่อคลิกพื้นที่อื่นบนหน้าเว็บ
+    document.addEventListener("click", function() {
+        document.querySelectorAll('.select-items').forEach(el => el.classList.add('select-hide'));
     });
 });
 
 // --- ฟังก์ชันสลับเมนู ---
-window.switchTab = function(tabId, element) {
+window.switchTab = function (tabId, element) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.getElementById(tabId).classList.add('active');
-    
+
     document.querySelectorAll('.menu-list li').forEach(el => el.classList.remove('active'));
-    if(element) {
+    if (element) {
         element.classList.add('active');
     }
 }
@@ -61,13 +69,13 @@ dropzone.addEventListener('drop', (e) => {
         handleFilePreview(fileInput.files[0]);
     }
 });
-fileInput.addEventListener('change', function() {
+fileInput.addEventListener('change', function () {
     if (this.files.length) handleFilePreview(this.files[0]);
 });
 
 function handleFilePreview(file) {
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
         imagePreview.src = e.target.result;
         imagePreview.style.display = "block";
         dropzoneContent.style.display = "none";
@@ -97,7 +105,7 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
             body: formData
         });
         const data = await response.json();
-        
+
         // 1. นำข้อมูลใส่ UI หน้าเว็บ
         document.getElementById('result-gender').innerText = data.gender;
         document.getElementById('result-conf').innerText = data.confidence;
@@ -106,13 +114,13 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
             // 2. นำข้อมูลและรูปภาพใส่แบบฟอร์ม A4 ที่ซ่อนอยู่ด้วย
             document.getElementById('report-image').src = data.image_base64;
         }
-        
+
         document.getElementById('report-gender').innerText = data.gender;
         document.getElementById('report-conf').innerText = data.confidence;
 
         document.getElementById('result-section').style.display = "block";
-        btn.style.display = "none"; 
-        
+        btn.style.display = "none";
+
     } catch (error) {
         alert("เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์");
     } finally {
@@ -122,49 +130,53 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
 });
 
 // --- ฟังก์ชัน Export ไฟล์ (PDF / PNG / JPG) ---
-window.exportResult = function() {
+window.exportResult = function () {
     const container = document.getElementById('export-container');
     const reportElement = document.getElementById('hidden-report-template');
     const exportFormat = document.getElementById('export-format').value;
 
-    // ดึงฟอร์มออกมาแสดงชั่วคราวบนหน้าจอ (บังคับซ้ายบนสุด)
     container.style.opacity = '1';
     container.style.zIndex = '9999';
     container.style.left = '0px';
     container.style.top = '0px';
     window.scrollTo(0, 0);
 
-    setTimeout(() => {
-        if (exportFormat === 'pdf') {
-            const opt = {
-                margin:       0,
-                filename:     'Pelvic-Predict-Report.pdf',
-                image:        { type: 'jpeg', quality: 1.0 },
-                html2canvas:  { scale: 2, useCORS: true },
-                // ล็อกขนาดพิกเซลให้ตรงกับ CSS เพื่อความแม่นยำ
-                jsPDF:        { unit: 'px', format: [794, 1123], orientation: 'portrait' } 
-            };
-            html2pdf().set(opt).from(reportElement).save();
-            
-        } else {
-            // Export เป็น PNG / JPG (ทำงานปกติ)
-            html2canvas(reportElement, { scale: 2, useCORS: true, scrollY: 0 }).then(canvas => {
+    const hideContainer = () => {
+        container.style.opacity = '0';
+        container.style.zIndex = '-1000';
+        container.style.left = '-9999px';
+    };
+
+    setTimeout(async () => {
+        try {
+            if (exportFormat === 'pdf') {
+                const opt = {
+                    margin: 0,
+                    filename: 'Pelvic-Predict-Report.pdf',
+                    image: { type: 'jpeg', quality: 1.0 },
+                    html2canvas: { scale: 2, useCORS: true },
+                    jsPDF: { unit: 'px', format: [794, 1123], orientation: 'portrait' }
+                };
+                await html2pdf().set(opt).from(reportElement).save();
+            } else {
+                const canvas = await html2canvas(reportElement, { scale: 2, useCORS: true, scrollY: 0 });
                 const link = document.createElement('a');
                 const isJpg = exportFormat === 'jpg';
                 link.download = `Pelvic-Predict-Report.${isJpg ? 'jpg' : 'png'}`;
                 link.href = canvas.toDataURL(`image/${isJpg ? 'jpeg' : 'png'}`, 1.0);
                 link.click();
-                
-                container.style.opacity = '0';
-                container.style.zIndex = '-1000';
-                container.style.left = '-9999px';
-            });
+            }
+        } catch (error) {
+            console.error("Export error:", error);
+            alert("เกิดข้อผิดพลาดในการบันทึกไฟล์");
+        } finally {
+            hideContainer();
         }
-    }, 100); // รอ 100ms ให้เรนเดอร์ก่อนแคปเจอร์
+    }, 100);
 }
 
 // --- เคลียร์ค่า ---
-window.resetApp = function() {
+window.resetApp = function () {
     document.getElementById('result-section').style.display = "none";
     document.getElementById('submit-btn').style.display = "inline-block";
     fileInput.value = "";

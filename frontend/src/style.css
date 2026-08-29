@@ -19,80 +19,110 @@ h4 {
 
 /* --- Header Banner --- */
 .header-banner {
-    background: linear-gradient(to bottom, #4d4c4b 0%, #333333 100%);
-    padding: 20px 40px;
+    background-color: #3f3f3f;
+    padding: 10px 40px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.banner-text {
-    text-align: left;
-    flex: 1;
-    padding: 0 20px;
+.banner-logos-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.banner-title {
-    margin: 0;
-    font-size: 1.8rem;
-    color: #f39c12;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.banner-subtitle {
-    margin: 10px 0 0 0;
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: #ffffff;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-.banner-logo {
-    height: 150px;
-    width: auto;
-    object-fit: contain;
-}
-
-.banner-csitlogo {
+.top-logo-medsci {
     height: 60px;
     width: auto;
     object-fit: contain;
 }
 
-.banner-right {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
+.top-logo-nu {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+.top-logo-sci {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+}
+
+.top-logo-csit {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+.top-logo-anatomy {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+.banner-logos-center a {
+    display: inline-block;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.banner-logos-center a:hover {
+    opacity: 0.7;/* สว่าง/จางลงเล็กน้อยเวลาชี้ */
 }
 
 /* --- Top Navigation Menu --- */
 .top-nav {
-    background-color: #ffffff;
+    background-color: #4d4c4b;
     border-bottom: 4px solid #e67e22;
     display: flex;
     justify-content: space-between;
-    /* แยกซ้าย-ขวา */
     align-items: center;
-    padding: 0 40px;
+    padding: 12px 40px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
-/* กลุ่มโลโก้ 4 อันฝั่งซ้าย */
-.nav-logos {
+.nav-brand {
     display: flex;
-    gap: 15px;
     align-items: center;
+    gap: 15px;
 }
 
-.nav-logos img {
-    height: 40px;
-    /* ปรับขนาดโลโก้ในเมนูตามต้องการ */
+.nav-brand-logo {
+    height: 45px;
     width: auto;
     object-fit: contain;
+}
+
+/* จัดรูปแบบข้อความชื่อระบบฝั่งซ้ายให้ตรงกับสไตล์เดิมของแบนเนอร์ */
+.nav-brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-brand-title {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #f39c12;
+    /* สีส้มทองเดิม */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+}
+
+.nav-brand-subtitle {
+    margin: 1.5px 0 0 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #ffffff;
+    /* สีขาวเดิม */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .menu-list {
@@ -103,18 +133,17 @@ h4 {
 }
 
 .menu-list li {
-    padding: 16px 30px;
-    color: #4d4c4b;
+    padding: 12px 25px;
+    color: #ffffff;
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
-    /* สำหรับ dropdown */
 }
 
 .menu-list li:hover {
-    background-color: #f0f2f5;
+    background-color: #333333;
     color: #e67e22;
 }
 
@@ -123,22 +152,26 @@ h4 {
     color: white;
 }
 
+.menu-list li i {
+    margin-right: 5px; 
+}
+
 /* Dropdown Styles */
 .dropdown-content {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #ffffff;
+    background-color: #4d4c4b;
     min-width: 180px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 0 0 8px 8px;
     overflow: hidden;
 }
 
 .dropdown-content a {
-    color: #4d4c4b;
+    color: #ffffff;
     padding: 12px 20px;
     text-decoration: none;
     display: block;
@@ -147,8 +180,8 @@ h4 {
 }
 
 .dropdown-content a:hover {
-    background-color: #f0f2f5;
-    color: #e67e22;
+    background-color: #e67e22;
+    color: white;
 }
 
 .dropdown:hover .dropdown-content {
@@ -196,7 +229,8 @@ h4 {
 }
 
 .text-sm {
-    font-size: 0.9rem;
+    margin-top: 0px;
+    font-size: 1rem;
     color: #7f8c8d;
 }
 
@@ -452,7 +486,6 @@ select {
     }
 }
 
-/* Responsive สำหรับมือถือให้กล่องเรียงลงมาแทน */
 @media (max-width: 768px) {
     .result-layout {
         flex-direction: column;
@@ -476,29 +509,27 @@ select {
 
 .a4-report {
     width: 794px;
-    min-height: 1123px; /* เปลี่ยนจาก height เป็น min-height */
+    min-height: 1123px;
     background-color: white;
     padding: 50px 60px;
     font-family: 'Prompt', sans-serif;
     color: #333;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box; /* สำคัญ: ป้องกัน padding ทำให้กระดาษเกินขนาดจนเป็น 2 หน้า */
+    box-sizing: border-box;
 }
 
-/* จัดเรียงโลโก้และข้อความให้อยู่แนวนอนเดียวกัน และชิดซ้าย */
 .report-title-container {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* บังคับชิดซ้าย */
+    justify-content: flex-start;
     gap: 20px;
     margin-bottom: 15px;
 }
 
 .report-header {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
-
 
 .report-logo {
     width: 75px;
@@ -514,14 +545,14 @@ select {
 
 .report-header h3 {
     color: #4d4c4b;
-    font-size: 20px; /* ปรับขนาดเล็กลงนิดหน่อยเพื่อให้พอดี */
-    margin: 0 0 5px 0; /* เพิ่มระยะห่างด้านล่างเล็กน้อย */
+    font-size: 20px;
+    margin: 0 0 5px 0;
     font-weight: 600;
     text-align: left;
 }
 
 .eng-subtitle {
-    color: #7f8c8d; /* ใช้สีเทาอ่อนให้ดูเป็นหัวข้อรอง */
+    color: #7f8c8d;
     font-size: 14px;
     margin: 0;
     font-weight: 400;
@@ -552,7 +583,7 @@ select {
     padding: 5px;
     margin: 0 auto;
     display: block;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .report-conclusion {
@@ -641,7 +672,6 @@ select {
     transition: background 0.2s ease;
 }
 
-/* เปลี่ยนสีตอนเอาเมาส์ชี้เป็นสีส้ม */
 .select-items div:hover {
     background-color: #e67e22;
     color: white;
