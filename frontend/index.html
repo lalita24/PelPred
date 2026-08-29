@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
-<body>
+<body class="is-home">
     <!-- ส่วนบนสุด: Banner (ครอบลิงก์ที่โลโก้แต่ละอัน) -->
     <header class="header-banner">
         <div class="banner-logos-center">
@@ -44,7 +44,7 @@
         </div>
     </header>
 
-    <!-- แถบเมนูแนวนอน (ย้ายข้อความชื่อระบบมาไว้ฝั่งซ้าย พร้อมรูปแบบและสีเดิม) -->
+    <!-- แถบเมนูแนวนอน -->
     <nav class="top-nav">
         <div class="nav-brand">
             <img src="/images/logo-Pelpred.png" alt="PelPred" class="nav-brand-logo">
@@ -68,18 +68,109 @@
         </ul>
     </nav>
 
+    <!-- แบนเนอร์ทูโทน -->
+    <section class="two-tone-banner active-banner" id="home-banner">
+        <div class="banner-inner-text">
+            <h1 class="main-heading-th">ระบบจำแนกเพศจากโครงกระดูกส่วนสะโพก<br>ด้วยเทคนิคการประมวลผลภาพ</h1>
+            <h2 class="main-heading-en">Sex Classification from Hip Bone Images Using Image Processing Techniques</h2>
+            <p class="main-sub-text">" ให้การจำแนกเพศ เป็นงานของเรา "</p>
+        </div>
+    </section>
+
     <!-- เนื้อหาหลัก -->
     <main class="main-content">
         <div class="container">
             <!-- แท็บ 1: หน้าหลัก -->
             <section id="home" class="tab-content active">
-                <div class="info-box">
-                    <h3 style="color: #e67e22; margin-top: 0; margin-bottom: 10px;">ℹ️ รายละเอียดระบบ</h3>
-                    <p>ระบบนี้วิเคราะห์ และจำแนกเพศของโครงกระดูกโดยใช้เทคนิคการประมวลผลภาพ (Image Processing) ร่วมกับ
-                        Deep Learning เพื่อจำแนกเพศจากภาพถ่ายโครงกระดูกส่วนสะโพก ปัจจุบันโมเดลมีความแม่นยำในการทดสอบสูง
+                <!-- ส่วนนำเสนอระบบ (Hero Section) -->
+                <div class="hero-card">
+                    <h2><i class="fa-solid fa-bone"></i> ผลการทดสอบประสิทธิภาพ</h2>
+
+                    <!-- กล่องแสดงสถิติความแม่นยำ (Metrics Highlight) -->
+                    <div class="metrics-grid">
+                        <div class="metric-item">
+                            <span class="metric-value">99.78%</span>
+                            <span class="metric-label">Accuracy</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">99.72%</span>
+                            <span class="metric-label">Precision</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">99.84%</span>
+                            <span class="metric-label">Recall</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">99.50%</span>
+                            <span class="metric-label">mAP50</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">88.95%</span>
+                            <span class="metric-label">mAP50-95</span>
+                        </div>
+                    </div>
+                    <div class="metric-note">
+                        <i class="fa-solid fa-circle-check" style="color: #565656;"></i> จากสถิติการทดสอบจริงล่าสุด
+                        ระบบสามารถทายผลได้อย่างถูกต้องแม่นยำทุกครั้ง (คิดเป็น 100% เต็ม)
+                    </div>
+
+                    <div class="alert-box">
+                        <strong>หมายเหตุ:</strong> ระบบจำแนกเพศอาจมีข้อจำกัดในบางกรณี
+                        และควรวิเคราะห์ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญ
+                    </div>
+                </div>
+
+                <!-- การ์ดเนื้อหา: ที่มาและความสำคัญ -->
+                <div class="content-card">
+                    <h3><i class="fa-solid fa-circle-info" style="color: #e67e22;"></i> ที่มาและความสำคัญของระบบ</h3>
+                    <p class="text-justify">
+                        โครงกระดูกมนุษย์ โดยเฉพาะบริเวณ <strong>"กระดูกเชิงกราน (Pelvis)"</strong>
+                        ถือเป็นหลักฐานทางชีวภาพที่มีความสำคัญอย่างยิ่งในทางมานุษยวิทยากายภาพ ชีวกระดูก
+                        และนิติวิทยาศาสตร์ เนื่องจากสามารถสะท้อนข้อมูลอัตลักษณ์พื้นฐานของบุคคลได้อย่างแม่นยำที่สุด
+                        โดยเฉพาะการแสดงความแตกต่างทางสัณฐานวิทยา (Sexual Dimorphism) ระหว่างเพศชายและเพศหญิง
+                        ซึ่งมีพื้นฐานจากการปรับตัวทางชีววิทยาเพื่อรองรับการตั้งครรภ์และการคลอดบุตรในเพศหญิง
                     </p>
-                    <p><strong>หมายเหตุ:</strong> ระบบจำแนกเพศอาจมีข้อจำกัดในบางกรณี
-                        และควรวิเคราะห์ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญ</p>
+                    <p class="text-justify">
+                        อย่างไรก็ตาม การประเมินเพศจากโครงกระดูกในปัจจุบัน ไม่ว่าจะเป็นบริเวณ Greater Sciatic Notch หรือ
+                        Obturator Foramen
+                        ส่วนใหญ่ยังคงต้องพึ่งพาความเชี่ยวชาญและการพิจารณาด้วยสายตาของผู้ประเมินเป็นหลัก
+                        ซึ่งอาจทำให้เกิดความคลาดเคลื่อนและข้อจำกัดในด้านความเที่ยงตรง
+                        ทางคณะผู้จัดทำจึงเล็งเห็นความสำคัญในการนำเทคโนโลยีการประมวลผลภาพ (Image Processing)
+                        และการเรียนรู้เชิงลึกด้วยโครงข่ายประสาทเทียมแบบคอนโวลูชัน (Deep Learning / CNNs) มาประยุกต์ใช้
+                        เพื่อพัฒนาเป็นระบบต้นแบบที่ช่วยวิเคราะห์ข้อมูลเชิงรูปทรงจากภาพดิจิทัลได้อย่างเป็นระบบ รวดเร็ว
+                        และลดอิทธิพลจากการตีความส่วนบุคคล
+                    </p>
+                </div>
+
+                <!-- สองคอลัมน์: วัตถุประสงค์ และ ประโยชน์ของระบบ -->
+                <div class="grid-2-col">
+                    <div class="content-card">
+                        <h3><i class="fa-solid fa-bullseye" style="color: #e67e22;"></i> วัตถุประสงค์ของระบบ</h3>
+                        <ul class="custom-list">
+                            <li><i class="fa-solid fa-check"></i>
+                                เพื่อพัฒนาแนวทางการประยุกต์ใช้เทคนิคการประมวลผลภาพและการเรียนรู้เชิงลึก
+                                สำหรับตรวจจับตำแหน่งและทำนายเพศจากบริเวณ Obturator Foramen และ Greater Sciatic Notch
+                                จากภาพกระดูกเชิงกราน</li>
+                            <li><i class="fa-solid fa-check"></i>
+                                เพื่อพัฒนาระบบต้นแบบสำหรับการประเมินเพศจากโครงกระดูกส่วนสะโพกผ่านทางเว็บแอปพลิเคชันที่ใช้งานได้จริง
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h3><i class="fa-solid fa-star" style="color: #e67e22;"></i> ประโยชน์ของระบบ</h3>
+                        <ul class="custom-list">
+                            <li><i class="fa-solid fa-check"></i><strong>เพิ่มความสะดวกรวดเร็ว:</strong>
+                                ช่วยอำนวยความสะดวกและลดระยะเวลาในการวิเคราะห์ข้อมูลโครงกระดูก
+                                เมื่อเทียบกับการประเมินด้วยสายตาหรือการวัดด้วยมือเพียงอย่างเดียว</li>
+                            <li><i class="fa-solid fa-check"></i><strong>ยกระดับมาตรฐานงานนิติวิทยาศาสตร์:</strong>
+                                เป็นแนวทางในการประยุกต์ใช้เทคโนโลยีปัญญาประดิษฐ์ (AI)
+                                เข้ามาช่วยสนับสนุนการปฏิบัติงานจริง</li>
+                            <li><i class="fa-solid fa-check"></i><strong>ได้ระบบต้นแบบที่ต่อยอดได้:</strong>
+                                ได้รับระบบเว็บแอปพลิเคชันต้นแบบสำหรับการตรวจจับตำแหน่งกระดูกและจำแนกเพศ
+                                เพื่อพัฒนาต่อยอดในอนาคต</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
@@ -148,20 +239,24 @@
 
                     <div class="step-box">
                         <label><strong>ขั้นตอนที่ 2 : นำเข้ารูปภาพที่ต้องการวิเคราะห์</strong></label>
-                        <p class="text-sm">คำแนะนำ: ควรใช้ภาพกระดูกด้านหน้า วางตรง พื้นหลังเรียบสีเข้ม และไม่มีสิ่งรบกวน</p>
-                        
+                        <p class="text-sm">คำแนะนำ: ควรใช้ภาพกระดูกด้านหน้า วางตรง พื้นหลังเรียบสีเข้ม และไม่มีสิ่งรบกวน
+                        </p>
+
                         <div id="dropzone" class="upload-dropzone">
                             <input type="file" id="image-upload" accept=".jpg, .jpeg, .png" hidden>
                             <div id="dropzone-content">
-                                <div style="font-size: 2.5rem; margin-bottom: 10px; color:#e67e22;"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-                                <p style="margin: 0;">ลากและปล่อยไฟล์ที่นี่<br>หรือ <strong style="color: #e67e22;">คลิกเพื่อเลือกไฟล์</strong></p>
+                                <div style="font-size: 2.5rem; margin-bottom: 10px; color:#e67e22;"><i
+                                        class="fa-solid fa-cloud-arrow-up"></i></div>
+                                <p style="margin: 0;">ลากและปล่อยไฟล์ที่นี่<br>หรือ <strong
+                                        style="color: #e67e22;">คลิกเพื่อเลือกไฟล์</strong></p>
                             </div>
                             <img id="image-preview" src="" alt="Preview" style="display: none;">
                         </div>
                     </div>
 
                     <div class="button-container">
-                        <button id="submit-btn" class="primary-btn"><i class="fa-solid fa-magnifying-glass"></i> วิเคราะห์ผล</button>
+                        <button id="submit-btn" class="primary-btn"><i class="fa-solid fa-magnifying-glass"></i>
+                            วิเคราะห์ผล</button>
                     </div>
                 </div>
 
@@ -199,9 +294,12 @@
                             <option value="jpg">.jpg</option>
                         </select>
 
-                        <button onclick="exportResult()" class="primary-btn" style="min-width: 150px; background-color: #e67e22;"><i class="fa-solid fa-floppy-disk"></i> บันทึกผล</button>
-                        
-                        <button onclick="resetApp()" class="secondary-btn" style="min-width: 150px;"><i class="fa-solid fa-rotate-right"></i> วิเคราะห์อีกครั้ง</button>
+                        <button onclick="exportResult()" class="primary-btn"
+                            style="min-width: 150px; background-color: #e67e22;"><i class="fa-solid fa-floppy-disk"></i>
+                            บันทึกผล</button>
+
+                        <button onclick="resetApp()" class="secondary-btn" style="min-width: 150px;"><i
+                                class="fa-solid fa-rotate-right"></i> วิเคราะห์อีกครั้ง</button>
                     </div>
                 </div>
             </section>

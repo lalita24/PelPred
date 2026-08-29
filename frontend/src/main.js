@@ -48,6 +48,18 @@ window.switchTab = function (tabId, element) {
     if (element) {
         element.classList.add('active');
     }
+
+    // ควบคุมการแสดงผลแบนเนอร์ทูโทนและคลาส is-home ของ body เฉพาะหน้าหลัก
+    const homeBanner = document.getElementById('home-banner');
+    const bodyElement = document.body;
+
+    if (tabId === 'home') {
+        if (homeBanner) homeBanner.classList.add('active-banner');
+        bodyElement.classList.add('is-home');
+    } else {
+        if (homeBanner) homeBanner.classList.remove('active-banner');
+        bodyElement.classList.remove('is-home');
+    }
 }
 
 const dropzone = document.getElementById('dropzone');
