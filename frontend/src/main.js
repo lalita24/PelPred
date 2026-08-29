@@ -121,15 +121,19 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
     }
 });
 
-// --- ฟังก์ชัน Export ไฟล์ (ดึงจากเทมเพลตที่ซ่อนอยู่) ---
+// --- ฟังก์ชัน Export ไฟล์ (PDF / PNG / JPG) ---
 window.exportResult = function() {
+    const container = document.getElementById('export-container');
     const reportElement = document.getElementById('hidden-report-template');
     const exportFormat = document.getElementById('export-format').value;
 
-    // เลื่อนหน้าจอขึ้นบนสุดก่อน Export เพื่อป้องกัน html2canvas ตัดภาพแหว่ง
+    // ดึงฟอร์มออกมาแสดงชั่วคราวบนหน้าจอ (บังคับซ้ายบนสุด)
+    container.style.opacity = '1';
+    container.style.zIndex = '9999';
+    container.style.left = '0px';
+    container.style.top = '0px';
     window.scrollTo(0, 0);
 
-    // หน่วงเวลาเล็กน้อยเพื่อให้เบราว์เซอร์เตรียม DOM ให้พร้อม
     setTimeout(() => {
         if (exportFormat === 'pdf') {
             const opt = {
@@ -141,16 +145,22 @@ window.exportResult = function() {
                 jsPDF:        { unit: 'px', format: [794, 1123], orientation: 'portrait' } 
             };
             html2pdf().set(opt).from(reportElement).save();
+            
         } else {
-            // Export เป็นไฟล์ภาพ PNG
-            html2canvas(reportElement, { scale: 2, useCORS: true }).then(canvas => {
+            // Export เป็น PNG / JPG (ทำงานปกติ)
+            html2canvas(reportElement, { scale: 2, useCORS: true, scrollY: 0 }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = 'Pelvic-Predict-Report.png';
-                link.href = canvas.toDataURL('image/png');
+                const isJpg = exportFormat === 'jpg';
+                link.download = `Pelvic-Predict-Report.${isJpg ? 'jpg' : 'png'}`;
+                link.href = canvas.toDataURL(`image/${isJpg ? 'jpeg' : 'png'}`, 1.0);
                 link.click();
+                
+                container.style.opacity = '0';
+                container.style.zIndex = '-1000';
+                container.style.left = '-9999px';
             });
         }
-    }, 100); // ดีเลย์ 100ms
+    }, 100); // รอ 100ms ให้เรนเดอร์ก่อนแคปเจอร์
 }
 
 // --- เคลียร์ค่า ---

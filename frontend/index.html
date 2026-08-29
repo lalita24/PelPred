@@ -157,8 +157,9 @@
 
                     <div class="action-buttons">
                         <select id="export-format" class="export-select">
-                            <option value="pdf">📄 ดาวน์โหลดเป็น PDF </option>
-                            <option value="png">🖼️ ดาวน์โหลดเป็น PNG </option>
+                            <option value="pdf">ดาวน์โหลดเป็น PDF</option>
+                            <option value="png">ดาวน์โหลดเป็น PNG</option>
+                            <option value="jpg">ดาวน์โหลดเป็น JPG</option>
                         </select>
                         <button onclick="exportResult()" class="primary-btn" style="min-width: 150px; background-color: #e67e22;">💾 บันทึกผล</button>
                         <button onclick="resetApp()" class="secondary-btn" style="min-width: 150px;">🔄 วิเคราะห์อีกครั้ง</button>
@@ -175,7 +176,10 @@
                 <!-- จัดกลุ่มโลโก้และข้อความให้อยู่บรรทัดเดียวกัน -->
                 <div class="report-title-container">
                     <img src="/images/LogoPelvic_nbg.png" alt="PelPred" class="report-logo">
-                    <h3>ผลการวิเคราะห์โครงกระดูกส่วนสะโพกด้วยเทคนิคการประมวลผลภาพ</h3>
+                    <div class="report-title-text">
+                        <h3>ผลการวิเคราะห์โครงกระดูกส่วนสะโพกด้วยเทคนิคการประมวลผลภาพ</h3>
+                        <p class="eng-subtitle">Sex Classification from Hip Bone Images Using Image Processing Techniques</p>
+                    </div>
                 </div>
                 <hr>
             </div>

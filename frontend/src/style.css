@@ -476,44 +476,61 @@ select {
 
 .a4-report {
     width: 794px;
-    height: 1123px;
+    min-height: 1123px; /* เปลี่ยนจาก height เป็น min-height */
     background-color: white;
     padding: 50px 60px;
     font-family: 'Prompt', sans-serif;
     color: #333;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box; /* สำคัญ: ป้องกัน padding ทำให้กระดาษเกินขนาดจนเป็น 2 หน้า */
+}
+
+/* จัดเรียงโลโก้และข้อความให้อยู่แนวนอนเดียวกัน และชิดซ้าย */
+.report-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* บังคับชิดซ้าย */
+    gap: 20px;
+    margin-bottom: 15px;
 }
 
 .report-header {
     margin-bottom: 30px;
 }
 
-/* จัดเรียงโลโก้และข้อความให้อยู่แนวนอนเดียวกัน */
-.report-title-container {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* ระยะห่างระหว่างโลโก้กับข้อความ */
-    margin-bottom: 15px;
-}
 
 .report-logo {
-    width: 70px;
+    width: 75px;
     height: auto;
     object-fit: contain;
 }
 
+.report-title-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .report-header h3 {
     color: #4d4c4b;
-    font-size: 26px;
-    margin: 0;
+    font-size: 20px; /* ปรับขนาดเล็กลงนิดหน่อยเพื่อให้พอดี */
+    margin: 0 0 5px 0; /* เพิ่มระยะห่างด้านล่างเล็กน้อย */
     font-weight: 600;
+    text-align: left;
+}
+
+.eng-subtitle {
+    color: #7f8c8d; /* ใช้สีเทาอ่อนให้ดูเป็นหัวข้อรอง */
+    font-size: 14px;
+    margin: 0;
+    font-weight: 400;
     text-align: left;
 }
 
 .report-header hr {
     border: 0;
-    border-top: 2px solid #4d4c4b;
+    border-top: 2px solid #ccc;
     margin-top: 15px;
     margin-bottom: 20px;
 }
