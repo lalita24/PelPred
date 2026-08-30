@@ -84,7 +84,7 @@
             <section id="home" class="tab-content active">
                 <!-- ส่วนนำเสนอระบบ (Hero Section) -->
                 <div class="hero-card">
-                    <h2><i class="fa-solid fa-bone"></i> ผลการทดสอบประสิทธิภาพ</h2>
+                    <h2><i class="fa-solid fa-bone"></i> ผลการทดสอบประสิทธิภาพ <i class="fa-solid fa-bone"></i></h2>
 
                     <!-- กล่องแสดงสถิติความแม่นยำ (Metrics Highlight) -->
                     <div class="metrics-grid">
@@ -190,26 +190,111 @@
             <!-- แท็บ 3: ตัวอย่างภาพ -->
             <section id="guide-examples" class="tab-content">
                 <h3 class="section-title">ตัวอย่างภาพที่ใช้ในการวิเคราะห์</h3>
-                <div class="guide-grid">
-                    <div class="guide-card success">
-                        <h4>✅ ภาพที่ประสิทธิภาพดีที่สุด</h4>
-                        <ul>
-                            <li>1. ภาพกระดูกด้านหน้า</li>
-                            <li>2. กระดูกวางตรง ไม่เอียง</li>
-                            <li>3. พื้นหลังเรียบ สีเข้ม</li>
-                            <li>4. ไม่มีสิ่งรบกวน</li>
-                        </ul>
-                        <img src="/images/eg.goodBone.jpg" alt="ตัวอย่างกระดูกที่ควรใช้" class="guide-img">
+                <p class="text-sm" style="margin-bottom: 25px;">
+                    คำแนะนำ: เพื่อให้ระบบสามารถวิเคราะห์ได้อย่างแม่นยำสูงสุด ควรศึกษาตัวอย่างภาพและผลลัพธ์การจำแนกประเภททั้งแบบที่แนะนำและไม่แนะนำ ดังตารางด้านล่างนี้
+                </p>
+
+                <!-- ส่วนที่ 1: ตารางภาพที่ประสิทธิภาพดีที่สุด (แนะนำ) -->
+                <div class="example-section-box">
+                    <h4 class="example-box-title success-title"><i class="fa-solid fa-circle-check"></i> 1. ตัวอย่างภาพที่ประสิทธิภาพดีที่สุด (แนะนำให้ใช้)</h4>
+                    <ul class="example-desc-list">
+                        <li>• ภาพกระดูกด้านหน้า</li>
+                        <li>• กระดูกวางตรง ไม่เอียง</li>
+                        <li>• พื้นหลังเรียบ สีเข้ม</li>
+                        <li>• ไม่มีสิ่งรบกวน</li>
+                    </ul>
+                    <div class="table-container">
+                        <table class="example-table">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">ภาพวิเคราะห์</th>
+                                    <th colspan="3">ผลการวิเคราะห์</th>
+                                </tr>
+                                <tr>
+                                    <th>Greater Sciatic Notch</th>
+                                    <th>Obturator Foramen</th>
+                                    <th>Greater Sciatic Notch <br>&<br> Obturator Foramen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img src="/images/test1.jpg" alt="Good Pic 1" class="table-img"></td>
+                                    <td><img src="/images/gr_gpic.png" alt="Greater test good" class="table-img"></td>
+                                    <td><img src="/images/ob_gpic.png" alt="Obturator test good" class="table-img"></td>
+                                    <td><img src="/images/both_gpic.png" alt="Greater & Obturator test good" class="table-img"></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/images/test2.jpg" alt="Good Pic 2" class="table-img"></td>
+                                    <td>result2.1</td>
+                                    <td>result2.2</td>
+                                    <td>result2.3</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/images/test3.jpg" alt="Good Pic 3" class="table-img"></td>
+                                    <td>result3.1</td>
+                                    <td>result3.2</td>
+                                    <td>result3.3</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/images/test4.jpg" alt="Good Pic 4" class="table-img"></td>
+                                    <td>result4.1</td>
+                                    <td>result4.2</td>
+                                    <td>result4.3</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="guide-card error">
-                        <h4>❌ ภาพที่ประสิทธิภาพลดลง</h4>
-                        <ul>
-                            <li>1. วางกระดูกเอียง</li>
-                            <li>2. พื้นหลังขรุขระ สีโทนสว่าง</li>
-                            <li>3. มีสิ่งรบกวน</li>
-                            <li>4. ภาพไม่ชัด</li>
-                        </ul>
-                        <img src="/images/eg.badBone.jpg" alt="ตัวอย่างกระดูกที่ไม่ควรใช้" class="guide-img">
+                </div>
+
+                <!-- ส่วนที่ 2: ตารางภาพที่ประสิทธิภาพลดลง (ไม่แนะนำ) -->
+                <div class="example-section-box" style="margin-top: 40px;">
+                    <h4 class="example-box-title error-title"><i class="fa-solid fa-circle-xmark"></i> 2. ตัวอย่างภาพที่ประสิทธิภาพลดลง (ควรหลีกเลี่ยง)</h4>
+                    <ul class="example-desc-list">
+                        <li>• วางกระดูกเอียง</li>
+                        <li>• พื้นหลังขรุขระ สีโทนสว่าง</li>
+                        <li>• มีสิ่งรบกวน</li>
+                        <li>• ภาพไม่ชัด</li>
+                    </ul>
+                    <div class="table-container">
+                        <table class="example-table">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">ภาพวิเคราะห์</th>
+                                    <th colspan="3">ผลการวิเคราะห์</th>
+                                </tr>
+                                <tr>
+                                    <th>Greater Sciatic Notch</th>
+                                    <th>Obturator Foramen</th>
+                                    <th>Greater & Obturator</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img src="/images/eg.badBone.jpg" alt="Bad bone alignment" class="table-img"></td>
+                                    <td>result1.1</td>
+                                    <td>result1.2</td>
+                                    <td>result1.3</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/images/pic2.jpg" alt="Bad Pic 1" class="table-img"></td>
+                                    <td>result2.1</td>
+                                    <td>result2.2</td>
+                                    <td>result2.3</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/images/pic3.jpg" alt="Bad Pic 2" class="table-img"></td>
+                                    <td>result3.1</td>
+                                    <td>result3.2</td>
+                                    <td>result3.3</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="/images/pic4.jpg" alt="Bad Pic 3" class="table-img"></td>
+                                    <td>result4.1</td>
+                                    <td>result4.2</td>
+                                    <td>result4.3</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </section>
