@@ -60,7 +60,7 @@
             <li class="dropdown">
                 <span class="dropbtn"><i class="fa-solid fa-book-open"></i> แนะนำ ▾</span>
                 <div class="dropdown-content">
-                    <a onclick="switchTab('guide-usage', this.parentElement.parentElement)">แนะนำการใช้งาน</a>
+                    <a onclick="switchTab('guide-manual', this.parentElement.parentElement)">แนะนำการใช้งาน</a>
                     <a onclick="switchTab('guide-examples', this.parentElement.parentElement)">ตัวอย่างภาพ</a>
                 </div>
             </li>
@@ -174,16 +174,175 @@
                 </div>
             </section>
 
-            <!-- แท็บ 2: แนะนำการใช้งาน -->
-            <section id="guide-usage" class="tab-content">
-                <h3 class="section-title">แนะนำการใช้งาน</h3>
-                <div class="info-box">
-                    <p><strong>ขั้นตอนที่ 1:</strong> เลือกบริเวณกระดูกที่ต้องการวิเคราะห์จาก Dropdown Menu (Greater
-                        Sciatic Notch, Obturator Foramen หรือทั้งสองส่วน)</p>
-                    <p><strong>ขั้นตอนที่ 2:</strong> อัปโหลดรูปภาพกระดูกสะโพกที่ต้องการทดสอบ</p>
-                    <p><strong>ขั้นตอนที่ 3:</strong> กดปุ่ม "วิเคราะห์ผล" และรอระบบประมวลผล</p>
-                    <p><strong>ขั้นตอนที่ 4:</strong> ตรวจสอบผลลัพธ์และสามารถดาวน์โหลดเก็บไว้เป็นไฟล์ PDF หรือ PNG ได้
-                    </p>
+            <!-- แท็บ 2: คู่มือการใช้งาน -->
+            <section id="guide-manual" class="tab-content">
+                <h3 class="section-title"><i class="fa-solid fa-book-open-reader"></i> คู่มือแนะนำการใช้งานระบบ </h3>
+                <p class="text-sm" style="margin-bottom: 30px;">
+                    คำแนะนำ:
+                    ปฏิบัติตามขั้นตอนด้านล่างนี้เพื่อเริ่มต้นวิเคราะห์และจำแนกเพศจากภาพกระดูกเชิงกรานของได้อย่างถูกต้องและแม่นยำ
+                </p>
+
+                <!-- ขั้นตอนที่ 1 -->
+                <div class="step-guide-card">
+                    <div class="step-guide-header">
+                        <div class="step-number">1</div>
+                        <h4 class="step-title">เข้าสู่หน้าวิเคราะห์ข้อมูล</h4>
+                    </div>
+                    <div class="step-guide-body grid-2-col">
+                        <div class="step-text-content">
+                            <p>เริ่มต้นการใช้งานระบบ โดยให้มองหาแถบเมนูนำทางที่อยู่ด้านบนสุดของเว็บไซต์</p>
+                            <ul class="custom-list">
+                                <li><i class="fa-solid fa-hand-pointer"></i> คลิกที่เมนู <strong>"วิเคราะห์"</strong>
+                                    ที่มุมขวาบน</li>
+                            </ul>
+                        </div>
+                        <div class="step-image-placeholder" style="margin-top: 10px;">
+                            <img src="/images/step1.png" alt="คลิกเมนูวิเคราะห์" class="step-img-mockup">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ขั้นตอนที่ 2 -->
+                <div class="step-guide-card">
+                    <div class="step-guide-header">
+                        <div class="step-number">2</div>
+                        <h4 class="step-title">เลือกส่วนของกระดูกที่ต้องการวิเคราะห์</h4>
+                    </div>
+                    <div class="step-guide-body grid-2-col">
+                        <div class="step-text-content">
+                            <p>เมื่อเข้ามาที่หน้าวิเคราะห์แล้ว ระบบจะให้เลือกตำแหน่งของกระดูกที่ต้องการวิเคราะห์
+                                เพื่อกำหนดให้ระบบตรวจจับได้อย่างแม่นยำ</p>
+                            <ul class="custom-list">
+                                <li><i class="fa-solid fa-check"></i> <strong>Obturator Foramen:</strong>
+                                    เลือกเมื่อต้องการวิเคราะห์ช่องเปิดด้านล่าง</li>
+                                <li><i class="fa-solid fa-check"></i> <strong>Greater Sciatic Notch:</strong>
+                                    เลือกเมื่อต้องการวิเคราะห์รอยเว้าด้านหลัง</li>
+                                <li><i class="fa-solid fa-check"></i> <strong>วิเคราะห์ทั้ง 2 ส่วน:</strong>
+                                    เลือกเมื่อต้องการวิเคราะห์ทั้งสองส่วน</li>
+                            </ul>
+                        </div>
+                        <div class="step-image-placeholder" style="margin-top: 20px;">
+                            <img src="/images/step2.png" alt="เลือกประเภทกระดูก" class="step-img-mockup">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ขั้นตอนที่ 3 -->
+                <div class="step-guide-card">
+                    <div class="step-guide-header">
+                        <div class="step-number">3</div>
+                        <h4 class="step-title">นำเข้าและอัปโหลดภาพถ่าย</h4>
+                    </div>
+
+                    <div class="step-guide-body grid-2-col" style="align-items: start;">
+
+                        <!-- คอลัมน์ซ้าย -->
+                        <div style="display: flex; flex-direction: column; gap: 40px;">
+                            <div class="step-image-placeholder">
+                                <img src="/images/step3.1.png" alt="ตัวอย่างภาพ" class="step-img-mockup">
+                            </div>
+                            <div class="step-image-placeholder">
+                                <img src="/images/step3.2.png" alt="อัปโหลดภาพ" class="step-img-mockup">
+                            </div>
+                        </div>
+
+                        <!-- คอลัมน์ขวา -->
+                        <div class="step-text-content">
+                            <p>
+                                ศึกษาลักษณะภาพกระดูกสะโพกที่เหมาะสมสำหรับใช้งานในระบบนี้ ได้ที่
+                                <strong>"ตัวอย่างภาพ"</strong> ก่อนนำภาพเข้าระบบ ซึ่งในหน้าตัวอย่างภาพ
+                                จะเห็นตัวอย่างภาพที่แนะนำให้ใช้ และตัวอย่างภาพที่ไม่แนะนำให้ใช้ อย่างละเอียด
+                                เมื่อศึกษาลักษณะภาพกระดูกสะโพกที่เหมาะสมแล้ว จนเข้าใจดีแล้ว
+                                สามารถนำภาพเข้าสู่ระบบได้ง่าย ๆ 2 วิธี
+                            </p>
+
+                            <ul class="custom-list" style="margin-top: 25px;">
+                                <li><i class="fa-solid fa-file-arrow-up"></i> <strong>วิธีที่ 1
+                                        (คลิกเพื่อเลือก):</strong> คลิกบริเวณกล่องสี่เหลี่ยมเส้นประตรงกลางหน้าจอ
+                                    เพื่อเปิดหน้าต่างเลือกไฟล์จากคอมพิวเตอร์</li>
+                                <li><i class="fa-solid fa-hand-holding-hand"></i> <strong>วิธีที่ 2
+                                        (ลากแล้ววาง):</strong>
+                                    ลากไฟล์รูปภาพมาปล่อยลงในกล่องสี่เหลี่ยมเส้นประได้เลย</li>
+                            </ul>
+
+                            <div class="alert-box" style="margin-top: 25px;">
+                                <i class="fa-solid fa-circle-exclamation"></i> <strong>หมายเหตุ:</strong>
+                                เมื่อนำเข้าสำเร็จ จะมีภาพตัวอย่างปรากฏขึ้นให้ตรวจสอบ
+                            </div>
+
+                            <p>หลังจากตรวจสอบรูปภาพแล้ว ให้คลิกปุ่ม <strong>"วิเคราะห์"</strong>
+                                ด้านล่างเพื่อเริ่มวิเคราะห์และประมวลผลภาพ</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ขั้นตอนที่ 4 -->
+                <div class="step-guide-card">
+                    <div class="step-guide-header">
+                        <div class="step-number">4</div>
+                        <h4 class="step-title">ตรวจสอบผลการวิเคราะห์</h4>
+                    </div>
+                    <div class="step-guide-body grid-2-col">
+                        <div class="step-text-content">
+                            <p>หลังจากระบบประมวลผลเสร็จสิ้น หน้าจอจะแสดงผลลัพธ์
+                                โดยสามารถดูข้อมูลที่ระบบวิเคราะห์ได้ดังนี้:</p>
+                            <ul class="custom-list">
+                                <li><i class="fa-solid fa-magnifying-glass-chart"></i> <strong>ภาพผลลัพธ์:</strong>
+                                    จะมีกรอบสี่เหลี่ยมตีกรอบบริเวณสำคัญที่โมเดลตรวจพบ</li>
+                                <li><i class="fa-solid fa-venus-mars"></i> <strong>ผลทำนายเพศ:</strong> แสดงว่าเป็น
+                                    เพศชาย หรือ เพศหญิง ตัวใหญ่ชัดเจน</li>
+                                <li><i class="fa-solid fa-chart-line"></i> <strong>ค่าความเชื่อมั่น:</strong>
+                                    แสดงเป็นเปอร์เซ็นต์ เพื่อบอกความมั่นใจของโมเดล</li>
+                            </ul>
+                        </div>
+                        <div class="step-image-placeholder" style="margin-top: 15px;">
+                            <img src="/images/step4.png" alt="ผลการวิเคราะห์" class="step-img-mockup">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ขั้นตอนที่ 5 -->
+                <div class="step-guide-card">
+                    <div class="step-guide-header">
+                        <div class="step-number">5</div>
+                        <h4 class="step-title">บันทึกและดาวน์โหลดผลการวิเคราะห์</h4>
+                    </div>
+                    <div class="step-guide-body grid-2-col" style="align-items: start;">
+
+                        <!-- คอลัมน์ซ้าย: ข้อความทั้งหมด -->
+                        <div class="step-text-content">
+                            <p>หากต้องการเก็บผลลัพธ์ไว้ใช้งานต่อ สามารถดาวน์โหลดรายงานออกจากระบบได้ทันที:</p>
+                            <ul class="custom-list">
+                                <li><i class="fa-solid fa-caret-down"></i> <strong>เลือกรูปแบบไฟล์:</strong>
+                                    ที่ด้านล่างของผลลัพธ์ จะมีกล่องให้เลือกชนิดไฟล์ รองรับทั้ง <strong>PDF, PNG และ
+                                        JPG</strong></li>
+                                <li><i class="fa-solid fa-download"></i> <strong>กดดาวน์โหลด:</strong>
+                                    เมื่อเลือกไฟล์แล้ว ให้กดปุ่ม <strong>"บันทึกผล" </strong> สีส้ม
+                                    ระบบจะสร้างรายงานที่ประกอบด้วยโลโก้ ภาพผลลัพธ์ และสรุปผล
+                                    จัดหน้าอย่างสวยงามให้ดาวน์โหลดทันที</li>
+                                <li><i class="fa-solid fa-sync"></i> <strong>วิเคราะห์ใหม่:</strong>
+                                    เมื่อต้องการวิเคราะห์ภาพอื่นต่อ ให้คลิกปุ่ม
+                                    <img src="/images/btn-reset.png" alt="วิเคราะห์ใหม่" class="step-img-mockup"
+                                        style="width: 100px; height: auto; margin-top: 10px;">
+                                    เพื่อกลับไปยังหน้าวิเคราะห์และทำซ้ำขั้นตอนเดิมได้เลย
+                                </li>
+                            </ul>
+                            <div class="alert-box" ><i class="fa-solid fa-circle-exclamation"></i>
+                                <strong>หมายเหตุ:</strong>
+                                    ผลลัพธ์ที่ได้จากระบบจำแนกเพศด้วยเทคนิคการประมวลผลภาพ (Pelvic Predict)
+                                    เป็นเพียงการวิเคราะห์เบื้องต้นเท่านั้น ไม่สามารถใช้เป็นผลยืนยันในทางการแพทย์ได้
+                                    จึงควรใช้ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญเพื่อความแม่นยำสูงสุด
+                                
+                            </div>
+                        </div>
+
+                        <div class="step-image-placeholder" style="width: 350px; height: auto; margin-top: 10px; margin-left: 70px;">
+                            <img src="/images/Pelvic-Predict-Report.png" alt="รายงานผลการวิเคราะห์"
+                                class="step-img-mockup">
+                        </div>
+
+                    </div>
                 </div>
             </section>
 
@@ -191,15 +350,18 @@
             <section id="guide-examples" class="tab-content">
                 <h3 class="section-title">ตัวอย่างภาพที่ใช้ในการวิเคราะห์</h3>
                 <p class="text-sm" style="margin-bottom: 25px;">
-                    คำแนะนำ: เพื่อให้ระบบสามารถวิเคราะห์ได้อย่างแม่นยำสูงสุด ควรศึกษาตัวอย่างภาพและผลลัพธ์การจำแนกประเภททั้งแบบที่แนะนำและไม่แนะนำ ดังตารางด้านล่างนี้
+                    คำแนะนำ: เพื่อให้ระบบสามารถวิเคราะห์ได้อย่างแม่นยำสูงสุด
+                    ควรศึกษาตัวอย่างภาพและผลลัพธ์การจำแนกประเภททั้งแบบที่แนะนำและไม่แนะนำ ดังตารางด้านล่างนี้
                 </p>
 
                 <!-- ส่วนที่ 1: ตารางภาพที่ประสิทธิภาพดีที่สุด (แนะนำ) -->
                 <div class="example-section-box">
-                    <h4 class="example-box-title success-title"><i class="fa-solid fa-circle-check"></i> ตัวอย่างภาพที่ประสิทธิภาพดีที่สุด (แนะนำให้ใช้)</h4>
+                    <h4 class="example-box-title success-title"><i class="fa-solid fa-circle-check"></i>
+                        ตัวอย่างภาพที่ประสิทธิภาพดีที่สุด (แนะนำให้ใช้)</h4>
                     <div class="metric-note">
-                        <i class="fa-solid fa-circle-info" style="color: #555555;"></i>  หากภาพที่ใช้ทดสอบมีลักษณะ 
-                        ภาพกระดูกด้านหน้า วางตรง ไม่เอียง พื้นหลังเรียบ สีเข้ม และไม่มีสิ่งรบกวน ผลลัพธ์การวิเคราะห์จะมีประสิทธิภาพสูงสุด
+                        <i class="fa-solid fa-circle-info" style="color: #555555;"></i> หากภาพที่ใช้ทดสอบมีลักษณะ
+                        ภาพกระดูกด้านหน้า วางตรง ไม่เอียง พื้นหลังเรียบ สีเข้ม และไม่มีสิ่งรบกวน
+                        ผลลัพธ์การวิเคราะห์จะมีประสิทธิภาพสูงสุด
                     </div>
                     <div class="table-container">
                         <table class="example-table">
@@ -217,27 +379,39 @@
                             <tbody>
                                 <tr>
                                     <td><img src="/images/test1.jpg" alt="Good Pic 1" class="table-img"></td>
-                                    <td><img src="/images/test1_gr_gpic.png" alt="Greater test 1" class="table-img"></td>
-                                    <td><img src="/images/test1_ob_gpic.png" alt="Obturator test 1" class="table-img"></td>
-                                    <td><img src="/images/test1_both_gpic.png" alt="Greater & Obturator test 1" class="table-img"></td>
+                                    <td><img src="/images/test1_gr_gpic.png" alt="Greater test 1" class="table-img">
+                                    </td>
+                                    <td><img src="/images/test1_ob_gpic.png" alt="Obturator test 1" class="table-img">
+                                    </td>
+                                    <td><img src="/images/test1_both_gpic.png" alt="Greater & Obturator test 1"
+                                            class="table-img"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="/images/test2.jpg" alt="Good Pic 2" class="table-img"></td>
-                                    <td><img src="/images/test2_gr_gpic.png" alt="Greater test 2" class="table-img"></td>
-                                    <td><img src="/images/test2_ob_gpic.png" alt="Obturator test 2" class="table-img"></td>
-                                    <td><img src="/images/test2_both_gpic.png" alt="Greater & Obturator test 2" class="table-img"></td>
+                                    <td><img src="/images/test2_gr_gpic.png" alt="Greater test 2" class="table-img">
+                                    </td>
+                                    <td><img src="/images/test2_ob_gpic.png" alt="Obturator test 2" class="table-img">
+                                    </td>
+                                    <td><img src="/images/test2_both_gpic.png" alt="Greater & Obturator test 2"
+                                            class="table-img"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="/images/test3.jpg" alt="Good Pic 3" class="table-img"></td>
-                                    <td><img src="/images/test3_gr_gpic.png" alt="Greater test 3" class="table-img"></td>
-                                    <td><img src="/images/test3_ob_gpic.png" alt="Obturator test 3" class="table-img"></td>
-                                    <td><img src="/images/test3_both_gpic.png" alt="Greater & Obturator test 3" class="table-img"></td>
+                                    <td><img src="/images/test3_gr_gpic.png" alt="Greater test 3" class="table-img">
+                                    </td>
+                                    <td><img src="/images/test3_ob_gpic.png" alt="Obturator test 3" class="table-img">
+                                    </td>
+                                    <td><img src="/images/test3_both_gpic.png" alt="Greater & Obturator test 3"
+                                            class="table-img"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="/images/test4.jpg" alt="Good Pic 4" class="table-img"></td>
-                                    <td><img src="/images/test4_gr_gpic.png" alt="Greater test 4" class="table-img"></td>
-                                    <td><img src="/images/test4_ob_gpic.png" alt="Obturator test 4" class="table-img"></td>
-                                    <td><img src="/images/test4_both_gpic.png" alt="Greater & Obturator test 4" class="table-img"></td>
+                                    <td><img src="/images/test4_gr_gpic.png" alt="Greater test 4" class="table-img">
+                                    </td>
+                                    <td><img src="/images/test4_ob_gpic.png" alt="Obturator test 4" class="table-img">
+                                    </td>
+                                    <td><img src="/images/test4_both_gpic.png" alt="Greater & Obturator test 4"
+                                            class="table-img"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -246,10 +420,12 @@
 
                 <!-- ส่วนที่ 2: ตารางภาพที่ประสิทธิภาพลดลง (ไม่แนะนำ) -->
                 <div class="example-section-box" style="margin-top: 40px;">
-                    <h4 class="example-box-title error-title"><i class="fa-solid fa-circle-xmark"></i> ตัวอย่างภาพที่ประสิทธิภาพลดลง (ควรหลีกเลี่ยง)</h4>
+                    <h4 class="example-box-title error-title"><i class="fa-solid fa-circle-xmark"></i>
+                        ตัวอย่างภาพที่ประสิทธิภาพลดลง (ควรหลีกเลี่ยง)</h4>
                     <div class="metric-note">
-                        <i class="fa-solid fa-circle-info" style="color: #555555;"></i>  หากภาพที่ใช้ทดสอบมีลักษณะ 
-                        ภาพกระดูกเอียง พื้นหลังขรุขระ สีโทนสว่าง มีสิ่งรบกวน หรือภาพไม่ชัด ผลลัพธ์การวิเคราะห์จะมีประสิทธิภาพลดลง และอาจทำให้เกิดความคลาดเคลื่อนในการจำแนกเพศได้
+                        <i class="fa-solid fa-circle-info" style="color: #555555;"></i> หากภาพที่ใช้ทดสอบมีลักษณะ
+                        ภาพกระดูกเอียง พื้นหลังขรุขระ สีโทนสว่าง มีสิ่งรบกวน หรือภาพไม่ชัด
+                        ผลลัพธ์การวิเคราะห์จะมีประสิทธิภาพลดลง และอาจทำให้เกิดความคลาดเคลื่อนในการจำแนกเพศได้
                     </div>
                     <div class="table-container">
                         <table class="example-table">
@@ -266,28 +442,41 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><img src="/images/eg.badBone.jpg" alt="Bad bone alignment" class="table-img"></td>
-                                    <td><img src="/images/test1_gr_bpic.png" alt="Bad Greater test 1" class="table-img"></td>
-                                    <td><img src="/images/test1_gr_bpic.png" alt="Bad Obturator test 1" class="table-img"></td>
-                                    <td><img src="/images/test1_gr_bpic.png" alt="Bad Greater & Obturator test 1" class="table-img"></td>
+                                    <td><img src="/images/eg.badBone.jpg" alt="Bad bone alignment" class="table-img">
+                                    </td>
+                                    <td><img src="/images/test1_gr_bpic.png" alt="Bad Greater test 1" class="table-img">
+                                    </td>
+                                    <td><img src="/images/test1_gr_bpic.png" alt="Bad Obturator test 1"
+                                            class="table-img"></td>
+                                    <td><img src="/images/test1_gr_bpic.png" alt="Bad Greater & Obturator test 1"
+                                            class="table-img"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="/images/bad_clay.jpg" alt="Bad Pic 1" class="table-img"></td>
-                                    <td><img src="/images/test2_gr_bpic.png" alt="Bad Greater test 2" class="table-img"></td>
-                                    <td><img src="/images/test2_ob_bpic.png" alt="Bad Obturator test 2" class="table-img"></td>
-                                    <td><img src="/images/test2_both_bpic.png" alt="Bad Greater & Obturator test 2" class="table-img"></td>
+                                    <td><img src="/images/test2_gr_bpic.png" alt="Bad Greater test 2" class="table-img">
+                                    </td>
+                                    <td><img src="/images/test2_ob_bpic.png" alt="Bad Obturator test 2"
+                                            class="table-img"></td>
+                                    <td><img src="/images/test2_both_bpic.png" alt="Bad Greater & Obturator test 2"
+                                            class="table-img"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="/images/bad_B_rope.jpg" alt="Bad Pic 2" class="table-img"></td>
-                                    <td><img src="/images/test3_gr_bpic.png" alt="Bad Greater test 3" class="table-img"></td>
-                                    <td><img src="/images/test3_ob_bpic.png" alt="Bad Obturator test 3" class="table-img"></td>
-                                    <td><img src="/images/test3_both_bpic.png" alt="Bad Greater & Obturator test 3" class="table-img"></td>
+                                    <td><img src="/images/test3_gr_bpic.png" alt="Bad Greater test 3" class="table-img">
+                                    </td>
+                                    <td><img src="/images/test3_ob_bpic.png" alt="Bad Obturator test 3"
+                                            class="table-img"></td>
+                                    <td><img src="/images/test3_both_bpic.png" alt="Bad Greater & Obturator test 3"
+                                            class="table-img"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="/images/bad_rope.jpg" alt="Bad Pic 3" class="table-img"></td>
-                                    <td><img src="/images/test4_gr_bpic.png" alt="Bad Greater test 4" class="table-img"></td>
-                                    <td><img src="/images/test4_ob_bpic.png" alt="Bad Obturator test 4" class="table-img"></td>
-                                    <td><img src="/images/test4_both_bpic.png" alt="Bad Greater & Obturator test 4" class="table-img"></td>
+                                    <td><img src="/images/test4_gr_bpic.png" alt="Bad Greater test 4" class="table-img">
+                                    </td>
+                                    <td><img src="/images/test4_ob_bpic.png" alt="Bad Obturator test 4"
+                                            class="table-img"></td>
+                                    <td><img src="/images/test4_both_bpic.png" alt="Bad Greater & Obturator test 4"
+                                            class="table-img"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -343,8 +532,10 @@
 
                 <!-- ส่วนแสดงผลลัพธ์ -->
                 <div id="result-section" class="result-card" style="display: none;">
-                    <div id="export-area" style="background: white; padding: 20px;">
-                        <h3 style="text-align: center; color: #4d4c4b; margin-bottom: 22px;">ผลการวิเคราะห์</h3>
+                    <div id="export-area" style="background: white; padding: 5px 20px 0px 20px;">
+                        <h3
+                            style="font-size: 1.5rem; text-align: center; color: #4d4c4b; margin-bottom: 15px; margin-top: 10px;">
+                            ผลการวิเคราะห์</h3>
                         <div class="result-layout">
                             <div class="result-image-box">
                                 <img id="result-image" src="" alt="Result Image">

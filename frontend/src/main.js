@@ -41,6 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // --- ฟังก์ชันสลับเมนู ---
 window.switchTab = function (tabId, element) {
+    window.scrollTo(0, 0);
+
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.getElementById(tabId).classList.add('active');
 
