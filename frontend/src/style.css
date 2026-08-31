@@ -506,6 +506,44 @@ select {
     }
 }
 
+/* --- Initial Load Animation --- */
+@keyframes initialFadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* กำหนดให้ส่วนต่างๆ เริ่มต้นด้วยการซ่อนตัว และเล่นอนิเมชันเลื่อนขึ้นมา */
+.main-heading-th,
+.main-heading-en,
+.main-sub-text,
+.main-content {
+    opacity: 0;
+    animation: initialFadeSlideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* (Delay)  */
+.main-heading-th {
+    animation-delay: 0.1s;
+}
+
+.main-heading-en {
+    animation-delay: 0.25s;
+}
+
+.main-sub-text {
+    animation-delay: 0.4s;
+}
+
+.main-content {
+    animation-delay: 0.55s;
+}
+
 /* --- Hidden Report Template (A4 format) --- */
 #export-container {
     position: absolute;
@@ -987,23 +1025,16 @@ select {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     position: relative;
     overflow: hidden;
+    border-left: 5px solid #e67e22;
 }
 
-.step-guide-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 6px;
-    background-color: #e67e22;
-}
+
 
 .step-guide-header {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-bottom: 1px solid #f0f0f0;
     padding-bottom: 15px;
 }
@@ -1059,20 +1090,6 @@ select {
     position: relative;
     overflow: hidden;
     align-self: start;
-}
-
-.placeholder-text {
-    position: absolute;
-    z-index: 1;
-    color: #7f8c8d;
-    font-size: 0.95rem;
-    padding: 10px;
-}
-
-.placeholder-text i {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    color: #95a5a6;
 }
 
 /* สำหรับรูปภาพ */
