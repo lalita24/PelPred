@@ -138,7 +138,7 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
     } catch (error) {
         alert("เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์");
     } finally {
-        btn.innerText = "🔍 วิเคราะห์ผล";
+        btn.innerHTML = "<i class=\"fa-solid fa-magnifying-glass\"></i> วิเคราะห์ผล";
         btn.disabled = false;
     }
 });
