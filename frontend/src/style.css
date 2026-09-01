@@ -544,6 +544,12 @@ select {
     animation-delay: 0.55s;
 }
 
+.no-animation {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
 /* --- Hidden Report Template (A4 format) --- */
 #export-container {
     position: absolute;
