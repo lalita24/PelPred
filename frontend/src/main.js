@@ -123,9 +123,15 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
         // 1. นำข้อมูลใส่ UI หน้าเว็บ
         document.getElementById('result-gender').innerText = data.gender;
         document.getElementById('result-conf').innerText = data.confidence;
+
+        // 2. ใส่ภาพ Heatmap + Detection ที่เพิ่มใหม่ไว้ด้านซ้าย
+        if (data.heatmap_base64) {
+            document.getElementById('heatmap-image').src = data.heatmap_base64;
+        }
+
+        // 3. นำภาพตรวจจับปกติใส่ด้านขวา และส่งเข้าแบบฟอร์ม A4 ตามปกติ (ไม่แก้ฟอร์ม A4)
         if (data.image_base64) {
             document.getElementById('result-image').src = data.image_base64;
-            // 2. นำข้อมูลและรูปภาพใส่แบบฟอร์ม A4 ที่ซ่อนอยู่ด้วย
             document.getElementById('report-image').src = data.image_base64;
         }
 
@@ -197,6 +203,7 @@ window.resetApp = function () {
     imagePreview.style.display = "none";
     imagePreview.src = "";
     document.getElementById('result-image').src = "";
+    document.getElementById('heatmap-image').src = ""; // เคลียร์ภาพ Heatmap ด้วย
     document.getElementById('report-image').src = "";
     dropzoneContent.style.display = "block";
 }
