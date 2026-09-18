@@ -1,8 +1,7 @@
 import './style.css';
 
-// --- ระบบจัดการ Custom Dropdown ทั้งหมด (ขั้นตอนที่ 1 และ ปุ่มดาวน์โหลด) ---
+// --- ระบบจัดการ Custom Dropdown ทั้งหมด ---
 document.addEventListener("DOMContentLoaded", () => {
-    // ฟังก์ชันจัดการ Generic Dropdown
     function setupCustomDropdown(selectId, containerId) {
         const customSelect = document.getElementById(containerId);
         if (!customSelect) return;
@@ -13,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         selected.addEventListener("click", function(e) {
             e.stopPropagation();
-            // ปิด dropdown อื่นๆ ก่อน
             document.querySelectorAll('.select-items').forEach(el => {
                 if (el !== items) el.classList.add('select-hide');
             });
@@ -29,11 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // เรียกใช้งานฟังก์ชันสำหรับทั้ง 2 จุด
     setupCustomDropdown("part-select", "custom-part-select");
     setupCustomDropdown("export-format", "custom-export-select");
 
-    // ปิด dropdown ทั้งหมดเมื่อคลิกพื้นที่อื่นบนหน้าเว็บ
     document.addEventListener("click", function() {
         document.querySelectorAll('.select-items').forEach(el => el.classList.add('select-hide'));
     });
@@ -51,7 +47,6 @@ window.switchTab = function (tabId, element) {
         element.classList.add('active');
     }
 
-    // ควบคุมการแสดงผลแบนเนอร์ทูโทนและคลาส is-home ของ body เฉพาะหน้าหลัก
     const homeBanner = document.getElementById('home-banner');
     const bodyElement = document.body;
 
@@ -62,7 +57,7 @@ window.switchTab = function (tabId, element) {
         if (homeBanner) homeBanner.classList.remove('active-banner');
         bodyElement.classList.remove('is-home');
     }
-}
+};
 
 const dropzone = document.getElementById('dropzone');
 const fileInput = document.getElementById('image-upload');
@@ -93,7 +88,7 @@ function handleFilePreview(file) {
         imagePreview.src = e.target.result;
         imagePreview.style.display = "block";
         dropzoneContent.style.display = "none";
-    }
+    };
     reader.readAsDataURL(file);
 }
 
@@ -120,23 +115,74 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
         });
         const data = await response.json();
 
-        // 1. นำข้อมูลใส่ UI หน้าเว็บ
-        document.getElementById('result-gender').innerText = data.gender;
-        document.getElementById('result-conf').innerText = data.confidence;
+        const summaryContainer = document.getElementById('result-summary-container');
+        const reportConclusion = document.getElementById('report-conclusion-container');
+        
+        // 1. จัดเตรียมข้อความ Web UI และ PDF 
+        if (data.is_dual && data.details && data.details.length > 0) {
+            // ดึงค่าแยกแต่ละส่วน
+            const sciatic = data.details.find(i => i.is_sciatic) || { anatomy: "Greater Sciatic Notch", gender: "-", conf: "-" };
+            const obturator = data.details.find(i => i.is_obturator) || { anatomy: "Obturator Foramen", gender: "-", conf: "-" };
+            const sciConf = typeof sciatic.conf === 'number' ? sciatic.conf.toFixed(2) : sciatic.conf;
+            const obConf = typeof obturator.conf === 'number' ? obturator.conf.toFixed(2) : obturator.conf;
 
-        // 2. ใส่ภาพ Heatmap + Detection ที่เพิ่มใหม่ไว้ด้านซ้าย
-        if (data.heatmap_base64) {
-            document.getElementById('heatmap-image').src = data.heatmap_base64;
+            // รูปแบบ Web UI
+            summaryContainer.innerHTML = `
+                <p class="summary-lead">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p>
+                <div class="simple-summary-text">
+                    <p><strong>Greater Sciatic Notch</strong> มีลักษณะเป็น <span class="gender-text-inline">${sciatic.gender}</span> ด้วยความเชื่อมั่น <strong>${sciConf}%</strong></p>
+                    <p><strong>Obturator Foramen</strong> มีลักษณะเป็น <span class="gender-text-inline">${obturator.gender}</span> ด้วยความเชื่อมั่น <strong>${obConf}%</strong></p>
+                </div>
+            `;
+
+            // รูปแบบเอกสาร PDF
+            reportConclusion.innerHTML = `
+                <div style="text-align: center; color: #333; line-height: 1.6;">
+                    <p style="font-size: 20px; font-weight: bold; margin: 0 0 15px 0; color: #4d4c4b;">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p>
+                    <p style="font-size: 18px; margin: 0;">Greater Sciatic Notch มีลักษณะเป็น <span style="color: #e67e22; font-weight: bold;">${sciatic.gender}</span></p>
+                    <p style="font-size: 18px; margin: 0 0 15px 0;">ด้วยความเชื่อมั่น <strong>${sciConf}%</strong></p>
+                    <p style="font-size: 18px; margin: 0;">Obturator Foramen มีลักษณะเป็น <span style="color: #e67e22; font-weight: bold;">${obturator.gender}</span></p>
+                    <p style="font-size: 18px; margin: 0;">ด้วยความเชื่อมั่น <strong>${obConf}%</strong></p>
+                </div>
+            `;
+
+        } else if (data.details && data.details.length > 0) {
+            const item = data.details[0];
+            const partName = item.anatomy;
+            const confValue = typeof item.conf === 'number' ? item.conf.toFixed(2) : item.conf;
+            
+            // รูปแบบ Web UI 
+            summaryContainer.innerHTML = `
+                <p class="summary-lead">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p>
+                <div class="simple-summary-text">
+                    <p><strong>${partName}</strong> มีลักษณะเป็น <span class="gender-text-inline">${item.gender}</span></p>
+                    <p>ด้วยความเชื่อมั่น <strong>${confValue}%</strong></p>
+                </div>
+            `;
+
+            // รูปแบบเอกสาร PDF 
+            reportConclusion.innerHTML = `
+                <div style="text-align: center; color: #333; line-height: 1.6;">
+                    <p style="font-size: 20px; font-weight: bold; margin: 0 0 15px 0; color: #4d4c4b;">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p>
+                    <p style="font-size: 18px; margin: 0;">${partName} มีลักษณะเป็น <span style="color: #e67e22; font-weight: bold;">${item.gender}</span></p>
+                    <p style="font-size: 18px; margin: 0;">ด้วยความเชื่อมั่น <strong>${confValue}%</strong></p>
+                </div>
+            `;
+        } else {
+            summaryContainer.innerHTML = `<p class="summary-lead" style="color: #c0392b;">ไม่พบบริเวณกระดูกที่เลือกในภาพนี้</p>`;
+            reportConclusion.innerHTML = `
+                <div style="text-align: center;">
+                    <p style="font-size: 20px; color: #c0392b;">ไม่พบบริเวณกระดูกที่ต้องการวิเคราะห์ในภาพนี้</p>
+                </div>
+            `;
         }
 
-        // 3. นำภาพตรวจจับปกติใส่ด้านขวา และส่งเข้าแบบฟอร์ม A4 ตามปกติ (ไม่แก้ฟอร์ม A4)
+        // 2. แสดงรูปภาพต่างๆ
+        if (data.heatmap_base64) document.getElementById('heatmap-image').src = data.heatmap_base64;
         if (data.image_base64) {
             document.getElementById('result-image').src = data.image_base64;
             document.getElementById('report-image').src = data.image_base64;
         }
-
-        document.getElementById('report-gender').innerText = data.gender;
-        document.getElementById('report-conf').innerText = data.confidence;
 
         document.getElementById('result-section').style.display = "block";
         btn.style.display = "none";
@@ -144,13 +190,13 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
     } catch (error) {
         alert("เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์");
     } finally {
-        btn.innerHTML = "<i class=\"fa-solid fa-magnifying-glass\"></i> วิเคราะห์ผล";
+        btn.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i> วิเคราะห์ผล';
         btn.disabled = false;
     }
 });
 
-// --- ฟังก์ชัน Export ไฟล์ (PDF / PNG / JPG) ---
-window.exportResult = function () {
+// --- ฟังก์ชัน Export ไฟล์ ---
+window.exportResult = async function () {
     const container = document.getElementById('export-container');
     const reportElement = document.getElementById('hidden-report-template');
     const exportFormat = document.getElementById('export-format').value;
@@ -170,20 +216,37 @@ window.exportResult = function () {
     setTimeout(async () => {
         try {
             if (exportFormat === 'pdf') {
+                // ปรับความคมชัดระดับ HD
                 const opt = {
                     margin: 0,
                     filename: 'Pelvic-Predict-Report.pdf',
                     image: { type: 'jpeg', quality: 1.0 },
-                    html2canvas: { scale: 2, useCORS: true },
-                    jsPDF: { unit: 'px', format: [794, 1123], orientation: 'portrait' }
+                    html2canvas: { scale: 4, useCORS: true, scrollY: 0, backgroundColor: '#ffffff' },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
                 };
-                await html2pdf().set(opt).from(reportElement).save();
+
+                // ใช้ html2pdf ส่งออก เป็น PDF
+                await html2pdf()
+                    .set(opt)
+                    .from(reportElement)
+                    .toPdf()
+                    .get('pdf')
+                    .then((pdf) => {
+                        const totalPages = pdf.internal.getNumberOfPages();
+                        for (let i = totalPages; i > 1; i--) {
+                            pdf.deletePage(i);
+                        }
+                    })
+                    .save();
+
             } else {
-                const canvas = await html2canvas(reportElement, { scale: 2, useCORS: true, scrollY: 0 });
+                const canvas = await html2canvas(reportElement, { scale: 3, useCORS: true, scrollY: 0, backgroundColor: '#ffffff' });
+                const imgData = canvas.toDataURL(`image/${exportFormat === 'jpg' ? 'jpeg' : 'png'}`, 1.0);
+                
                 const link = document.createElement('a');
                 const isJpg = exportFormat === 'jpg';
                 link.download = `Pelvic-Predict-Report.${isJpg ? 'jpg' : 'png'}`;
-                link.href = canvas.toDataURL(`image/${isJpg ? 'jpeg' : 'png'}`, 1.0);
+                link.href = imgData;
                 link.click();
             }
         } catch (error) {
@@ -192,8 +255,8 @@ window.exportResult = function () {
         } finally {
             hideContainer();
         }
-    }, 100);
-}
+    }, 150);
+};
 
 // --- เคลียร์ค่า ---
 window.resetApp = function () {
@@ -203,7 +266,7 @@ window.resetApp = function () {
     imagePreview.style.display = "none";
     imagePreview.src = "";
     document.getElementById('result-image').src = "";
-    document.getElementById('heatmap-image').src = ""; // เคลียร์ภาพ Heatmap ด้วย
+    document.getElementById('heatmap-image').src = "";
     document.getElementById('report-image').src = "";
     dropzoneContent.style.display = "block";
-}
+};

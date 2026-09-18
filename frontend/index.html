@@ -13,10 +13,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
-        body {
-            visibility: hidden;
+        body { 
+            visibility: hidden; 
             background-color: #f4f6f8;
-            /* ใส่สีพื้นหลังหลักรอไว้จะได้ไม่เป็นสีขาวแว๊บ */
         }
     </style>
 </head>
@@ -24,41 +23,30 @@
 <body class="is-home">
     <header class="header-banner">
         <div class="banner-logos-center">
-            <!-- 1. โลโก้มหาวิทยาลัยนเรศวร -->
             <a href="https://www.nu.ac.th" target="_blank" rel="noopener noreferrer">
                 <img src="/images/NULOGO.png" alt="NU Logo" class="top-logo-nu">
             </a>
-
-            <!-- 2. โลโก้คณะวิทยาศาสตร์ -->
             <a href="https://www.sci.nu.ac.th" target="_blank" rel="noopener noreferrer">
                 <img src="/images/logo-sci.png" alt="Logo SCI nu" class="top-logo-sci">
             </a>
-
-            <!-- 3. โลโก้คณะวิทยาศาสตร์การแพทย์ -->
             <a href="https://www.medsci.nu.ac.th" target="_blank" rel="noopener noreferrer">
                 <img src="/images/Medsci-logo.png" alt="Logo Medsci" class="top-logo-medsci">
             </a>
-
-            <!-- 4. โลโก้ภาควิชา CSIT -->
             <a href="https://csit.nu.ac.th/" target="_blank" rel="noopener noreferrer">
                 <img src="/images/CSIT-logo-1.png" alt="logo csit" class="top-logo-csit">
             </a>
-
-            <!-- 5. โลโก้ภาควิชากายวิภาคศาสตร์ -->
             <a href="https://anatomy.medsci.nu.ac.th/" target="_blank" rel="noopener noreferrer">
                 <img src="/images/Anatomy-logo.png" alt="Logo Anatomy" class="top-logo-anatomy">
             </a>
         </div>
     </header>
 
-    <!-- แถบเมนูแนวนอน -->
     <nav class="top-nav">
         <div class="nav-brand">
             <img src="/images/logo-Pelpred.png" alt="PelPred" class="nav-brand-logo">
             <div class="nav-brand-text">
                 <h1 class="nav-brand-title">ระบบจำแนกเพศจากโครงกระดูกส่วนสะโพกด้วยเทคนิคการประมวลผลภาพ</h1>
-                <h2 class="nav-brand-subtitle">Sex Classification from Hip Bone Images Using Image Processing Techniques
-                </h2>
+                <h2 class="nav-brand-subtitle">Sex Classification from Hip Bone Images Using Image Processing Techniques</h2>
             </div>
         </div>
 
@@ -75,7 +63,6 @@
         </ul>
     </nav>
 
-    <!-- แบนเนอร์ทูโทน -->
     <section class="two-tone-banner active-banner" id="home-banner">
         <div class="banner-inner-text">
             <h1 class="main-heading-th">ระบบจำแนกเพศจากโครงกระดูกส่วนสะโพก<br>ด้วยเทคนิคการประมวลผลภาพ</h1>
@@ -84,16 +71,11 @@
         </div>
     </section>
 
-    <!-- เนื้อหาหลัก -->
     <main class="main-content">
         <div class="container">
-            <!-- แท็บ 1: หน้าหลัก -->
             <section id="home" class="tab-content active">
-                <!-- ส่วนนำเสนอระบบ (Hero Section) -->
                 <div class="hero-card">
                     <h2><i class="fa-solid fa-bone"></i> ผลการทดสอบประสิทธิภาพ <i class="fa-solid fa-bone"></i></h2>
-
-                    <!-- กล่องแสดงสถิติความแม่นยำ (Metrics Highlight) -->
                     <div class="metrics-grid">
                         <div class="metric-item">
                             <span class="metric-value">99.78%</span>
@@ -120,32 +102,18 @@
                         <i class="fa-solid fa-circle-check" style="color: #565656;"></i> จากสถิติการทดสอบจริงล่าสุด
                         ระบบสามารถทายผลได้อย่างถูกต้องแม่นยำทุกครั้ง (คิดเป็น 100% เต็ม)
                     </div>
-
                     <div class="alert-box">
-                        <strong>หมายเหตุ:</strong> ระบบจำแนกเพศอาจมีข้อจำกัดในบางกรณี
-                        และควรวิเคราะห์ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญ
+                        <strong>หมายเหตุ:</strong> ระบบจำแนกเพศอาจมีข้อจำกัดในบางกรณี และควรวิเคราะห์ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญ
                     </div>
                 </div>
 
-                <!-- การ์ดเนื้อหา: ที่มาและความสำคัญ -->
                 <div class="content-card">
                     <h3><i class="fa-solid fa-circle-info" style="color: #e67e22;"></i> ที่มาและความสำคัญของระบบ</h3>
                     <p class="text-justify">
-                        โครงกระดูกมนุษย์ โดยเฉพาะบริเวณ <strong>"กระดูกเชิงกราน (Pelvis)"</strong>
-                        ถือเป็นหลักฐานทางชีวภาพที่มีความสำคัญอย่างยิ่งในทางมานุษยวิทยากายภาพ ชีวกระดูก
-                        และนิติวิทยาศาสตร์ เนื่องจากสามารถสะท้อนข้อมูลอัตลักษณ์พื้นฐานของบุคคลได้อย่างแม่นยำที่สุด
-                        โดยเฉพาะการแสดงความแตกต่างทางสัณฐานวิทยา (Sexual Dimorphism) ระหว่างเพศชายและเพศหญิง
-                        ซึ่งมีพื้นฐานจากการปรับตัวทางชีววิทยาเพื่อรองรับการตั้งครรภ์และการคลอดบุตรในเพศหญิง
+                        โครงกระดูกมนุษย์ โดยเฉพาะบริเวณ <strong>"กระดูกเชิงกราน (Pelvis)"</strong> ถือเป็นหลักฐานทางชีวภาพที่มีความสำคัญอย่างยิ่งในทางมานุษยวิทยากายภาพ ชีวกระดูก และนิติวิทยาศาสตร์ เนื่องจากสามารถสะท้อนข้อมูลอัตลักษณ์พื้นฐานของบุคคลได้อย่างแม่นยำที่สุด โดยเฉพาะการแสดงความแตกต่างทางสัณฐานวิทยา (Sexual Dimorphism) ระหว่างเพศชายและเพศหญิง ซึ่งมีพื้นฐานจากการปรับตัวทางชีววิทยาเพื่อรองรับการตั้งครรภ์และการคลอดบุตรในเพศหญิง
                     </p>
                     <p class="text-justify">
-                        อย่างไรก็ตาม การประเมินเพศจากโครงกระดูกในปัจจุบัน ไม่ว่าจะเป็นบริเวณ Greater Sciatic Notch หรือ
-                        Obturator Foramen
-                        ส่วนใหญ่ยังคงต้องพึ่งพาความเชี่ยวชาญและการพิจารณาด้วยสายตาของผู้ประเมินเป็นหลัก
-                        ซึ่งอาจทำให้เกิดความคลาดเคลื่อนและข้อจำกัดในด้านความเที่ยงตรง
-                        ทางคณะผู้จัดทำจึงเล็งเห็นความสำคัญในการนำเทคโนโลยีการประมวลผลภาพ (Image Processing)
-                        และการเรียนรู้เชิงลึกด้วยโครงข่ายประสาทเทียมแบบคอนโวลูชัน (Deep Learning / CNNs) มาประยุกต์ใช้
-                        เพื่อพัฒนาเป็นระบบต้นแบบที่ช่วยวิเคราะห์ข้อมูลเชิงรูปทรงจากภาพดิจิทัลได้อย่างเป็นระบบ รวดเร็ว
-                        และลดอิทธิพลจากการตีความส่วนบุคคล
+                        อย่างไรก็ตาม การประเมินเพศจากโครงกระดูกในปัจจุบัน ไม่ว่าจะเป็นบริเวณ Greater Sciatic Notch หรือ Obturator Foramen ส่วนใหญ่ยังคงต้องพึ่งพาความเชี่ยวชาญและการพิจารณาด้วยสายตาของผู้ประเมินเป็นหลัก ซึ่งอาจทำให้เกิดความคลาดเคลื่อนและข้อจำกัดในด้านความเที่ยงตรง ทางคณะผู้จัดทำจึงเล็งเห็นความสำคัญในการนำเทคโนโลยีการประมวลผลภาพ (Image Processing) และการเรียนรู้เชิงลึกด้วยโครงข่ายประสาทเทียมแบบคอนโวลูชัน (Deep Learning / CNNs) มาประยุกต์ใช้ เพื่อพัฒนาเป็นระบบต้นแบบที่ช่วยวิเคราะห์ข้อมูลเชิงรูปทรงจากภาพดิจิทัลได้อย่างเป็นระบบ รวดเร็ว และลดอิทธิพลจากการตีความส่วนบุคคล
                     </p>
                     <div class="grid-2-col">
                         <div class="step-image-placeholder" style="margin-top: 0px; border:0;">
@@ -156,80 +124,58 @@
                         </div>
                     </div>
                     <p style="margin-top: 10px; text-align: center; font-size: 14px; color: #555555;">
-                        ขอบคุณภาพจาก: <a href="https://teachmeanatomy.info/pelvis/bones/hip-bone/" target="_blank">
-                            TeachMe Anatomy</a>
+                        ขอบคุณภาพจาก: <a href="https://teachmeanatomy.info/pelvis/bones/hip-bone/" target="_blank">TeachMe Anatomy</a>
                     </p>
                 </div>
 
-                <!-- สองคอลัมน์: วัตถุประสงค์ และ ประโยชน์ของระบบ -->
                 <div class="grid-2-col">
                     <div class="content-card">
                         <h3><i class="fa-solid fa-bullseye" style="color: #e67e22;"></i> วัตถุประสงค์ของระบบ</h3>
                         <ul class="custom-list">
-                            <li><i class="fa-solid fa-check"></i>
-                                เพื่อพัฒนาแนวทางการประยุกต์ใช้เทคนิคการประมวลผลภาพและการเรียนรู้เชิงลึก
-                                สำหรับตรวจจับตำแหน่งและทำนายเพศจากบริเวณ Obturator Foramen และ Greater Sciatic Notch
-                                จากภาพกระดูกเชิงกราน</li>
-                            <li><i class="fa-solid fa-check"></i>
-                                เพื่อพัฒนาระบบต้นแบบสำหรับการประเมินเพศจากโครงกระดูกส่วนสะโพกผ่านทางเว็บแอปพลิเคชันที่ใช้งานได้จริง
-                            </li>
+                            <li><i class="fa-solid fa-check"></i> เพื่อพัฒนาแนวทางการประยุกต์ใช้เทคนิคการประมวลผลภาพและการเรียนรู้เชิงลึก สำหรับตรวจจับตำแหน่งและทำนายเพศจากบริเวณ Obturator Foramen และ Greater Sciatic Notch จากภาพกระดูกเชิงกราน</li>
+                            <li><i class="fa-solid fa-check"></i> เพื่อพัฒนาระบบต้นแบบสำหรับการประเมินเพศจากโครงกระดูกส่วนสะโพกผ่านทางเว็บแอปพลิเคชันที่ใช้งานได้จริง</li>
                         </ul>
                     </div>
 
                     <div class="content-card">
                         <h3><i class="fa-solid fa-star" style="color: #e67e22;"></i> ประโยชน์ของระบบ</h3>
                         <ul class="custom-list">
-                            <li><i class="fa-solid fa-check"></i><strong>เพิ่มความสะดวกรวดเร็ว:</strong>
-                                ช่วยอำนวยความสะดวกและลดระยะเวลาในการวิเคราะห์ข้อมูลโครงกระดูก
-                                เมื่อเทียบกับการประเมินด้วยสายตาหรือการวัดด้วยมือเพียงอย่างเดียว</li>
-                            <li><i class="fa-solid fa-check"></i><strong>ยกระดับมาตรฐานงานนิติวิทยาศาสตร์:</strong>
-                                เป็นแนวทางในการประยุกต์ใช้เทคโนโลยีปัญญาประดิษฐ์ (AI)
-                                เข้ามาช่วยสนับสนุนการปฏิบัติงานจริง</li>
-                            <li><i class="fa-solid fa-check"></i><strong>ได้ระบบต้นแบบที่ต่อยอดได้:</strong>
-                                ได้รับระบบเว็บแอปพลิเคชันต้นแบบสำหรับการตรวจจับตำแหน่งกระดูกและจำแนกเพศ
-                                เพื่อพัฒนาต่อยอดในอนาคต</li>
+                            <li><i class="fa-solid fa-check"></i><strong>เพิ่มความสะดวกรวดเร็ว:</strong> ช่วยอำนวยความสะดวกและลดระยะเวลาในการวิเคราะห์ข้อมูลโครงกระดูก เมื่อเทียบกับการประเมินด้วยสายตาหรือการวัดด้วยมือเพียงอย่างเดียว</li>
+                            <li><i class="fa-solid fa-check"></i><strong>ยกระดับมาตรฐานงานนิติวิทยาศาสตร์:</strong> เป็นแนวทางในการประยุกต์ใช้เทคโนโลยีปัญญาประดิษฐ์ (AI) เข้ามาช่วยสนับสนุนการปฏิบัติงานจริง</li>
+                            <li><i class="fa-solid fa-check"></i><strong>ได้ระบบต้นแบบที่ต่อยอดได้:</strong> ได้รับระบบเว็บแอปพลิเคชันต้นแบบสำหรับการตรวจจับตำแหน่งกระดูกและจำแนกเพศ เพื่อพัฒนาต่อยอดในอนาคต</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Full-Width Footer Banner เฉพาะหน้าหลัก -->
                 <footer class="home-fullwidth-footer">
                     <div class="footer-inner-content">
                         <h3 class="footer-title">คณะผู้พัฒนาและที่ปรึกษางานวิจัย</h3>
-                        <p class="footer-subtitle">ระบบจำแนกเพศจากโครงกระดูกส่วนสะโพกด้วยเทคนิคการประมวลผลภาพ (PelPred)
-                        </p>
+                        <p class="footer-subtitle">ระบบจำแนกเพศจากโครงกระดูกส่วนสะโพกด้วยเทคนิคการประมวลผลภาพ (PelPred)</p>
 
                         <div class="footer-grid">
-                            <!-- ฝั่งซ้าย: ผู้พัฒนาโครงงาน -->
                             <div class="footer-col">
                                 <h4 class="col-head"><i class="fa-solid fa-code"></i> ผู้เขียนงานวิจัยและพัฒนาระบบ</h4>
                                 <div class="person-box">
                                     <span class="person-name">น.ส.ปัญจรัตน์ ทองทัพ</span>
-                                    <span class="person-dept">สาขาวิชาวิทยาการคอมพิวเตอร์และเทคโนโลยีสารสนเทศ
-                                        คณะวิทยาศาสตร์ มหาวิทยาลัยนเรศวร</span>
+                                    <span class="person-dept">สาขาวิชาวิทยาการคอมพิวเตอร์และเทคโนโลยีสารสนเทศ คณะวิทยาศาสตร์ มหาวิทยาลัยนเรศวร</span>
                                 </div>
                                 <div class="person-box">
                                     <span class="person-name">น.ส.ลลิตา อภัยโส</span>
-                                    <span class="person-dept">สาขาวิชาวิทยาการคอมพิวเตอร์และเทคโนโลยีสารสนเทศ
-                                        คณะวิทยาศาสตร์ มหาวิทยาลัยนเรศวร</span>
+                                    <span class="person-dept">สาขาวิชาวิทยาการคอมพิวเตอร์และเทคโนโลยีสารสนเทศ คณะวิทยาศาสตร์ มหาวิทยาลัยนเรศวร</span>
                                 </div>
                             </div>
 
-                            <!-- ฝั่งขวา: อาจารย์ที่ปรึกษาและคณะผู้ร่วมวิจัย -->
                             <div class="footer-col">
-                                <h4 class="col-head"><i class="fa-solid fa-graduation-cap"></i>
-                                    อาจารย์ที่ปรึกษาและคณะผู้ร่วมวิจัย</h4>
+                                <h4 class="col-head"><i class="fa-solid fa-graduation-cap"></i> อาจารย์ที่ปรึกษาและคณะผู้ร่วมวิจัย</h4>
                                 <div class="person-box lead-advisor">
                                     <span class="tag-label">อาจารย์ที่ปรึกษาหลัก:</span>
                                     <span class="person-name">ผู้ช่วยศาสตราจารย์ ดร.สุธาสินี ฉิมเล็ก</span>
-                                    <span class="person-dept">สาขาวิชาวิทยาการคอมพิวเตอร์และเทคโนโลยีสารสนเทศ
-                                        คณะวิทยาศาสตร์ มหาวิทยาลัยนเรศวร</span>
+                                    <span class="person-dept">สาขาวิชาวิทยาการคอมพิวเตอร์และเทคโนโลยีสารสนเทศ คณะวิทยาศาสตร์ มหาวิทยาลัยนเรศวร</span>
                                 </div>
 
                                 <div class="person-box">
                                     <span class="tag-label">คณะผู้ร่วมวิจัย:</span>
-                                    <span class="person-dept">สาขาวิชากายวิภาคศาสตร์ คณะวิทยาศาสตร์การแพทย์
-                                        มหาวิทยาลัยนเรศวร</span>
+                                    <span class="person-dept">สาขาวิชากายวิภาคศาสตร์ คณะวิทยาศาสตร์การแพทย์ มหาวิทยาลัยนเรศวร</span>
                                     <div class="advisor-chips">
                                         <span>นายวิชญ์พล สุวรรณทวี</span>
                                         <span>รองศาสตราจารย์ ดร.ชนสรณ์ ภูเด่นแดน</span>
@@ -242,8 +188,7 @@
                         </div>
 
                         <div class="footer-bottom-copy">
-                            © 2026 PelPred - Department of Computer Science and Information Technology, Naresuan
-                            University
+                            © 2026 PelPred - Department of Computer Science and Information Technology, Naresuan University
                         </div>
                     </div>
                 </footer>
@@ -253,11 +198,9 @@
             <section id="guide-manual" class="tab-content">
                 <h3 class="section-title"><i class="fa-solid fa-book-open-reader"></i> คู่มือแนะนำการใช้งานระบบ </h3>
                 <p class="text-sm" style="margin-bottom: 30px;">
-                    คำแนะนำ:
-                    ปฏิบัติตามขั้นตอนด้านล่างนี้เพื่อเริ่มต้นวิเคราะห์และจำแนกเพศจากภาพกระดูกเชิงกรานของได้อย่างถูกต้องและแม่นยำ
+                    คำแนะนำ: ปฏิบัติตามขั้นตอนด้านล่างนี้เพื่อเริ่มต้นวิเคราะห์และจำแนกเพศจากภาพกระดูกเชิงกรานของได้อย่างถูกต้องและแม่นยำ
                 </p>
 
-                <!-- ขั้นตอนที่ 1 -->
                 <div class="step-guide-card">
                     <div class="step-guide-header">
                         <div class="step-number">1</div>
@@ -267,8 +210,7 @@
                         <div class="step-text-content">
                             <p>เริ่มต้นการใช้งานระบบ โดยให้มองหาแถบเมนูนำทางที่อยู่ด้านบนสุดของเว็บไซต์</p>
                             <ul class="custom-list">
-                                <li><i class="fa-solid fa-hand-pointer"></i> คลิกที่เมนู <strong>"วิเคราะห์"</strong>
-                                    ที่มุมขวาบน</li>
+                                <li><i class="fa-solid fa-hand-pointer"></i> คลิกที่เมนู <strong>"วิเคราะห์"</strong> ที่มุมขวาบน</li>
                             </ul>
                         </div>
                         <div class="step-image-placeholder" style="margin-top: 10px;">
@@ -277,7 +219,6 @@
                     </div>
                 </div>
 
-                <!-- ขั้นตอนที่ 2 -->
                 <div class="step-guide-card">
                     <div class="step-guide-header">
                         <div class="step-number">2</div>
@@ -285,15 +226,11 @@
                     </div>
                     <div class="step-guide-body grid-2-col">
                         <div class="step-text-content">
-                            <p>เมื่อเข้ามาที่หน้าวิเคราะห์แล้ว ระบบจะให้เลือกตำแหน่งของกระดูกที่ต้องการวิเคราะห์
-                                เพื่อกำหนดให้ระบบตรวจจับได้อย่างแม่นยำ</p>
+                            <p>เมื่อเข้ามาที่หน้าวิเคราะห์แล้ว ระบบจะให้เลือกตำแหน่งของกระดูกที่ต้องการวิเคราะห์ เพื่อกำหนดให้ระบบตรวจจับได้อย่างแม่นยำ</p>
                             <ul class="custom-list">
-                                <li><i class="fa-solid fa-check"></i> <strong>Obturator Foramen:</strong>
-                                    เลือกเมื่อต้องการวิเคราะห์ช่องเปิดด้านล่าง</li>
-                                <li><i class="fa-solid fa-check"></i> <strong>Greater Sciatic Notch:</strong>
-                                    เลือกเมื่อต้องการวิเคราะห์รอยเว้าด้านหลัง</li>
-                                <li><i class="fa-solid fa-check"></i> <strong>วิเคราะห์ทั้ง 2 ส่วน:</strong>
-                                    เลือกเมื่อต้องการวิเคราะห์ทั้งสองส่วน</li>
+                                <li><i class="fa-solid fa-check"></i> <strong>Obturator Foramen:</strong> เลือกเมื่อต้องการวิเคราะห์ช่องเปิดด้านล่าง</li>
+                                <li><i class="fa-solid fa-check"></i> <strong>Greater Sciatic Notch:</strong> เลือกเมื่อต้องการวิเคราะห์รอยเว้าด้านหลัง</li>
+                                <li><i class="fa-solid fa-check"></i> <strong>วิเคราะห์ทั้ง 2 ส่วน:</strong> เลือกเมื่อต้องการวิเคราะห์ทั้งสองส่วน</li>
                             </ul>
                         </div>
                         <div class="step-image-placeholder" style="margin-top: 20px;">
@@ -302,16 +239,12 @@
                     </div>
                 </div>
 
-                <!-- ขั้นตอนที่ 3 -->
                 <div class="step-guide-card">
                     <div class="step-guide-header">
                         <div class="step-number">3</div>
                         <h4 class="step-title">นำเข้าและอัปโหลดภาพถ่าย</h4>
                     </div>
-
                     <div class="step-guide-body grid-2-col" style="align-items: start;">
-
-                        <!-- คอลัมน์ซ้าย -->
                         <div style="display: flex; flex-direction: column; gap: 40px;">
                             <div class="step-image-placeholder">
                                 <img src="/images/step3.1.png" alt="ตัวอย่างภาพ" class="step-img-mockup">
@@ -320,39 +253,22 @@
                                 <img src="/images/step3.2.png" alt="อัปโหลดภาพ" class="step-img-mockup">
                             </div>
                         </div>
-
-                        <!-- คอลัมน์ขวา -->
                         <div class="step-text-content">
                             <p>
-                                ศึกษาลักษณะภาพกระดูกสะโพกที่เหมาะสมสำหรับใช้งานในระบบนี้ ได้ที่
-                                <strong>"ตัวอย่างภาพ"</strong> ก่อนนำภาพเข้าระบบ ซึ่งในหน้าตัวอย่างภาพ
-                                จะเห็นตัวอย่างภาพที่แนะนำให้ใช้และตัวอย่างภาพที่ไม่แนะนำให้ใช้ อย่างละเอียด
-                                เมื่อศึกษาลักษณะภาพกระดูกสะโพกที่เหมาะสมแล้ว
-                                สามารถนำภาพเข้าสู่ระบบได้ 2 วิธี
+                                ศึกษาลักษณะภาพกระดูกสะโพกที่เหมาะสมสำหรับใช้งานในระบบนี้ ได้ที่ <strong>"ตัวอย่างภาพ"</strong> ก่อนนำภาพเข้าระบบ ซึ่งในหน้าตัวอย่างภาพ จะเห็นตัวอย่างภาพที่แนะนำให้ใช้และตัวอย่างภาพที่ไม่แนะนำให้ใช้ อย่างละเอียด เมื่อศึกษาลักษณะภาพกระดูกสะโพกที่เหมาะสมแล้ว สามารถนำภาพเข้าสู่ระบบได้ 2 วิธี
                             </p>
-
                             <ul class="custom-list" style="margin-top: 25px;">
-                                <li><i class="fa-solid fa-file-arrow-up"></i> <strong>วิธีที่ 1
-                                        (คลิกเพื่อเลือก):</strong> คลิกบริเวณกล่องสี่เหลี่ยมเส้นประตรงกลางหน้าจอ
-                                    เพื่อเปิดหน้าต่างเลือกไฟล์จากคอมพิวเตอร์</li>
-                                <li><i class="fa-solid fa-hand-holding-hand"></i> <strong>วิธีที่ 2
-                                        (ลากแล้ววาง):</strong>
-                                    ลากไฟล์รูปภาพมาปล่อยลงในกล่องสี่เหลี่ยมเส้นประได้เลย</li>
+                                <li><i class="fa-solid fa-file-arrow-up"></i> <strong>วิธีที่ 1 (คลิกเพื่อเลือก):</strong> คลิกบริเวณกล่องสี่เหลี่ยมเส้นประตรงกลางหน้าจอ เพื่อเปิดหน้าต่างเลือกไฟล์จากคอมพิวเตอร์</li>
+                                <li><i class="fa-solid fa-hand-holding-hand"></i> <strong>วิธีที่ 2 (ลากแล้ววาง):</strong> ลากไฟล์รูปภาพมาปล่อยลงในกล่องสี่เหลี่ยมเส้นประได้เลย</li>
                             </ul>
-
                             <div class="alert-box" style="margin-top: 25px;">
-                                <i class="fa-solid fa-circle-exclamation"></i> <strong>หมายเหตุ:</strong>
-                                เมื่อนำเข้าสำเร็จ จะมีภาพตัวอย่างปรากฏขึ้นให้ตรวจสอบ
+                                <i class="fa-solid fa-circle-exclamation"></i> <strong>หมายเหตุ:</strong> เมื่อนำเข้าสำเร็จ จะมีภาพตัวอย่างปรากฏขึ้นให้ตรวจสอบ
                             </div>
-
-                            <p>หลังจากตรวจสอบรูปภาพแล้ว ให้คลิกปุ่ม <strong>"วิเคราะห์"</strong>
-                                ด้านล่างเพื่อเริ่มวิเคราะห์และประมวลผลภาพ</p>
+                            <p>หลังจากตรวจสอบรูปภาพแล้ว ให้คลิกปุ่ม <strong>"วิเคราะห์ผล"</strong> ด้านล่างเพื่อเริ่มวิเคราะห์และประมวลผลภาพ</p>
                         </div>
-
                     </div>
                 </div>
 
-                <!-- ขั้นตอนที่ 4 -->
                 <div class="step-guide-card">
                     <div class="step-guide-header">
                         <div class="step-number">4</div>
@@ -360,15 +276,12 @@
                     </div>
                     <div class="step-guide-body grid-2-col">
                         <div class="step-text-content">
-                            <p>หลังจากระบบประมวลผลเสร็จสิ้น หน้าจอจะแสดงผลลัพธ์
-                                โดยสามารถดูข้อมูลที่ระบบวิเคราะห์ได้ดังนี้:</p>
+                            <p>หลังจากระบบประมวลผลเสร็จสิ้น หน้าจอจะแสดงผลลัพธ์ โดยสามารถดูข้อมูลที่ระบบวิเคราะห์ได้ดังนี้:</p>
                             <ul class="custom-list">
-                                <li><i class="fa-solid fa-magnifying-glass-chart"></i> <strong>ภาพผลลัพธ์:</strong>
-                                    จะมีกรอบสี่เหลี่ยมตีกรอบบริเวณสำคัญที่โมเดลตรวจพบ</li>
-                                <li><i class="fa-solid fa-venus-mars"></i> <strong>ผลทำนายเพศ:</strong> แสดงว่าเป็น
-                                    เพศชาย หรือ เพศหญิง ตัวใหญ่ชัดเจน</li>
-                                <li><i class="fa-solid fa-chart-line"></i> <strong>ค่าความเชื่อมั่น:</strong>
-                                    แสดงเป็นเปอร์เซ็นต์ เพื่อบอกความมั่นใจของโมเดล</li>
+                                <li><i class="fa-solid fa-fire"></i> <strong>Heatmap:</strong> แสดงบริเวณที่โมเดลโฟกัสในรูปภาพเพื่อวิเคราะห์และจำแนกเพศ</li>
+                                <li><i class="fa-solid fa-magnifying-glass-chart"></i> <strong>ภาพผลลัพธ์:</strong> จะมีกรอบสี่เหลี่ยมตีกรอบบริเวณสำคัญที่โมเดลตรวจพบ</li>
+                                <li><i class="fa-solid fa-venus-mars"></i> <strong>ผลทำนายเพศ:</strong> แสดงว่าเป็น เพศชาย หรือ เพศหญิง ตัวใหญ่ชัดเจน</li>
+                                <li><i class="fa-solid fa-chart-line"></i> <strong>ค่าความเชื่อมั่น:</strong> แสดงเป็นเปอร์เซ็นต์ เพื่อบอกความมั่นใจของโมเดล</li>
                             </ul>
                         </div>
                         <div class="step-image-placeholder" style="margin-top: 15px;">
@@ -377,47 +290,29 @@
                     </div>
                 </div>
 
-                <!-- ขั้นตอนที่ 5 -->
                 <div class="step-guide-card">
                     <div class="step-guide-header">
                         <div class="step-number">5</div>
                         <h4 class="step-title">บันทึกและดาวน์โหลดผลการวิเคราะห์</h4>
                     </div>
                     <div class="step-guide-body grid-2-col" style="align-items: start;">
-
-                        <!-- คอลัมน์ซ้าย: ข้อความทั้งหมด -->
                         <div class="step-text-content">
                             <p>หากต้องการเก็บผลลัพธ์ไว้ใช้งานต่อ สามารถดาวน์โหลดรายงานออกจากระบบได้ทันที:</p>
                             <ul class="custom-list">
-                                <li><i class="fa-solid fa-caret-down"></i> <strong>เลือกรูปแบบไฟล์:</strong>
-                                    ที่ด้านล่างของผลลัพธ์ จะมีกล่องให้เลือกชนิดไฟล์ รองรับทั้ง <strong>PDF, PNG และ
-                                        JPG</strong></li>
-                                <li><i class="fa-solid fa-download"></i> <strong>กดดาวน์โหลด:</strong>
-                                    เมื่อเลือกไฟล์แล้ว ให้กดปุ่ม <strong>"บันทึกผล" </strong> สีส้ม
-                                    ระบบจะสร้างรายงานที่ประกอบด้วยโลโก้ ภาพผลลัพธ์ และสรุปผล
-                                    จัดหน้าอย่างสวยงามให้ดาวน์โหลดทันที</li>
-                                <li><i class="fa-solid fa-sync"></i> <strong>วิเคราะห์ใหม่:</strong>
-                                    เมื่อต้องการวิเคราะห์ภาพอื่นต่อ ให้คลิกปุ่ม
-                                    <img src="/images/btn-reset.png" alt="วิเคราะห์ใหม่" class="step-img-mockup"
-                                        style="width: 100px; height: auto; margin-top: 10px;">
+                                <li><i class="fa-solid fa-caret-down"></i> <strong>เลือกรูปแบบไฟล์:</strong> ที่ด้านล่างของผลลัพธ์ จะมีกล่องให้เลือกชนิดไฟล์ รองรับทั้ง <strong>PDF, PNG และ JPG</strong></li>
+                                <li><i class="fa-solid fa-download"></i> <strong>กดดาวน์โหลด:</strong> เมื่อเลือกไฟล์แล้ว ให้กดปุ่ม <strong>"บันทึกผล" </strong> สีส้ม ระบบจะสร้างรายงานที่ประกอบด้วยโลโก้ ภาพผลลัพธ์ และสรุปผล จัดหน้าอย่างสวยงามให้ดาวน์โหลดทันที</li>
+                                <li><i class="fa-solid fa-sync"></i> <strong>วิเคราะห์ใหม่:</strong> เมื่อต้องการวิเคราะห์ภาพอื่นต่อ ให้คลิกปุ่ม
+                                    <img src="/images/btn-reset.png" alt="วิเคราะห์ใหม่" class="step-img-mockup" style="width: 100px; height: auto; margin-top: 10px;">
                                     เพื่อกลับไปยังหน้าวิเคราะห์และทำซ้ำขั้นตอนเดิมได้เลย
                                 </li>
                             </ul>
                             <div class="alert-box"><i class="fa-solid fa-circle-exclamation"></i>
-                                <strong>หมายเหตุ:</strong>
-                                ผลลัพธ์ที่ได้จากระบบจำแนกเพศด้วยเทคนิคการประมวลผลภาพ (Pelvic Predict)
-                                เป็นเพียงการวิเคราะห์เบื้องต้นเท่านั้น ไม่สามารถใช้เป็นผลยืนยันในทางการแพทย์ได้
-                                จึงควรใช้ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญเพื่อความแม่นยำสูงสุด
-
+                                <strong>หมายเหตุ:</strong> ผลลัพธ์ที่ได้จากระบบจำแนกเพศด้วยเทคนิคการประมวลผลภาพ (Pelvic Predict) เป็นเพียงการวิเคราะห์เบื้องต้นเท่านั้น ไม่สามารถใช้เป็นผลยืนยันในทางการแพทย์ได้ จึงควรใช้ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญเพื่อความแม่นยำสูงสุด
                             </div>
                         </div>
-
-                        <div class="step-image-placeholder"
-                            style="width: 350px; height: auto; margin-top: 10px; margin-left: 70px;">
-                            <img src="/images/Pelvic-Predict-Report.png" alt="รายงานผลการวิเคราะห์"
-                                class="step-img-mockup">
+                        <div class="step-image-placeholder" style="width: 350px; height: auto; margin-top: 10px; margin-left: 70px;">
+                            <img src="/images/Pelvic-Predict-Report.png" alt="รายงานผลการวิเคราะห์" class="step-img-mockup">
                         </div>
-
                     </div>
                 </div>
             </section>
@@ -426,18 +321,16 @@
             <section id="guide-examples" class="tab-content">
                 <h3 class="section-title">ตัวอย่างภาพที่ใช้ในการวิเคราะห์</h3>
                 <p class="text-sm" style="margin-bottom: 25px;">
-                    คำแนะนำ: เพื่อให้ระบบสามารถวิเคราะห์ได้อย่างแม่นยำสูงสุด
-                    ควรศึกษาตัวอย่างภาพและผลลัพธ์การจำแนกประเภททั้งแบบที่แนะนำและไม่แนะนำ ดังตารางด้านล่างนี้
+                    คำแนะนำ: เพื่อให้ระบบสามารถวิเคราะห์ได้อย่างแม่นยำสูงสุด ควรศึกษาตัวอย่างภาพและผลลัพธ์การจำแนกประเภททั้งแบบที่แนะนำและไม่แนะนำ ดังตารางด้านล่างนี้
                 </p>
 
-                <!-- ส่วนที่ 1: ตารางภาพที่ประสิทธิภาพดีที่สุด (แนะนำ) -->
                 <div class="example-section-box">
-                    <h4 class="example-box-title success-title"><i class="fa-solid fa-circle-check"></i>
-                        ตัวอย่างภาพที่ประสิทธิภาพดีที่สุด (แนะนำให้ใช้)</h4>
+                    <h4 class="example-box-title success-title"><i class="fa-solid fa-circle-check"></i> ตัวอย่างภาพที่ประสิทธิภาพดี</h4>
+                    <p>ภาพที่ใช้ทดสอบควรมีลักษณะ: ภาพกระดูกด้านหน้า มุมกล้องทำแนวตั้งฉากกับกระดูก เห็นส่วน Greater Sciatic Notch และ Obturator Foramen ชัดเจน วางตรง ไม่เอียง และไม่มีวัตถุหรือสิ่งรบกวน ผลลัพธ์จากการวิเคราะห์จะมีประสิทธิภาพมาก ดังตัวอย่างภาพด้านล่าง</p>
                     <div class="metric-note">
-                        <i class="fa-solid fa-circle-info" style="color: #555555;"></i> หากภาพที่ใช้ทดสอบมีลักษณะ
-                        ภาพกระดูกด้านหน้า วางตรง ไม่เอียง พื้นหลังเรียบ สีเข้ม และไม่มีสิ่งรบกวน
-                        ผลลัพธ์การวิเคราะห์จะมีประสิทธิภาพสูงสุด
+                        <i class="fa-solid fa-circle-info" style="color: #555555;"></i> 
+                        หากต้องการผลลัพธ์ที่ดีขึ้น สามารถลบพื้นหลังของภาพออกให้เหลือเพียงกระดูกเท่านั้น หรือปรับแต่งภาพให้มีความคมชัด เปลี่ยนสีพื้นหลังให้เห็นกระดูกชัดเจน และลดสัญญาณรบกวนก่อนนำเข้าระบบ 
+                        เนื่องจากการลบพื้นหลังภาพออกเปรียบเสมือนการลดสัญญาณรบกวน จึงส่งผลให้โมเดลประมวลผลได้มีประสิทธิภาพมากยิ่งขึ้น ทั้งนี้ ผลลัพธ์ขึ้นอยู่กับองค์ประกอบของภาพที่ใช้วิเคราะห์ด้วย
                     </div>
                     <div class="table-container">
                         <table class="example-table">
@@ -455,53 +348,37 @@
                             <tbody>
                                 <tr>
                                     <td><img src="/images/test1.jpg" alt="Good Pic 1" class="table-img"></td>
-                                    <td><img src="/images/test1_gr_gpic.png" alt="Greater test 1" class="table-img">
-                                    </td>
-                                    <td><img src="/images/test1_ob_gpic.png" alt="Obturator test 1" class="table-img">
-                                    </td>
-                                    <td><img src="/images/test1_both_gpic.png" alt="Greater & Obturator test 1"
-                                            class="table-img"></td>
+                                    <td><img src="/images/test1_gr_gpic.png" alt="Greater test 1" class="table-img"></td>
+                                    <td><img src="/images/test1_ob_gpic.png" alt="Obturator test 1" class="table-img"></td>
+                                    <td><img src="/images/test1_both_gpic.png" alt="Greater & Obturator test 1" class="table-img"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="/images/test2.jpg" alt="Good Pic 2" class="table-img"></td>
-                                    <td><img src="/images/test2_gr_gpic.png" alt="Greater test 2" class="table-img">
-                                    </td>
-                                    <td><img src="/images/test2_ob_gpic.png" alt="Obturator test 2" class="table-img">
-                                    </td>
-                                    <td><img src="/images/test2_both_gpic.png" alt="Greater & Obturator test 2"
-                                            class="table-img"></td>
+                                    <td><img src="/images/test2_gr_gpic.png" alt="Greater test 2" class="table-img"></td>
+                                    <td><img src="/images/test2_ob_gpic.png" alt="Obturator test 2" class="table-img"></td>
+                                    <td><img src="/images/test2_both_gpic.png" alt="Greater & Obturator test 2" class="table-img"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="/images/test3.jpg" alt="Good Pic 3" class="table-img"></td>
-                                    <td><img src="/images/test3_gr_gpic.png" alt="Greater test 3" class="table-img">
-                                    </td>
-                                    <td><img src="/images/test3_ob_gpic.png" alt="Obturator test 3" class="table-img">
-                                    </td>
-                                    <td><img src="/images/test3_both_gpic.png" alt="Greater & Obturator test 3"
-                                            class="table-img"></td>
+                                    <td><img src="/images/test3_gr_gpic.png" alt="Greater test 3" class="table-img"></td>
+                                    <td><img src="/images/test3_ob_gpic.png" alt="Obturator test 3" class="table-img"></td>
+                                    <td><img src="/images/test3_both_gpic.png" alt="Greater & Obturator test 3" class="table-img"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="/images/test4.jpg" alt="Good Pic 4" class="table-img"></td>
-                                    <td><img src="/images/test4_gr_gpic.png" alt="Greater test 4" class="table-img">
-                                    </td>
-                                    <td><img src="/images/test4_ob_gpic.png" alt="Obturator test 4" class="table-img">
-                                    </td>
-                                    <td><img src="/images/test4_both_gpic.png" alt="Greater & Obturator test 4"
-                                            class="table-img"></td>
+                                    <td><img src="/images/test4_gr_gpic.png" alt="Greater test 4" class="table-img"></td>
+                                    <td><img src="/images/test4_ob_gpic.png" alt="Obturator test 4" class="table-img"></td>
+                                    <td><img src="/images/test4_both_gpic.png" alt="Greater & Obturator test 4" class="table-img"></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- ส่วนที่ 2: ตารางภาพที่ประสิทธิภาพลดลง (ไม่แนะนำ) -->
                 <div class="example-section-box" style="margin-top: 40px;">
-                    <h4 class="example-box-title error-title"><i class="fa-solid fa-circle-xmark"></i>
-                        ตัวอย่างภาพที่ประสิทธิภาพลดลง (ควรหลีกเลี่ยง)</h4>
+                    <h4 class="example-box-title error-title"><i class="fa-solid fa-circle-xmark"></i> ตัวอย่างภาพที่ประสิทธิภาพลดลง (ควรหลีกเลี่ยง)</h4>
                     <div class="metric-note">
-                        <i class="fa-solid fa-circle-info" style="color: #555555;"></i> หากภาพที่ใช้ทดสอบมีลักษณะ
-                        ภาพกระดูกเอียง พื้นหลังขรุขระ สีโทนสว่าง มีสิ่งรบกวน หรือภาพไม่ชัด
-                        ผลลัพธ์การวิเคราะห์จะมีประสิทธิภาพลดลง และอาจทำให้เกิดความคลาดเคลื่อนในการจำแนกเพศได้
+                        <i class="fa-solid fa-circle-info" style="color: #555555;"></i> หากภาพที่ใช้ทดสอบมีลักษณะภาพกระดูกเอียง พื้นหลังขรุขระ สีโทนสว่าง มีสิ่งรบกวน หรือภาพไม่ชัด ผลลัพธ์การวิเคราะห์จะมีประสิทธิภาพลดลง และอาจทำให้เกิดความคลาดเคลื่อนในการจำแนกเพศได้
                     </div>
                     <div class="table-container">
                         <table class="example-table">
@@ -518,41 +395,28 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><img src="/images/eg.badBone.jpg" alt="Bad bone alignment" class="table-img">
-                                    </td>
-                                    <td><img src="/images/test1_gr_bpic.png" alt="Bad Greater test 1" class="table-img">
-                                    </td>
-                                    <td><img src="/images/test1_gr_bpic.png" alt="Bad Obturator test 1"
-                                            class="table-img"></td>
-                                    <td><img src="/images/test1_gr_bpic.png" alt="Bad Greater & Obturator test 1"
-                                            class="table-img"></td>
+                                    <td><img src="/images/eg.badBone.jpg" alt="Bad bone alignment" class="table-img"></td>
+                                    <td><img src="/images/test1_gr_bpic.png" alt="Bad Greater test 1" class="table-img"></td>
+                                    <td><img src="/images/test1_gr_bpic.png" alt="Bad Obturator test 1" class="table-img"></td>
+                                    <td><img src="/images/test1_gr_bpic.png" alt="Bad Greater & Obturator test 1" class="table-img"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="/images/bad_clay.jpg" alt="Bad Pic 1" class="table-img"></td>
-                                    <td><img src="/images/test2_gr_bpic.png" alt="Bad Greater test 2" class="table-img">
-                                    </td>
-                                    <td><img src="/images/test2_ob_bpic.png" alt="Bad Obturator test 2"
-                                            class="table-img"></td>
-                                    <td><img src="/images/test2_both_bpic.png" alt="Bad Greater & Obturator test 2"
-                                            class="table-img"></td>
+                                    <td><img src="/images/test2_gr_bpic.png" alt="Bad Greater test 2" class="table-img"></td>
+                                    <td><img src="/images/test2_ob_bpic.png" alt="Bad Obturator test 2" class="table-img"></td>
+                                    <td><img src="/images/test2_both_bpic.png" alt="Bad Greater & Obturator test 2" class="table-img"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="/images/bad_B_rope.jpg" alt="Bad Pic 2" class="table-img"></td>
-                                    <td><img src="/images/test3_gr_bpic.png" alt="Bad Greater test 3" class="table-img">
-                                    </td>
-                                    <td><img src="/images/test3_ob_bpic.png" alt="Bad Obturator test 3"
-                                            class="table-img"></td>
-                                    <td><img src="/images/test3_both_bpic.png" alt="Bad Greater & Obturator test 3"
-                                            class="table-img"></td>
+                                    <td><img src="/images/test3_gr_bpic.png" alt="Bad Greater test 3" class="table-img"></td>
+                                    <td><img src="/images/test3_ob_bpic.png" alt="Bad Obturator test 3" class="table-img"></td>
+                                    <td><img src="/images/test3_both_bpic.png" alt="Bad Greater & Obturator test 3" class="table-img"></td>
                                 </tr>
                                 <tr>
                                     <td><img src="/images/bad_rope.jpg" alt="Bad Pic 3" class="table-img"></td>
-                                    <td><img src="/images/test4_gr_bpic.png" alt="Bad Greater test 4" class="table-img">
-                                    </td>
-                                    <td><img src="/images/test4_ob_bpic.png" alt="Bad Obturator test 4"
-                                            class="table-img"></td>
-                                    <td><img src="/images/test4_both_bpic.png" alt="Bad Greater & Obturator test 4"
-                                            class="table-img"></td>
+                                    <td><img src="/images/test4_gr_bpic.png" alt="Bad Greater test 4" class="table-img"></td>
+                                    <td><img src="/images/test4_ob_bpic.png" alt="Bad Obturator test 4" class="table-img"></td>
+                                    <td><img src="/images/test4_both_bpic.png" alt="Bad Greater & Obturator test 4" class="table-img"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -571,81 +435,64 @@
                             <div class="select-items select-hide">
                                 <div data-value="Greater Sciatic Notch">Greater Sciatic Notch</div>
                                 <div data-value="Obturator Foramen">Obturator Foramen</div>
-                                <div data-value="Greater Sciatic Notch & Obturator Foramen">Greater Sciatic Notch &
-                                    Obturator Foramen</div>
+                                <div data-value="Greater Sciatic Notch & Obturator Foramen">Greater Sciatic Notch & Obturator Foramen</div>
                             </div>
                         </div>
                         <select id="part-select" style="display: none;">
                             <option value="Greater Sciatic Notch">Greater Sciatic Notch</option>
                             <option value="Obturator Foramen">Obturator Foramen</option>
-                            <option value="Greater Sciatic Notch & Obturator Foramen">Greater Sciatic Notch & Obturator
-                                Foramen</option>
+                            <option value="Greater Sciatic Notch & Obturator Foramen">Greater Sciatic Notch & Obturator Foramen</option>
                         </select>
                     </div>
 
                     <div class="step-box">
                         <label><strong>ขั้นตอนที่ 2 : นำเข้ารูปภาพที่ต้องการวิเคราะห์</strong></label>
-                        <p class="text-sm">คำแนะนำ: ควรใช้ภาพกระดูกด้านหน้า วางตรง พื้นหลังเรียบสีเข้ม และไม่มีสิ่งรบกวน
-                        </p>
+                        <p class="text-sm">คำแนะนำ: ควรใช้ภาพกระดูกด้านหน้า วางตรง พื้นหลังเรียบสีเข้ม และไม่มีสิ่งรบกวน</p>
 
                         <div id="dropzone" class="upload-dropzone">
                             <input type="file" id="image-upload" accept=".jpg, .jpeg, .png" hidden>
                             <div id="dropzone-content">
-                                <div style="font-size: 2.5rem; margin-bottom: 10px; color:#e67e22;"><i
-                                        class="fa-solid fa-cloud-arrow-up"></i></div>
-                                <p style="margin: 0;">ลากและปล่อยไฟล์ที่นี่<br>หรือ <strong
-                                        style="color: #e67e22;">คลิกเพื่อเลือกไฟล์</strong></p>
+                                <div style="font-size: 2.5rem; margin-bottom: 10px; color:#e67e22;"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                                <p style="margin: 0;">ลากและปล่อยไฟล์ที่นี่<br>หรือ <strong style="color: #e67e22;">คลิกเพื่อเลือกไฟล์</strong></p>
                             </div>
                             <img id="image-preview" src="" alt="Preview" style="display: none;">
                         </div>
                     </div>
 
                     <div class="button-container">
-                        <button id="submit-btn" class="primary-btn"><i class="fa-solid fa-magnifying-glass"></i>
-                            วิเคราะห์ผล</button>
+                        <button id="submit-btn" class="primary-btn"><i class="fa-solid fa-magnifying-glass"></i> วิเคราะห์ผล</button>
                     </div>
                 </div>
 
                 <!-- ส่วนแสดงผลลัพธ์ -->
                 <div id="result-section" class="result-card" style="display: none;">
                     <div id="export-area" style="background: white; padding: 15px 20px 0px 20px;">
-                        <h3
-                            style="font-size: 1.5rem; text-align: center; color: #4d4c4b; margin-bottom: 20px; margin-top: 5px;">
+                        <h3 style="font-size: 1.5rem; text-align: center; color: #4d4c4b; margin-bottom: 20px; margin-top: 5px;">
                             ผลการวิเคราะห์
                         </h3>
 
-                        <!-- 1. แถวแสดงภาพคู่: Heatmap (ซ้าย) + ภาพผลลัพธ์ปกติ (ขวา) -->
-                        <div class="result-images-grid grid-2-col">
-                            <!-- ภาพซ้าย: Heatmap + Detection พร้อมหลอด Activation -->
+                        <div class="result-images-grid">
                             <div class="image-column">
-                                <h5 class="image-label"><i class="fa-solid fa-fire-flame-curved"></i> Heatmap +
-                                    Detection</h5>
+                                <h5 class="image-label"><i class="fa-solid fa-fire-flame-curved"></i> Heatmap + Detection</h5>
                                 <div class="img-frame">
                                     <img id="heatmap-image" src="" alt="Heatmap Result">
                                 </div>
                             </div>
-
-                            <!-- ภาพขวา: ภาพตรวจจับเดิม -->
                             <div class="image-column">
-                                <h5 class="image-label"><i class="fa-solid fa-crosshairs"></i> ผลการตรวจจับโครงกระดูก
-                                </h5>
+                                <h5 class="image-label"><i class="fa-solid fa-crosshairs"></i> ผลการตรวจจับ</h5>
                                 <div class="img-frame">
                                     <img id="result-image" src="" alt="Result Image">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- 2. แถวล่าง: กล่องสรุปผลวิเคราะห์ที่ย้ายลงมา -->
-                        <div class="result-text-box-bottom">
-                            <p class="summary-lead">จากการวิเคราะห์ สรุปได้ว่า กระดูกส่วนนี้มีลักษณะเป็น</p>
-                            <strong id="result-gender" class="gender-text"></strong>
-                            <p class="summary-conf">ด้วยความเชื่อมั่น <strong id="result-conf"></strong><strong
-                                    class="percent">%</strong></p>
+                        <!-- 2. แถวล่าง: กล่องสรุปผลวิเคราะห์ เรียบง่ายตามธีมส้ม -->
+                        <div class="result-text-box-bottom" id="result-summary-container">
+                            <!-- JS จะใส่เนื้อหาผลสรุปที่นี่ -->
                         </div>
                     </div>
 
                     <div class="action-buttons">
-                        <!-- Custom Dropdown สำหรับ Export -->
                         <div class="custom-select" id="custom-export-select" style="min-width: 100px;">
                             <div class="select-selected">.pdf</div>
                             <div class="select-items select-hide">
@@ -654,26 +501,26 @@
                                 <div data-value="jpg">.jpg</div>
                             </div>
                         </div>
-                        <!-- ซ่อน Select เดิมไว้ -->
                         <select id="export-format" style="display: none;">
                             <option value="pdf">.pdf</option>
                             <option value="png">.png</option>
                             <option value="jpg">.jpg</option>
                         </select>
 
-                        <button onclick="exportResult()" class="primary-btn"
-                            style="min-width: 150px; background-color: #e67e22;"><i class="fa-solid fa-floppy-disk"></i>
-                            บันทึกผล</button>
+                        <button onclick="exportResult()" class="primary-btn" style="min-width: 150px; background-color: #e67e22;">
+                            <i class="fa-solid fa-floppy-disk"></i> บันทึกผล
+                        </button>
 
-                        <button onclick="resetApp()" class="secondary-btn" style="min-width: 150px;"><i
-                                class="fa-solid fa-rotate-right"></i> วิเคราะห์อีกครั้ง</button>
+                        <button onclick="resetApp()" class="secondary-btn" style="min-width: 150px;">
+                            <i class="fa-solid fa-rotate-right"></i> วิเคราะห์อีกครั้ง
+                        </button>
                     </div>
                 </div>
             </section>
         </div>
     </main>
 
-    <!-- แบบฟอร์มซ่อนสำหรับ Export เป็น A4 -->
+    <!-- แบบฟอร์มซ่อนสำหรับ Export เป็น A4 (แก้ปัญหาหน้าเกินและตัวอักษรซ้อน) -->
     <div id="export-container">
         <div id="hidden-report-template" class="a4-report">
             <div class="report-header">
@@ -681,26 +528,25 @@
                     <img src="/images/logo-Pelpred.png" alt="PelPred" class="report-logo">
                     <div class="report-title-text">
                         <h3>ผลการวิเคราะห์โครงกระดูกส่วนสะโพกด้วยเทคนิคการประมวลผลภาพ</h3>
-                        <p class="eng-subtitle">Sex Classification from Hip Bone Images Using Image Processing
-                            Techniques</p>
+                        <p class="eng-subtitle">Sex Classification from Hip Bone Images Using Image Processing Techniques</p>
                     </div>
                 </div>
                 <hr>
             </div>
+            
             <div class="report-body">
                 <img id="report-image" src="" alt="Analyzed Bone">
-                <div class="report-conclusion">
-                    <p>จากการวิเคราะห์กระดูกส่วนนี้ สรุปได้ว่า มีลักษณะเป็น</p>
-                    <h3 id="report-gender"></h3>
-                    <p>ด้วยความเชื่อมั่น <span id="report-conf"></span>%</p>
+                
+                <div class="report-conclusion" id="report-conclusion-container">
+                    <!-- JS  -->
                 </div>
             </div>
+            
             <div class="report-footer">
                 <hr>
                 <p>
                     เอกสารฉบับนี้จัดทำโดย Pelvic Predict ระบบจำแนกเพศจากโครงกระดูกส่วนสะโพกด้วยเทคนิคการประมวลผลภาพ
-                    <br><strong>หมายเหตุ:</strong> ระบบจำแนกเพศอาจมีข้อจำกัดในบางกรณี
-                    และควรวิเคราะห์ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญ
+                    <br><strong>หมายเหตุ:</strong> ระบบจำแนกเพศอาจมีข้อจำกัดในบางกรณี และควรวิเคราะห์ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญ
                     <br>อ้างอิง: https://website-url.th/
                 </p>
             </div>

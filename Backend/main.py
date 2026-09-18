@@ -24,6 +24,35 @@ device = "cuda:0" if torch.cuda.is_available() else "cpu"
 model = YOLO(r"D:\poiter4u\DemoProject\Model\train\weights\best.pt")
 model.to(device)
 
+def parse_gender_and_anatomy(label_raw: str):
+    l = label_raw.lower().strip()
+    
+    is_female = ("female" in l) or l.startswith("f_") or l.startswith("f-") or (" f " in f" {l} ") or ("_f" in l)
+    is_male = ("male" in l) or l.startswith("m_") or l.startswith("m-") or (" m " in f" {l} ") or ("_m" in l)
+    
+    if is_female:
+        gender = "เพศหญิง"
+        gender_code = "female"
+    elif is_male:
+        gender = "เพศชาย"
+        gender_code = "male"
+    else:
+        gender = label_raw
+        gender_code = "unknown"
+
+    is_sciatic = "sciatic" in l or "gr" in l
+    is_obturator = "obturator" in l or "ob" in l
+    
+    if is_sciatic:
+        anatomy = "Greater Sciatic Notch"
+    elif is_obturator:
+        anatomy = "Obturator Foramen"
+    else:
+        anatomy = label_raw
+
+    return gender, gender_code, anatomy, is_sciatic, is_obturator
+
+
 @app.post("/predict")
 async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
     contents = await file.read()
@@ -32,22 +61,17 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
     processed_img = img.copy()
     original_h, original_w = img.shape[:2]
 
-    # 1. รัน Predict เพื่อหาตำแหน่งทั้งหมด 
     results = model.predict(source=img, conf=0.25, device=device, verbose=False)
     r = results[0]
-    
     filtered_predictions = []
 
-    # 2. กรองผลลัพธ์ตามตำแหน่งที่ผู้ใช้เลือก 
     if len(r.boxes) > 0:
         for box in r.boxes:
             cls_id = int(box.cls[0].detach().cpu())
             conf = float(box.conf[0].detach().cpu()) * 100
-            label = r.names[cls_id] 
+            label_raw = r.names[cls_id] 
             
-            label_lower = label.lower()
-            is_sciatic = "sciatic" in label_lower
-            is_obturator = "obturator" in label_lower
+            gender, gender_code, anatomy, is_sciatic, is_obturator = parse_gender_and_anatomy(label_raw)
             
             keep_box = False
             if part == "Greater Sciatic Notch" and is_sciatic:
@@ -61,35 +85,29 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
             if keep_box:
                 x1, y1, x2, y2 = map(int, box.xyxy[0].detach().cpu().numpy())
                 filtered_predictions.append({
-                    "label": label, 
+                    "label_raw": label_raw,
                     "conf": conf, 
-                    "box": (x1, y1, x2, y2)
+                    "box": (x1, y1, x2, y2),
+                    "gender": gender,
+                    "gender_code": gender_code,
+                    "anatomy": anatomy,
+                    "is_sciatic": is_sciatic,
+                    "is_obturator": is_obturator
                 })
-
-    # 3. วาด Bounding Box ลงบนภาพหลักเดิม 
-    final_gender = "ไม่พบกระดูกที่ต้องการ"
-    final_conf = 0.0
 
     if filtered_predictions:
         for p in filtered_predictions:
             x1, y1, x2, y2 = p["box"]
+            display_text = f"{p['anatomy']} ({p['conf']:.2f}%)"
             
-            label_lower = p['label'].lower()
-            if "obturator" in label_lower:
-                display_text = f"Obturator Foramen ({p['conf']:.1f}%)"
-            elif "sciatic" in label_lower:
-                display_text = f"Greater Sciatic Notch ({p['conf']:.1f}%)"
-            else:
-                display_text = f"{p['label']} ({p['conf']:.1f}%)"
-            
-            if "female" in label_lower:
-                box_color = (138, 74, 246)  
+            if p["gender_code"] == "female":
+                box_color = (138, 74, 246)
                 text_color = (0, 0, 0)
-            elif "male" in label_lower:
-                box_color = (255, 191, 0)   
+            elif p["gender_code"] == "male":
+                box_color = (255, 191, 0)
                 text_color = (0, 0, 0)
             else:
-                box_color = (0, 255, 0)     
+                box_color = (0, 255, 0)
                 text_color = (0, 0, 0)
 
             font = cv2.FONT_HERSHEY_SIMPLEX
@@ -103,25 +121,12 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
             cv2.rectangle(processed_img, (x1, y1), (x2, y2), box_color, 3)
             cv2.rectangle(processed_img, (text_x, text_y - text_size[1] - 5), (text_x + text_size[0], text_y + 5), box_color, -1)
             cv2.putText(processed_img, display_text, (text_x, text_y), font, font_scale, text_color, thickness)
-        
-        raw_labels = list(set([p['label'].split(' ')[0] for p in filtered_predictions]))
-        thai_genders = []
-        for lbl in raw_labels:
-            if lbl.lower() == "male":
-                thai_genders.append("เพศชาย")
-            elif lbl.lower() == "female":
-                thai_genders.append("เพศหญิง")
-            else:
-                thai_genders.append(lbl)
-                
-        final_gender = " / ".join(thai_genders)
-        final_conf = sum([p['conf'] for p in filtered_predictions]) / len(filtered_predictions)
 
-    # 4. แปลงภาพ Detection ปกติกลับเป็น Base64
+    is_dual = (part == "Greater Sciatic Notch & Obturator Foramen")
+    
     _, buffer = cv2.imencode('.jpg', processed_img)
     img_base64 = base64.b64encode(buffer).decode('utf-8')
 
-    # 5. สกัด Feature Heatmap + วาด Bounding Box + หลอด Activation Heatmap Colorbar
     heatmap_base64 = None
     try:
         layers = model.model.model
@@ -168,26 +173,15 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
                 heatmap_bgr = cv2.applyColorMap(heatmap_uint8, cv2.COLORMAP_JET)
                 heatmap_rgb = cv2.cvtColor(heatmap_bgr, cv2.COLOR_BGR2RGB)
 
-                # ทำ Overlay ผสาน Heatmap ลงบนภาพต้นฉบับ
                 overlay = cv2.addWeighted(image_rgb, 0.55, heatmap_rgb, 0.45, 0)
 
-                # วาด Bounding Box เฉพาะจุดที่ผ่านการกรอง 
                 for p in filtered_predictions:
                     bx1, by1, bx2, by2 = p["box"]
                     cv2.rectangle(overlay, (bx1, by1), (bx2, by2), (255, 255, 255), 3)
-                    
-                    label_lower = p['label'].lower()
-                    if "obturator" in label_lower:
-                        txt = f"Obturator Foramen {p['conf']:.1f}%"
-                    elif "sciatic" in label_lower:
-                        txt = f"Greater Sciatic Notch {p['conf']:.1f}%"
-                    else:
-                        txt = f"{p['label']} {p['conf']:.1f}%"
-                    
+                    txt = f"{p['anatomy']} {p['conf']:.2f}%"
                     cv2.putText(overlay, txt, (bx1, max(by1 - 10, 30)),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2, cv2.LINE_AA)
 
-                # วาดพร้อมหลอด Colorbar
                 fig, ax = plt.subplots(figsize=(6.5, 6), dpi=150)
                 im_ax = ax.imshow(overlay)
                 ax.axis('off')
@@ -210,8 +204,8 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
         print(f"Heatmap generation error: {e}")
 
     return {
-        "gender": final_gender,
-        "confidence": round(final_conf, 2),
+        "is_dual": is_dual,
+        "details": filtered_predictions,
         "image_base64": f"data:image/jpeg;base64,{img_base64}",
         "heatmap_base64": heatmap_base64
     }
