@@ -12,7 +12,9 @@ body {
     color: #333;
 }
 
-h2, h3, h4 {
+h2,
+h3,
+h4 {
     margin-top: 0;
     font-weight: 600;
 }
@@ -41,7 +43,9 @@ h2, h3, h4 {
     flex-wrap: wrap;
 }
 
-.top-logo-medsci, .top-logo-nu, .top-logo-anatomy {
+.top-logo-medsci,
+.top-logo-nu,
+.top-logo-anatomy {
     height: 60px;
     width: auto;
     object-fit: contain;
@@ -233,10 +237,21 @@ body.is-home .main-content {
     padding-bottom: 10px;
 }
 
-.guide-card.success { border-color: #2ecc71; }
-.guide-card.success h4 { color: #27ae60; }
-.guide-card.error { border-color: #e74c3c; }
-.guide-card.error h4 { color: #c0392b; }
+.guide-card.success {
+    border-color: #2ecc71;
+}
+
+.guide-card.success h4 {
+    color: #27ae60;
+}
+
+.guide-card.error {
+    border-color: #e74c3c;
+}
+
+.guide-card.error h4 {
+    color: #c0392b;
+}
 
 .guide-card ul {
     list-style: none;
@@ -347,7 +362,9 @@ select {
     gap: 8px;
 }
 
-.image-label i { color: #e67e22; }
+.image-label i {
+    color: #e67e22;
+}
 
 .img-frame {
     width: 100%;
@@ -394,7 +411,8 @@ select {
 }
 
 .gender-text-inline {
-    color: #e67e22; /* ใช้สีส้มเสมอ */
+    color: #e67e22;
+    /* ใช้สีส้มเสมอ */
     font-weight: 700;
     font-size: 1.2rem;
 }
@@ -456,41 +474,83 @@ select {
 
 /* --- Animations --- */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 768px) {
-    .result-images-grid { grid-template-columns: 1fr; gap: 20px; }
-    .img-frame { min-height: 250px; }
-    .action-buttons { flex-direction: column; }
+    .result-images-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .img-frame {
+        min-height: 250px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
 }
 
 /* --- Initial Load Animation --- */
 @keyframes initialFadeSlideUp {
-    0% { opacity: 0; transform: translateY(25px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.main-heading-th, .main-heading-en, .main-sub-text, .main-content {
+.main-heading-th,
+.main-heading-en,
+.main-sub-text,
+.main-content {
     opacity: 0;
     animation: initialFadeSlideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-.main-heading-th { animation-delay: 0.1s; }
-.main-heading-en { animation-delay: 0.25s; }
-.main-sub-text { animation-delay: 0.4s; }
-.main-content { animation-delay: 0.55s; }
+.main-heading-th {
+    animation-delay: 0.1s;
+}
+
+.main-heading-en {
+    animation-delay: 0.25s;
+}
+
+.main-sub-text {
+    animation-delay: 0.4s;
+}
+
+.main-content {
+    animation-delay: 0.55s;
+}
 
 .no-animation {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: translateY(0) !important;
+    animation: none ;
+    opacity: 1 ;
+    transform: translateY(0) ;
 }
 
 /* --- Home Dashboard Style --- */
@@ -621,7 +681,9 @@ select {
     display: none;
 }
 
-.two-tone-banner.active-banner { display: block; }
+.two-tone-banner.active-banner {
+    display: block;
+}
 
 .banner-inner-text {
     max-width: 1000px;
@@ -670,15 +732,20 @@ select {
     gap: 8px;
 }
 
-.success-title { color: #27ae60; }
-.error-title { color: #c0392b; }
+.success-title {
+    color: #27ae60;
+}
+
+.error-title {
+    color: #c0392b;
+}
 
 .table-container {
     background: #ffffff;
     padding: 0;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    overflow: hidden; 
+    overflow: hidden;
     margin-top: 15px;
     border: 1px solid #e0e0e0;
 }
@@ -691,7 +758,7 @@ select {
     table-layout: fixed;
 }
 
-.example-table th, 
+.example-table th,
 .example-table td {
     border: 1px solid #e0e0e0;
     padding: 15px;
@@ -699,7 +766,9 @@ select {
     box-sizing: border-box;
 }
 
-.example-table td { height: 180px; }
+.example-table td {
+    height: 180px;
+}
 
 .example-table thead th {
     background-color: #4d4c4b;
@@ -709,9 +778,9 @@ select {
 }
 
 .table-img {
-    width: auto;  
-    height: 300px;         
-    object-fit: contain;           
+    width: auto;
+    height: 300px;
+    object-fit: contain;
     border-radius: 6px;
     border: 1px solid #ddd;
     background-color: #f9f9f9;
@@ -770,28 +839,32 @@ select {
 }
 
 .step-image-placeholder {
-    background-color: #f4f6f8;
-    border: 2px solid #e67e22; 
+    background-color: transparent;
+    border: 2px solid #e67e22;
     border-radius: 8px;
-    min-height: 220px;
+    width: fit-content;      
+    max-width: 100%;         
+    height: auto;
+    margin: 10px auto 0 auto; 
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    align-self: start;
+    overflow: hidden;           
+    box-sizing: border-box;
 }
 
 .step-img-mockup {
-    position: relative; 
     width: 100%;
-    height: auto; 
+    max-width: 450px;        
+    height: auto;
+    display: block;
     object-fit: contain;
-    background-color: #ffffff;
-    z-index: 2;
-    opacity: 0; 
-    transition: opacity 0.3s ease;
+    border-radius: 4px;
+    opacity: 1 ;
+}
+
+.step-guide-body.grid-2-col {
+    align-items: center;
 }
 
 .step-img-mockup[src]:not([src=""]) {
@@ -807,7 +880,7 @@ select {
     margin-left: -50vw;
     margin-right: -50vw;
     margin-top: 30px;
-    margin-bottom: -40px; 
+    margin-bottom: -40px;
     background-color: #2b2b2b;
     border-top: 4px solid #e67e22;
     color: #ffffff;
@@ -853,7 +926,9 @@ select {
     gap: 10px;
 }
 
-.col-head i { color: #e67e22; }
+.col-head i {
+    color: #e67e22;
+}
 
 .person-box {
     margin-bottom: 18px;
@@ -861,7 +936,9 @@ select {
     flex-direction: column;
 }
 
-.person-box:last-child { margin-bottom: 0; }
+.person-box:last-child {
+    margin-bottom: 0;
+}
 
 .person-name {
     font-size: 1.05rem;
@@ -883,7 +960,9 @@ select {
     font-weight: 700;
 }
 
-.lead-advisor { margin-bottom: 20px; }
+.lead-advisor {
+    margin-bottom: 20px;
+}
 
 .advisor-chips {
     display: grid;
@@ -914,28 +993,52 @@ select {
     font-size: 0.8rem;
 }
 
-/* --- Hidden Report Template (A4 format - แก้ไขความสูงและ Overflow ป้องกันหน้าเปล่า) --- */
+/* --- Hidden Report Template --- */
 #export-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 794px;
-    z-index: -1000;
-    opacity: 0;
-    pointer-events: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: -9999px !important; 
+    opacity: 0 !important;
+    pointer-events: none !important;
+    z-index: -1000 !important;
 }
 
 .a4-report {
     width: 794px;
-    height: 1123px; /* กำหนดความสูงตายตัว 1 หน้า A4 */
-    overflow: hidden; /* ตัดส่วนเกินออกป้องกันหน้ากระดาษเปล่า */
+    height: 1122px; /* ล็อกไว้พอดีเป๊ะ */
+    max-height: 1122px;
+    overflow: hidden; /* ตัดส่วนเกินทั้งหมดไม่ให้ขึ้นหน้าใหม่ */
     background-color: white;
-    padding: 50px 60px;
+    padding: 30px 40px; /* ลด padding ลงจากเดิมเพื่อกันล้น */
     font-family: 'Prompt', sans-serif;
     color: #333;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+}
+
+/* ควบคุมขนาดรูปภาพในรายงานไม่ให้ยาวเกินไป */
+#report-image {
+    width: auto;
+    max-width: 100%;
+    max-height: 520px; 
+    object-fit: contain;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.report-conclusion {
+    background-color: #fdfaf6;
+    padding: 15px 20px; /* ลด padding กล่องข้อความสรุป */
+    border-radius: 10px;
+    border: 2px solid #e67e22;
+    width: 85%;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
 }
 
 .report-title-container {
@@ -991,29 +1094,6 @@ select {
     flex-direction: column;
     align-items: center;
     gap: 25px;
-}
-
-#report-image {
-    width: auto;
-    max-width: 100%;
-    max-height: 500px; 
-    object-fit: contain;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    display: block;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-.report-conclusion {
-    background-color: #fdfaf6;
-    padding: 25px 30px;
-    border-radius: 12px;
-    border: 2px solid #e67e22;
-    width: 85%;
-    margin: 0 auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    text-align: center;
 }
 
 .report-footer {
@@ -1079,4 +1159,254 @@ select {
 
 .select-hide {
     display: none;
+}
+
+/* --- สไตล์ปุ่ม Hamburger เมนู (ค่าเริ่มต้นในจอคอม: ซ่อน) --- */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1002;
+}
+
+.hamburger-btn span {
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left center;
+}
+
+/* แอนิเมชันปุ่ม 3 ขีดหมุนไขว้เป็นกากบาท (X) */
+.hamburger-btn.open span:nth-child(1) {
+    transform: rotate(45deg);
+    top: -1px;
+}
+.hamburger-btn.open span:nth-child(2) {
+    opacity: 0;
+    width: 0;
+}
+.hamburger-btn.open span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 1px;
+}
+
+/* -------------------------------------------------------------------------
+    Responsive Mode สำหรับมือถือ 
+------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+
+    /* บังคับจอให้กว้างเต็มขอบ 100% ป้องกันหน้าเว็บหดเป็นแถบแคบ */
+    html, body {
+        width: 100vw ;
+        max-width: 100vw ;
+        overflow-x: hidden ;
+        position: relative;
+    }
+
+    /* ซ่อน Template PDF ตัวที่ทำให้หน้าจอหดจนกว่าจะกดบันทึกจริง */
+    #export-container {
+        display: none ;
+        width: 0 ;
+        height: 0 ;
+    }
+
+    /* 1. Header โลโก้มหาวิทยาลัย */
+    .header-banner {
+        padding: 8px 10px;
+    }
+    .banner-logos-center {
+        gap: 8px;
+    }
+    .top-logo-nu, .top-logo-sci, .top-logo-medsci, .top-logo-csit, .top-logo-anatomy {
+        height: 32px ;
+        width: auto ;
+    }
+
+    /* 2. แถบ Navigation */
+    .top-nav {
+        padding: 10px 15px;
+        position: sticky;
+        top: 0;
+        width: 100%;
+    }
+    .nav-brand {
+        max-width: calc(100% - 45px);
+        gap: 10px;
+    }
+    .nav-brand-logo {
+        height: 36px;
+    }
+    .nav-brand-title {
+        font-size: 0.88rem;
+        line-height: 1.25;
+        white-space: normal;
+    }
+    /* นำชื่อภาษาอังกฤษกลับมา แต่ย่อขนาดให้พอดีจอ */
+    .nav-brand-subtitle {
+        display: block ;
+        font-size: 0.65rem ;
+        opacity: 0.85;
+        line-height: 1.2;
+        margin-top: 2px;
+    }
+
+    /* แสดงปุ่ม 3 ขีด */
+    .hamburger-btn {
+        display: flex;
+    }
+
+    /* แถบเมนูดรอปดาวน์แบบสไลด์นุ่มนวล (Smooth Slide) */
+    .menu-list {
+        display: flex ;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #242424;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        border-bottom: 3px solid #e67e22;
+        z-index: 1000;
+        padding: 0;
+    }
+
+    .menu-list.active {
+        max-height: 350px;
+    }
+
+    .menu-list li {
+        width: 100%;
+        padding: 14px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 1rem;
+    }
+
+    /* เมนูย่อย "แนะนำ" สไลด์ขยายในมือถือ */
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background-color: #1a1a1a;
+        border-radius: 6px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+        padding: 0 10px;
+        display: block ;
+        margin-top: 0;
+    }
+    .dropdown.open .dropdown-content {
+        max-height: 140px;
+        padding: 6px 10px;
+        margin-top: 8px;
+    }
+    .dropdown-content a {
+        padding: 10px 15px;
+        font-size: 0.92rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .arrow-icon {
+        float: right;
+        font-size: 0.8rem;
+        transition: transform 0.3s ease;
+        margin-top: 4px;
+    }
+    .dropdown.open .arrow-icon {
+        transform: rotate(180deg);
+    }
+
+    /* 3. เนื้อหาหลัก Banner และ Font */
+    .two-tone-banner {
+        padding: 25px 15px 120px 15px;
+    }
+    .main-heading-th {
+        font-size: 1.3rem;
+        line-height: 1.4;
+        margin-bottom: 12px;
+    }
+    .main-heading-en {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        margin-bottom: 12px;
+    }
+    .main-sub-text {
+        font-size: 1rem;
+    }
+    body.is-home .main-content {
+        margin-top: -95px;
+    }
+
+    .main-content {
+        padding: 20px 12px;
+    }
+    .container {
+        width: 100% ;
+        max-width: 100% ;
+    }
+    .hero-card, .content-card, .input-card, .step-guide-card, .example-section-box {
+        padding: 18px 14px;
+    }
+    .grid-2-col, .footer-grid {
+        grid-template-columns: 1fr ;
+        gap: 15px ;
+    }
+    .step-text-content p, .custom-list li, .content-card p {
+        font-size: 0.95rem ;
+        text-indent: 0 ;
+    }
+
+    /* 4. ตารางรูปตัวอย่างให้ใช้นิ้วปัดดูได้โดยไม่ดันขอบจอพัง */
+    .table-container {
+        width: 100% ;
+        overflow-x: auto ;
+        -webkit-overflow-scrolling: touch;
+    }
+    .example-table {
+        width: 600px ;
+        table-layout: auto ;
+    }
+    .table-img {
+        height: 110px ;
+    }
+
+    /* 5. Footer ด้านล่างสุด */
+    .home-fullwidth-footer {
+        width: 100vw ;
+        position: relative ;
+        left: 50% ;
+        right: 50% ;
+        margin-left: -50vw ;
+        margin-right: -50vw ;
+        margin-bottom: -40px ;
+        padding: 35px 20px 25px 20px ;
+        box-sizing: border-box ;
+    }
+
+    .step-guide-card, .content-card, .hero-card {
+        width: 100% ;
+        box-sizing: border-box ;
+        overflow: hidden ;
+    }
+
+    .step-report-preview {
+        width: 100% ;
+        max-width: 260px ;
+        margin: 15px auto 0 auto ;
+        min-height: auto ;
+    }
+
+    .step-report-preview img {
+        width: 100% ;
+        height: auto ;
+    }
 }

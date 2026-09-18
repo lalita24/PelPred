@@ -6,6 +6,7 @@ import torch
 import matplotlib
 matplotlib.use('Agg')  
 import matplotlib.pyplot as plt
+import uvicorn
 
 from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.middleware.cors import CORSMiddleware
@@ -16,6 +17,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -210,4 +212,5 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
         "heatmap_base64": heatmap_base64
     }
     
-# วิธีรัน: uvicorn main:app --reload
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

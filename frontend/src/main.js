@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function setupCustomDropdown(selectId, containerId) {
         const customSelect = document.getElementById(containerId);
         if (!customSelect) return;
-        
+
         const selected = customSelect.querySelector(".select-selected");
         const items = customSelect.querySelector(".select-items");
         const realSelect = document.getElementById(selectId);
 
-        selected.addEventListener("click", function(e) {
+        selected.addEventListener("click", function (e) {
             e.stopPropagation();
             document.querySelectorAll('.select-items').forEach(el => {
                 if (el !== items) el.classList.add('select-hide');
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         items.querySelectorAll("div").forEach(item => {
-            item.addEventListener("click", function() {
+            item.addEventListener("click", function () {
                 selected.innerHTML = this.innerHTML;
                 realSelect.value = this.getAttribute("data-value");
                 items.classList.add("select-hide");
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupCustomDropdown("part-select", "custom-part-select");
     setupCustomDropdown("export-format", "custom-export-select");
 
-    document.addEventListener("click", function() {
+    document.addEventListener("click", function () {
         document.querySelectorAll('.select-items').forEach(el => el.classList.add('select-hide'));
     });
 });
@@ -109,7 +109,8 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
     btn.disabled = true;
 
     try {
-        const response = await fetch("http://localhost:8000/predict", {
+        // ใช้ผ่าน Vite Proxy หรือยิงตรงตามการตั้งค่า (กรณีใช้ Vite Proxy ใช้ /predict ได้เลย)
+        const response = await fetch("/predict", {
             method: "POST",
             body: formData
         });
@@ -117,16 +118,13 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
 
         const summaryContainer = document.getElementById('result-summary-container');
         const reportConclusion = document.getElementById('report-conclusion-container');
-        
-        // 1. จัดเตรียมข้อความ Web UI และ PDF 
+
         if (data.is_dual && data.details && data.details.length > 0) {
-            // ดึงค่าแยกแต่ละส่วน
             const sciatic = data.details.find(i => i.is_sciatic) || { anatomy: "Greater Sciatic Notch", gender: "-", conf: "-" };
             const obturator = data.details.find(i => i.is_obturator) || { anatomy: "Obturator Foramen", gender: "-", conf: "-" };
             const sciConf = typeof sciatic.conf === 'number' ? sciatic.conf.toFixed(2) : sciatic.conf;
             const obConf = typeof obturator.conf === 'number' ? obturator.conf.toFixed(2) : obturator.conf;
 
-            // รูปแบบ Web UI
             summaryContainer.innerHTML = `
                 <p class="summary-lead">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p>
                 <div class="simple-summary-text">
@@ -135,7 +133,6 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
                 </div>
             `;
 
-            // รูปแบบเอกสาร PDF
             reportConclusion.innerHTML = `
                 <div style="text-align: center; color: #333; line-height: 1.6;">
                     <p style="font-size: 20px; font-weight: bold; margin: 0 0 15px 0; color: #4d4c4b;">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p>
@@ -150,8 +147,7 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
             const item = data.details[0];
             const partName = item.anatomy;
             const confValue = typeof item.conf === 'number' ? item.conf.toFixed(2) : item.conf;
-            
-            // รูปแบบ Web UI 
+
             summaryContainer.innerHTML = `
                 <p class="summary-lead">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p>
                 <div class="simple-summary-text">
@@ -160,7 +156,6 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
                 </div>
             `;
 
-            // รูปแบบเอกสาร PDF 
             reportConclusion.innerHTML = `
                 <div style="text-align: center; color: #333; line-height: 1.6;">
                     <p style="font-size: 20px; font-weight: bold; margin: 0 0 15px 0; color: #4d4c4b;">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p>
@@ -177,7 +172,6 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
             `;
         }
 
-        // 2. แสดงรูปภาพต่างๆ
         if (data.heatmap_base64) document.getElementById('heatmap-image').src = data.heatmap_base64;
         if (data.image_base64) {
             document.getElementById('result-image').src = data.image_base64;
@@ -205,7 +199,6 @@ window.exportResult = async function () {
     container.style.zIndex = '9999';
     container.style.left = '0px';
     container.style.top = '0px';
-    window.scrollTo(0, 0);
 
     const hideContainer = () => {
         container.style.opacity = '0';
@@ -216,36 +209,21 @@ window.exportResult = async function () {
     setTimeout(async () => {
         try {
             if (exportFormat === 'pdf') {
-                // ปรับความคมชัดระดับ HD
                 const opt = {
                     margin: 0,
                     filename: 'Pelvic-Predict-Report.pdf',
-                    image: { type: 'jpeg', quality: 1.0 },
-                    html2canvas: { scale: 4, useCORS: true, scrollY: 0, backgroundColor: '#ffffff' },
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true, scrollY: 0, backgroundColor: '#ffffff' },
                     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
                 };
 
-                // ใช้ html2pdf ส่งออก เป็น PDF
-                await html2pdf()
-                    .set(opt)
-                    .from(reportElement)
-                    .toPdf()
-                    .get('pdf')
-                    .then((pdf) => {
-                        const totalPages = pdf.internal.getNumberOfPages();
-                        for (let i = totalPages; i > 1; i--) {
-                            pdf.deletePage(i);
-                        }
-                    })
-                    .save();
-
+                await html2pdf().set(opt).from(reportElement).save();
             } else {
-                const canvas = await html2canvas(reportElement, { scale: 3, useCORS: true, scrollY: 0, backgroundColor: '#ffffff' });
-                const imgData = canvas.toDataURL(`image/${exportFormat === 'jpg' ? 'jpeg' : 'png'}`, 1.0);
-                
+                const canvas = await html2canvas(reportElement, { scale: 2, useCORS: true, scrollY: 0, backgroundColor: '#ffffff' });
+                const imgData = canvas.toDataURL(`image/${exportFormat === 'jpg' ? 'jpeg' : 'png'}`, 0.95);
+
                 const link = document.createElement('a');
-                const isJpg = exportFormat === 'jpg';
-                link.download = `Pelvic-Predict-Report.${isJpg ? 'jpg' : 'png'}`;
+                link.download = `Pelvic-Predict-Report.${exportFormat}`;
                 link.href = imgData;
                 link.click();
             }
@@ -255,7 +233,7 @@ window.exportResult = async function () {
         } finally {
             hideContainer();
         }
-    }, 150);
+    }, 200);
 };
 
 // --- เคลียร์ค่า ---
@@ -270,3 +248,41 @@ window.resetApp = function () {
     document.getElementById('report-image').src = "";
     dropzoneContent.style.display = "block";
 };
+
+// --- สคริปต์ควบคุมเมนู 3 ขีดแบบ Smooth (Accordion) ---
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const navMenu = document.getElementById('navMenu');
+const guideDropdown = document.getElementById('guideDropdown');
+
+if (hamburgerBtn && navMenu) {
+    hamburgerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        hamburgerBtn.classList.toggle('open');
+        navMenu.classList.toggle('active');
+    });
+
+    if (guideDropdown) {
+        guideDropdown.querySelector('.dropbtn').addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.stopPropagation();
+                guideDropdown.classList.toggle('open');
+            }
+        });
+    }
+
+    navMenu.querySelectorAll('li:not(.dropdown), .dropdown-content a').forEach(item => {
+        item.addEventListener('click', () => {
+            hamburgerBtn.classList.remove('open');
+            navMenu.classList.remove('active');
+            if (guideDropdown) guideDropdown.classList.remove('open');
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+            hamburgerBtn.classList.remove('open');
+            navMenu.classList.remove('active');
+            if (guideDropdown) guideDropdown.classList.remove('open');
+        }
+    });
+}
