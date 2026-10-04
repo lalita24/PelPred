@@ -1,4 +1,5 @@
 import './style.css';
+import './mobile_style.css';
 
 // --- ระบบจัดการ Custom Dropdown ทั้งหมด ---
 document.addEventListener("DOMContentLoaded", () => {
@@ -109,7 +110,6 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
     btn.disabled = true;
 
     try {
-        // ใช้ผ่าน Vite Proxy หรือยิงตรงตามการตั้งค่า (กรณีใช้ Vite Proxy ใช้ /predict ได้เลย)
         const response = await fetch("/predict", {
             method: "POST",
             body: formData
@@ -119,51 +119,42 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
         const summaryContainer = document.getElementById('result-summary-container');
         const reportConclusion = document.getElementById('report-conclusion-container');
 
-        if (data.is_dual && data.details && data.details.length > 0) {
-            const sciatic = data.details.find(i => i.is_sciatic) || { anatomy: "Greater Sciatic Notch", gender: "-", conf: "-" };
-            const obturator = data.details.find(i => i.is_obturator) || { anatomy: "Obturator Foramen", gender: "-", conf: "-" };
-            const sciConf = typeof sciatic.conf === 'number' ? sciatic.conf.toFixed(2) : sciatic.conf;
-            const obConf = typeof obturator.conf === 'number' ? obturator.conf.toFixed(2) : obturator.conf;
-
-            summaryContainer.innerHTML = `
-                <p class="summary-lead">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p>
-                <div class="simple-summary-text">
-                    <p><strong>Greater Sciatic Notch</strong> มีลักษณะเป็น <span class="gender-text-inline">${sciatic.gender}</span> ด้วยความเชื่อมั่น <strong>${sciConf}%</strong></p>
-                    <p><strong>Obturator Foramen</strong> มีลักษณะเป็น <span class="gender-text-inline">${obturator.gender}</span> ด้วยความเชื่อมั่น <strong>${obConf}%</strong></p>
-                </div>
-            `;
-
-            reportConclusion.innerHTML = `
+        if (data.details && data.details.length > 0) {
+            let summaryHTML = `<p class="summary-lead">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p><div class="simple-summary-text">`;
+            
+            let reportHTML = `
                 <div style="text-align: center; color: #333; line-height: 1.6;">
                     <p style="font-size: 20px; font-weight: bold; margin: 0 0 15px 0; color: #4d4c4b;">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p>
-                    <p style="font-size: 18px; margin: 0;">Greater Sciatic Notch มีลักษณะเป็น <span style="color: #e67e22; font-weight: bold;">${sciatic.gender}</span></p>
-                    <p style="font-size: 18px; margin: 0 0 15px 0;">ด้วยความเชื่อมั่น <strong>${sciConf}%</strong></p>
-                    <p style="font-size: 18px; margin: 0;">Obturator Foramen มีลักษณะเป็น <span style="color: #e67e22; font-weight: bold;">${obturator.gender}</span></p>
-                    <p style="font-size: 18px; margin: 0;">ด้วยความเชื่อมั่น <strong>${obConf}%</strong></p>
-                </div>
             `;
 
-        } else if (data.details && data.details.length > 0) {
-            const item = data.details[0];
-            const partName = item.anatomy;
-            const confValue = typeof item.conf === 'number' ? item.conf.toFixed(2) : item.conf;
+            // วนลูปสร้างข้อความสำหรับทุกจุดที่โมเดลตรวจพบ
+            data.details.forEach(item => {
+                const confValue = typeof item.conf === 'number' ? item.conf.toFixed(2) : item.conf;
+                
+                // กำหนดสีข้อความตาม gender_code
+                const genderColor = (item.gender_code === "female") ? "#e67e22" : "#e67e22";
 
-            summaryContainer.innerHTML = `
-                <p class="summary-lead">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p>
-                <div class="simple-summary-text">
-                    <p><strong>${partName}</strong> มีลักษณะเป็น <span class="gender-text-inline">${item.gender}</span></p>
-                    <p>ด้วยความเชื่อมั่น <strong>${confValue}%</strong></p>
-                </div>
-            `;
+                // เพิ่ม HTML ของสรุปผลหน้าเว็บ
+                summaryHTML += `
+                    <p><strong>${item.anatomy}</strong> มีลักษณะเป็น <span class="gender-text-inline" style="color: ${genderColor}; font-weight: bold;">${item.gender}</span></p>
+                    <p style="margin-bottom: 12px;">ด้วยความเชื่อมั่น <strong>${confValue}%</strong></p>
+                `;
 
-            reportConclusion.innerHTML = `
-                <div style="text-align: center; color: #333; line-height: 1.6;">
-                    <p style="font-size: 20px; font-weight: bold; margin: 0 0 15px 0; color: #4d4c4b;">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p>
-                    <p style="font-size: 18px; margin: 0;">${partName} มีลักษณะเป็น <span style="color: #e67e22; font-weight: bold;">${item.gender}</span></p>
-                    <p style="font-size: 18px; margin: 0;">ด้วยความเชื่อมั่น <strong>${confValue}%</strong></p>
-                </div>
-            `;
+                // เพิ่ม HTML ของส่วน Export รายงาน
+                reportHTML += `
+                    <p style="font-size: 18px; margin: 0;">${item.anatomy} มีลักษณะเป็น <span style="color: ${genderColor}; font-weight: bold;">${item.gender}</span></p>
+                    <p style="font-size: 18px; margin: 0 0 15px 0;">ด้วยความเชื่อมั่น <strong>${confValue}%</strong></p>
+                `;
+            });
+
+            summaryHTML += `</div>`;
+            reportHTML += `</div>`;
+
+            summaryContainer.innerHTML = summaryHTML;
+            reportConclusion.innerHTML = reportHTML;
+
         } else {
+            // กรณีไม่พบวัตถุ
             summaryContainer.innerHTML = `<p class="summary-lead" style="color: #c0392b;">ไม่พบบริเวณกระดูกที่เลือกในภาพนี้</p>`;
             reportConclusion.innerHTML = `
                 <div style="text-align: center;">
@@ -286,3 +277,41 @@ if (hamburgerBtn && navMenu) {
         }
     });
 }
+
+// --- สคริปต์ควบคุม Slider (LINKS) ด้วย Swiper.js ---
+document.addEventListener("DOMContentLoaded", () => {
+    if (document.querySelector('.clients-slider')) {
+        new Swiper('.clients-slider', {
+            speed: 600,
+            loop: true,
+            autoplay: {
+                delay: 4000, // เลื่อนอัตโนมัติทุกๆ 3 วินาที
+                disableOnInteraction: false
+            },
+            slidesPerView: 'auto',
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'bullets',
+                clickable: true
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 2,
+                    spaceBetween: 10
+                },
+                480: {
+                    slidesPerView: 3,
+                    spaceBetween: 20
+                },
+                640: {
+                    slidesPerView: 4,
+                    spaceBetween: 30
+                },
+                992: {
+                    slidesPerView: 5,
+                    spaceBetween: 40
+                }
+            }
+        });
+    }
+});

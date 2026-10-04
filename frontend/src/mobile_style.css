@@ -1,0 +1,380 @@
+/* ==========================================================================
+    Responsive Mode สำหรับมือถือ 
+   ========================================================================== */
+
+html {
+    scroll-behavior: smooth;
+    /* ป้องกันปัญหาจอเลื่อนแล้วเมนูหลุด */
+    height: 100%;
+}
+
+body {
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+    }
+
+    /* ซ่อน Template PDF ตัวที่ทำให้หน้าจอหดจนกว่าจะกดบันทึกจริง */
+    #export-container {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    /* แถบ Navigation ให้ตรึงติดขอบบนสุดอย่างสมบูรณ์แบบบนมือถือ */
+    .top-nav {
+        background-color: #292929;
+        border-bottom: 4px solid #e67e22;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        top: 0px;
+        z-index: 9999;
+        opacity: 0.95;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .nav-brand {
+        max-width: calc(100% - 45px);
+        gap: 10px;
+    }
+
+    .nav-brand-logo {
+        height: 36px;
+    }
+
+    .nav-brand-title {
+        font-size: 0.85rem;
+        line-height: 1.25;
+        white-space: normal;
+    }
+
+    .nav-brand-subtitle {
+        display: block;
+        font-size: 0.65rem;
+        opacity: 0.85;
+        line-height: 1.2;
+        margin-top: 2px;
+    }
+
+    /* แสดงปุ่ม 3 ขีด */
+    .hamburger-btn {
+        display: flex;
+    }
+
+    /* แถบเมนูดรอปดาวน์แบบสไลด์นุ่มนวล (Smooth Slide) */
+    .menu-list {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #242424;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        border-bottom: 3px solid #e67e22;
+        z-index: 1000;
+        padding: 0;
+    }
+
+    .menu-list.active {
+        max-height: 350px;
+    }
+
+    .menu-list li {
+        width: 100%;
+        padding: 14px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 1rem;
+    }
+
+    /* เมนูย่อย "แนะนำ" สไลด์ขยายในมือถือ */
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background-color: #1a1a1a;
+        border-radius: 6px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+        padding: 0 10px;
+        display: block;
+        margin-top: 0;
+    }
+
+    .dropdown.open .dropdown-content {
+        max-height: 140px;
+        padding: 6px 10px;
+        margin-top: 8px;
+    }
+
+    .dropdown-content a {
+        padding: 10px 15px;
+        font-size: 0.92rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .arrow-icon {
+        float: right;
+        font-size: 0.8rem;
+        transition: transform 0.3s ease;
+        margin-top: 4px;
+    }
+
+    .dropdown.open .arrow-icon {
+        transform: rotate(180deg);
+    }
+
+    /* เนื้อหาหลัก Banner และ Font */
+    .two-tone-banner {
+        padding: 25px 15px 120px 15px;
+    }
+
+    .main-heading-th {
+        font-size: 1rem;
+        line-height: 1.4;
+        margin-top: 30px;
+        margin-bottom: 12px;
+    }
+
+    .main-heading-en {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        margin-bottom: 12px;
+    }
+
+    .main-sub-text {
+        font-size: 0.7rem;
+        font-weight: 600;
+    }
+
+    body.is-home .main-content {
+        margin-top: -95px;
+    }
+
+    .main-content {
+        padding: 20px 12px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .metrics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+
+    .metric-item {
+        background: #fdfaf6;
+        border: 1px solid #f6d8b9;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(230, 126, 34, 0.05);
+    }
+
+    .metric-value {
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    .metric-label {
+        font-size: 0.8rem;
+    }
+
+    .hero-card,
+    .content-card,
+    .input-card,
+    .step-guide-card,
+    .example-section-box {
+        padding: 18px 14px;
+    }
+
+    .hero-card h2,
+    .content-card h3 {
+        font-size: 1.25rem;
+        line-height: 1.3;
+    }
+
+    .grid-2-col,
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .footer-title {
+        font-size: 1.4rem;
+        line-height: 1.3;
+    }
+
+    .footer-subtitle {
+        font-size: 0.85rem;
+        font-weight: 400;
+    }
+
+    .step-text-content p,
+    .custom-list li,
+    .content-card p {
+        font-size: 0.85rem;
+        text-indent: 0;
+    }
+
+    .tag-label {
+        font-size: 0.9rem;
+    }
+
+    .person-name {
+        font-size: 0.6rem;
+    }
+
+    .person-dept {
+        font-size: 0.55rem;
+    }
+
+    .step-number {
+    font-size: 1rem;
+    font-weight: 700;
+    width: 30px;
+    height: 30px;
+}
+
+    .step-guide-header h4{
+        font-size: 1rem;
+    }
+
+    .example-section-box h4 {
+        font-size: 1rem;
+    }
+
+    .example-section-box p {
+        font-size: 0.85rem;
+    }
+
+    .metric-note {
+        font-size: 0.7rem;
+    }
+
+    /* ตารางรูปตัวอย่างให้ใช้นิ้วปัดดูได้โดยไม่ดันขอบจอพัง */
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .example-table {
+        width: 600px;
+        table-layout: auto;
+    }
+
+    .table-img {
+        height: 150px;
+    }
+
+    .section-title {
+        font-size: 1.15rem;
+        line-height: 1.3;
+    }
+
+    .step-box,
+    .step-box label {
+        font-size: 1rem;
+    }
+
+    .step-box p {
+        font-size: 0.85rem;
+    }
+
+
+
+    /* 5. Footer ด้านล่างสุด */
+    .home-fullwidth-footer {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        margin-bottom: -40px;
+        padding: 35px 20px 25px 20px;
+        box-sizing: border-box;
+    }
+
+    .step-guide-card,
+    .content-card,
+    .hero-card {
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .step-report-preview {
+        width: 100%;
+        max-width: 260px;
+        margin: 15px auto 0 auto;
+        min-height: auto;
+    }
+
+    .step-report-preview img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* --- Partner Links Section --- */
+    .partner-links-section {
+        padding: 25px 15px 20px 15px;
+        margin-top: 20px;
+    }
+
+    .partner-title-container {
+        margin-bottom: 5px;
+    }
+
+    .partner-title {
+        font-size: 1.15rem;
+        letter-spacing: 1px;
+    }
+
+    .partner-title-line {
+        width: 45px;
+        /* ลดความยาวของเส้นขนาบข้าง เพื่อไม่ให้เบียดกันจนตกบรรทัด */
+    }
+
+    /* --- Swiper Slider Styles (LINKS) --- */
+    .clients-slider {
+        padding-bottom: 20px;
+    }
+
+    /* ลดความสูงของกรอบสไลด์โลโก้ */
+    .clients-slider .swiper-slide {
+        height: 150px;
+    }
+
+    /* ปรับลดขนาดโลโก้ลงให้สมมาตรกับหน้าจอมือถือ */
+    .clients-slider .swiper-slide img.partner-logo {
+        max-height: 100px;
+    }
+
+    /* จุดไข่ปลา (Pagination) */
+    .clients-slider .swiper-pagination .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        margin: 0 4px;
+    }
+}
