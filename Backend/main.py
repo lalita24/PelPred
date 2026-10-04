@@ -63,9 +63,10 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
     processed_img = img.copy()
     original_h, original_w = img.shape[:2]
 
-    results = model.predict(source=img, conf=0.25, device=device, verbose=False)
+    results = model.predict(source=img, conf=0.4, device=device, verbose=False)
     r = results[0]
-    filtered_predictions = []
+    
+    best_predictions = {}
 
     if len(r.boxes) > 0:
         for box in r.boxes:
@@ -85,17 +86,20 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
                     keep_box = True 
                 
             if keep_box:
-                x1, y1, x2, y2 = map(int, box.xyxy[0].detach().cpu().numpy())
-                filtered_predictions.append({
-                    "label_raw": label_raw,
-                    "conf": conf, 
-                    "box": (x1, y1, x2, y2),
-                    "gender": gender,
-                    "gender_code": gender_code,
-                    "anatomy": anatomy,
-                    "is_sciatic": is_sciatic,
-                    "is_obturator": is_obturator
-                })
+                if anatomy not in best_predictions or conf > best_predictions[anatomy]["conf"]:
+                    x1, y1, x2, y2 = map(int, box.xyxy[0].detach().cpu().numpy())
+                    best_predictions[anatomy] = {
+                        "label_raw": label_raw,
+                        "conf": conf, 
+                        "box": (x1, y1, x2, y2),
+                        "gender": gender,
+                        "gender_code": gender_code,
+                        "anatomy": anatomy,
+                        "is_sciatic": is_sciatic,
+                        "is_obturator": is_obturator
+                    }
+
+    filtered_predictions = list(best_predictions.values())
 
     if filtered_predictions:
         for p in filtered_predictions:
@@ -116,9 +120,14 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
             font_scale = 2.5
             thickness = 4
             
+            # คำนวณขนาดของกล่องข้อความ
             text_size = cv2.getTextSize(display_text, font, font_scale, thickness)[0]
             text_x = x1
             text_y = max(40, y1 - 10)
+            
+            # --- จุดสำคัญ: ตรวจสอบและดันข้อความกลับเข้าภาพหากล้นขอบขวา ---
+            if text_x + text_size[0] > original_w:
+                text_x = max(0, original_w - text_size[0] - 10)  # ดันมาทางซ้าย และเว้นระยะขอบ 10px
             
             cv2.rectangle(processed_img, (x1, y1), (x2, y2), box_color, 3)
             cv2.rectangle(processed_img, (text_x, text_y - text_size[1] - 5), (text_x + text_size[0], text_y + 5), box_color, -1)
@@ -181,8 +190,20 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
                     bx1, by1, bx2, by2 = p["box"]
                     cv2.rectangle(overlay, (bx1, by1), (bx2, by2), (255, 255, 255), 3)
                     txt = f"{p['anatomy']} {p['conf']:.2f}%"
-                    cv2.putText(overlay, txt, (bx1, max(by1 - 10, 30)),
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2, cv2.LINE_AA)
+                    
+                    # คำนวณและปรับตำแหน่งสำหรับ Heatmap ด้วย
+                    font_hm = cv2.FONT_HERSHEY_SIMPLEX
+                    scale_hm = 0.8
+                    thick_hm = 2
+                    txt_size = cv2.getTextSize(txt, font_hm, scale_hm, thick_hm)[0]
+                    txt_x = bx1
+                    txt_y = max(by1 - 10, 30)
+                    
+                    if txt_x + txt_size[0] > original_w:
+                        txt_x = max(0, original_w - txt_size[0] - 5)
+                        
+                    cv2.putText(overlay, txt, (txt_x, txt_y),
+                                font_hm, scale_hm, (255, 255, 255), thick_hm, cv2.LINE_AA)
 
                 fig, ax = plt.subplots(figsize=(6.5, 6), dpi=150)
                 im_ax = ax.imshow(overlay)

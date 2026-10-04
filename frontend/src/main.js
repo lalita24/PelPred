@@ -130,17 +130,13 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
             // วนลูปสร้างข้อความสำหรับทุกจุดที่โมเดลตรวจพบ
             data.details.forEach(item => {
                 const confValue = typeof item.conf === 'number' ? item.conf.toFixed(2) : item.conf;
-                
-                // กำหนดสีข้อความตาม gender_code
                 const genderColor = (item.gender_code === "female") ? "#e67e22" : "#e67e22";
 
-                // เพิ่ม HTML ของสรุปผลหน้าเว็บ
                 summaryHTML += `
                     <p><strong>${item.anatomy}</strong> มีลักษณะเป็น <span class="gender-text-inline" style="color: ${genderColor}; font-weight: bold;">${item.gender}</span></p>
                     <p style="margin-bottom: 12px;">ด้วยความเชื่อมั่น <strong>${confValue}%</strong></p>
                 `;
 
-                // เพิ่ม HTML ของส่วน Export รายงาน
                 reportHTML += `
                     <p style="font-size: 18px; margin: 0;">${item.anatomy} มีลักษณะเป็น <span style="color: ${genderColor}; font-weight: bold;">${item.gender}</span></p>
                     <p style="font-size: 18px; margin: 0 0 15px 0;">ด้วยความเชื่อมั่น <strong>${confValue}%</strong></p>
@@ -154,7 +150,6 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
             reportConclusion.innerHTML = reportHTML;
 
         } else {
-            // กรณีไม่พบวัตถุ
             summaryContainer.innerHTML = `<p class="summary-lead" style="color: #c0392b;">ไม่พบบริเวณกระดูกที่เลือกในภาพนี้</p>`;
             reportConclusion.innerHTML = `
                 <div style="text-align: center;">
@@ -180,12 +175,36 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
     }
 });
 
-// --- ฟังก์ชัน Export ไฟล์ ---
+// -------------------------------------------------------------------------
+// ฟังก์ชันแปลง Base64 เป็น Blob ป้องกันเว็บบนมือถือเปลี่ยนหน้า/ไฟล์ 0KB
+// -------------------------------------------------------------------------
+function base64ToBlob(base64, mimeType) {
+    const byteString = atob(base64.split(',')[1]);
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeType });
+}
+
+// -------------------------------------------------------------------------
+// ฟังก์ชัน Export ไฟล์ (แก้บัก PDF หน้าเปล่า 100%)
+// -------------------------------------------------------------------------
 window.exportResult = async function () {
     const container = document.getElementById('export-container');
     const reportElement = document.getElementById('hidden-report-template');
     const exportFormat = document.getElementById('export-format').value;
 
+    // บันทึกตำแหน่งการเลื่อนหน้าจอเดิมเอาไว้
+    const currentScrollY = window.scrollY;
+
+    // เลื่อนจอไปบนสุด เพื่อแก้บั๊ก html2canvas แคปหน้าจอว่างเปล่า
+    window.scrollTo(0, 0);
+
+    // เปิดคอนเทนเนอร์ให้แสดงผลขึ้นมา
+    container.style.display = 'block';
+    container.style.position = 'absolute';
     container.style.opacity = '1';
     container.style.zIndex = '9999';
     container.style.left = '0px';
@@ -195,36 +214,70 @@ window.exportResult = async function () {
         container.style.opacity = '0';
         container.style.zIndex = '-1000';
         container.style.left = '-9999px';
+        // เลื่อนจอกลับมาตำแหน่งเดิมให้ผู้ใช้
+        window.scrollTo(0, currentScrollY);
     };
 
+    // รอ 500ms ให้เบราว์เซอร์จัดการหน้าเว็บเสร็จสมบูรณ์
     setTimeout(async () => {
         try {
+            const canvasConfig = { 
+                scale: 2, 
+                useCORS: true, 
+                scrollY: 0, 
+                windowWidth: document.documentElement.offsetWidth,
+                backgroundColor: '#ffffff' 
+            };
+            const canvas = await html2canvas(reportElement, canvasConfig);
+
             if (exportFormat === 'pdf') {
+                const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                
+                // สร้าง Wrapper ห่อหุ้มรูปภาพ บังคับไซซ์ให้พอดีกับ A4 เป๊ะๆ (794x1122 px) 
+                // ตัดขาดจากโค้ด CSS ของหน้าเว็บไปเลย เพื่อป้องกัน html2pdf ตัดแบ่งหน้ามั่วซั่ว
+                const pdfWrapper = document.createElement('div');
+                pdfWrapper.style.width = '794px';
+                pdfWrapper.style.height = '1122px';
+                pdfWrapper.style.overflow = 'hidden';
+                pdfWrapper.innerHTML = `<img src="${imgData}" style="width: 100%; height: 100%; display: block; margin: 0; padding: 0;">`;
+
                 const opt = {
                     margin: 0,
                     filename: 'Pelvic-Predict-Report.pdf',
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2, useCORS: true, scrollY: 0, backgroundColor: '#ffffff' },
+                    image: { type: 'jpeg', quality: 1.0 },
+                    html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
                     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
                 };
 
-                await html2pdf().set(opt).from(reportElement).save();
+                // วาดรูปลง PDF
+                await html2pdf().set(opt).from(pdfWrapper).save();
+                hideContainer();
+
             } else {
-                const canvas = await html2canvas(reportElement, { scale: 2, useCORS: true, scrollY: 0, backgroundColor: '#ffffff' });
-                const imgData = canvas.toDataURL(`image/${exportFormat === 'jpg' ? 'jpeg' : 'png'}`, 0.95);
+                // ส่วนของ PNG / JPG บนมือถือ 
+                const mimeType = exportFormat === 'jpg' ? 'image/jpeg' : 'image/png';
+                const imgData = canvas.toDataURL(mimeType, 1.0);
+                
+                const blob = base64ToBlob(imgData, mimeType);
+                const blobUrl = URL.createObjectURL(blob);
 
                 const link = document.createElement('a');
                 link.download = `Pelvic-Predict-Report.${exportFormat}`;
-                link.href = imgData;
+                link.href = blobUrl;
+                
+                document.body.appendChild(link);
                 link.click();
+                document.body.removeChild(link);
+                
+                setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+                hideContainer();
             }
         } catch (error) {
             console.error("Export error:", error);
             alert("เกิดข้อผิดพลาดในการบันทึกไฟล์");
-        } finally {
             hideContainer();
         }
-    }, 200);
+    }, 500); 
 };
 
 // --- เคลียร์ค่า ---
@@ -285,7 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
             speed: 600,
             loop: true,
             autoplay: {
-                delay: 4000, // เลื่อนอัตโนมัติทุกๆ 3 วินาที
+                delay: 4000, 
                 disableOnInteraction: false
             },
             slidesPerView: 'auto',

@@ -24,13 +24,6 @@ body {
         position: relative;
     }
 
-    /* ซ่อน Template PDF ตัวที่ทำให้หน้าจอหดจนกว่าจะกดบันทึกจริง */
-    #export-container {
-        display: none;
-        width: 0;
-        height: 0;
-    }
-
     /* แถบ Navigation ให้ตรึงติดขอบบนสุดอย่างสมบูรณ์แบบบนมือถือ */
     .top-nav {
         background-color: #292929;
@@ -377,4 +370,9 @@ body {
         height: 10px;
         margin: 0 4px;
     }
+
+    .upload-dropzone {
+        min-height: 100px;
+    }
+
 }

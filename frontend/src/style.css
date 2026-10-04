@@ -947,7 +947,7 @@ select {
 
 /* --- Hidden Report Template --- */
 #export-container {
-    position: fixed ;
+    position: absolute ;
     top: 0 ;
     left: -9999px ;
     opacity: 0 ;
@@ -1231,4 +1231,19 @@ select {
 .clients-slider .swiper-pagination .swiper-pagination-bullet-active {
     background-color: #e08a07; 
     border-color: #e08a07;
+}
+
+@media (min-width: 769px) {
+    .container {
+        width: 100% ;
+        max-width: 1100px ; 
+        margin: 0 auto ; 
+    }
+
+    #guide-manual, 
+    #guide-examples, 
+    #predict {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
 }
