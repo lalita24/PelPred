@@ -175,9 +175,7 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
     }
 });
 
-// -------------------------------------------------------------------------
-// ฟังก์ชันแปลง Base64 เป็น Blob ป้องกันเว็บบนมือถือเปลี่ยนหน้า/ไฟล์ 0KB
-// -------------------------------------------------------------------------
+/* ฟังก์ชันแปลง Base64 เป็น Blob ป้องกันเว็บบนมือถือเปลี่ยนหน้า/ไฟล์ 0KB */
 function base64ToBlob(base64, mimeType) {
     const byteString = atob(base64.split(',')[1]);
     const ab = new ArrayBuffer(byteString.length);
@@ -188,9 +186,7 @@ function base64ToBlob(base64, mimeType) {
     return new Blob([ab], { type: mimeType });
 }
 
-// -------------------------------------------------------------------------
-// ฟังก์ชัน Export ไฟล์ (แก้บัก PDF หน้าเปล่า 100%)
-// -------------------------------------------------------------------------
+/* ฟังก์ชัน Export ไฟล์ (แก้บัก PDF หน้าเปล่า 100%) */
 window.exportResult = async function () {
     const container = document.getElementById('export-container');
     const reportElement = document.getElementById('hidden-report-template');
@@ -233,8 +229,6 @@ window.exportResult = async function () {
             if (exportFormat === 'pdf') {
                 const imgData = canvas.toDataURL('image/jpeg', 1.0);
                 
-                // สร้าง Wrapper ห่อหุ้มรูปภาพ บังคับไซซ์ให้พอดีกับ A4 เป๊ะๆ (794x1122 px) 
-                // ตัดขาดจากโค้ด CSS ของหน้าเว็บไปเลย เพื่อป้องกัน html2pdf ตัดแบ่งหน้ามั่วซั่ว
                 const pdfWrapper = document.createElement('div');
                 pdfWrapper.style.width = '794px';
                 pdfWrapper.style.height = '1122px';
