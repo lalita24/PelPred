@@ -125,9 +125,9 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
             text_x = x1
             text_y = max(40, y1 - 10)
             
-            # --- จุดสำคัญ: ตรวจสอบและดันข้อความกลับเข้าภาพหากล้นขอบขวา ---
+            # --- ตรวจสอบและดันข้อความกลับเข้าภาพหากล้นขอบขวา ---
             if text_x + text_size[0] > original_w:
-                text_x = max(0, original_w - text_size[0] - 10)  # ดันมาทางซ้าย และเว้นระยะขอบ 10px
+                text_x = max(0, original_w - text_size[0] - 10)  
             
             cv2.rectangle(processed_img, (x1, y1), (x2, y2), box_color, 3)
             cv2.rectangle(processed_img, (text_x, text_y - text_size[1] - 5), (text_x + text_size[0], text_y + 5), box_color, -1)

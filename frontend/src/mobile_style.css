@@ -1,10 +1,7 @@
-/* ==========================================================================
-    Responsive Mode สำหรับมือถือ 
-   ========================================================================== */
+/* Responsive Mode สำหรับมือถือ  */
 
 html {
     scroll-behavior: smooth;
-    /* ป้องกันปัญหาจอเลื่อนแล้วเมนูหลุด */
     height: 100%;
 }
 
@@ -24,7 +21,7 @@ body {
         position: relative;
     }
 
-    /* แถบ Navigation ให้ตรึงติดขอบบนสุดอย่างสมบูรณ์แบบบนมือถือ */
+    /* Navigation */
     .top-nav {
         background-color: #292929;
         border-bottom: 4px solid #e67e22;
@@ -68,7 +65,7 @@ body {
         display: flex;
     }
 
-    /* แถบเมนูดรอปดาวน์แบบสไลด์นุ่มนวล (Smooth Slide) */
+    /* แถบเมนูดรอปดาวน์ (Smooth Slide) */
     .menu-list {
         display: flex;
         flex-direction: column;
@@ -294,9 +291,7 @@ body {
         font-size: 0.85rem;
     }
 
-
-
-    /* 5. Footer ด้านล่างสุด */
+    /* Footer ด้านล่างสุด */
     .home-fullwidth-footer {
         width: 100vw;
         position: relative;
@@ -346,7 +341,6 @@ body {
 
     .partner-title-line {
         width: 45px;
-        /* ลดความยาวของเส้นขนาบข้าง เพื่อไม่ให้เบียดกันจนตกบรรทัด */
     }
 
     /* --- Swiper Slider Styles (LINKS) --- */
@@ -354,12 +348,10 @@ body {
         padding-bottom: 20px;
     }
 
-    /* ลดความสูงของกรอบสไลด์โลโก้ */
     .clients-slider .swiper-slide {
         height: 150px;
     }
 
-    /* ปรับลดขนาดโลโก้ลงให้สมมาตรกับหน้าจอมือถือ */
     .clients-slider .swiper-slide img.partner-logo {
         max-height: 100px;
     }
@@ -374,5 +366,4 @@ body {
     .upload-dropzone {
         min-height: 100px;
     }
-
 }

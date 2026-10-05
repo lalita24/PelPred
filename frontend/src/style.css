@@ -337,7 +337,7 @@ select {
     border-radius: 6px;
 }
 
-/* กล่องสรุปผลลัพธ์แบบเรียบง่าย */
+/* กล่องสรุปผลลัพธ์ */
 .result-text-box-bottom {
     text-align: center;
     padding: 22px 25px;
@@ -364,7 +364,6 @@ select {
 
 .gender-text-inline {
     color: #e67e22;
-    /* ใช้สีส้มเสมอ */
     font-weight: 700;
     font-size: 1.2rem;
 }
@@ -972,7 +971,7 @@ select {
     box-sizing: border-box;
 }
 
-/* ควบคุมขนาดรูปภาพในรายงานไม่ให้ยาวเกินไป */
+/* ควบคุมขนาดรูปภาพในรายงาน */
 #report-image {
     width: auto;
     max-width: 100%;
@@ -988,7 +987,6 @@ select {
 .report-conclusion {
     background-color: #fdfaf6;
     padding: 15px 20px;
-    /* ลด padding กล่องข้อความสรุป */
     border-radius: 10px;
     border: 2px solid #e67e22;
     width: 85%;
@@ -1187,10 +1185,9 @@ select {
 /* --- Swiper Slider Styles (LINKS) --- */
 .clients-slider {
     padding-bottom: 40px; 
-    overflow: hidden; /* ป้องกันสไลด์ทะลุกรอบ */
+    overflow: hidden;
 }
 
-/* ล็อกขนาดกรอบของแต่ละโลโก้ */
 .clients-slider .swiper-slide {
     display: flex;
     justify-content: center;

@@ -186,7 +186,7 @@ function base64ToBlob(base64, mimeType) {
     return new Blob([ab], { type: mimeType });
 }
 
-/* ฟังก์ชัน Export ไฟล์ (แก้บัก PDF หน้าเปล่า 100%) */
+/* ฟังก์ชัน Export ไฟล์ */
 window.exportResult = async function () {
     const container = document.getElementById('export-container');
     const reportElement = document.getElementById('hidden-report-template');
