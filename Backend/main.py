@@ -125,7 +125,7 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
             text_x = x1
             text_y = max(40, y1 - 10)
             
-            # --- ตรวจสอบและดันข้อความกลับเข้าภาพหากล้นขอบขวา ---
+            # ตรวจสอบและดันข้อความกลับเข้าภาพหากล้นขอบขวา
             if text_x + text_size[0] > original_w:
                 text_x = max(0, original_w - text_size[0] - 10)  
             
@@ -134,6 +134,25 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
             cv2.putText(processed_img, display_text, (text_x, text_y), font, font_scale, text_color, thickness)
 
     is_dual = (part == "Greater Sciatic Notch & Obturator Foramen")
+    
+    summary_message = ""
+    if is_dual:
+        if len(filtered_predictions) == 2:
+            pred1 = filtered_predictions[0]
+            pred2 = filtered_predictions[1]
+            
+            # กรณีที่ 1: เพศตรงกันทั้ง 2 บริเวณ
+            if pred1["gender"] == pred2["gender"]:
+                summary_message = f"กระดูกส่วนนี้มีลักษณะเป็น {pred1['gender']}"
+            
+            # กรณีที่ 2: เพศไม่ตรงกัน ให้หาบริเวณที่ conf สูงที่สุด
+            else:
+                best_pred = max(filtered_predictions, key=lambda x: x["conf"])
+                summary_message = f"กระดูกส่วนนี้มีลักษณะเป็น {best_pred['gender']}"
+                
+        # กรณีที่ผู้ใช้เลือก 2 บริเวณ แต่โมเดลตรวจเจอแค่ 1 บริเวณ
+        elif len(filtered_predictions) == 1:
+            summary_message = f"กระดูกส่วนนี้มีลักษณะเป็น {filtered_predictions[0]['gender']}"
     
     _, buffer = cv2.imencode('.jpg', processed_img)
     img_base64 = base64.b64encode(buffer).decode('utf-8')
@@ -230,7 +249,8 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
         "is_dual": is_dual,
         "details": filtered_predictions,
         "image_base64": f"data:image/jpeg;base64,{img_base64}",
-        "heatmap_base64": heatmap_base64
+        "heatmap_base64": heatmap_base64,
+        "summary_message": summary_message
     }
     
 if __name__ == "__main__":

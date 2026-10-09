@@ -644,9 +644,12 @@
                         </div>
                     </div>
 
-                    <!-- 2. แถวล่าง: กล่องสรุปผลวิเคราะห์ -->
-                    <div class="result-text-box-bottom" id="result-summary-container">
-                        <!-- receive result js -->
+                    <!-- กล่องสรุปผลวิเคราะห์ -->
+                    <div class="result-text-box-bottom summary-box-hidden" id="result-summary-container">
+                        <h4 class="summary-title">
+                            <i class="fa-solid fa-clipboard-check"></i> สรุปผลการวิเคราะห์
+                        </h4>
+                        <p id="summary-text" class="summary-text"></p>
                     </div>
                 </div>
 
@@ -697,8 +700,9 @@
             <div class="report-body">
                 <img id="report-image" src="" alt="Analyzed Bone">
 
-                <div class="report-conclusion" id="report-conclusion-container">
-                    <!-- JS  -->
+                <div class="report-conclusion summary-report-box" id="report-conclusion-container">
+                    <h4 class="summary-report-title"><i class="fa-solid fa-clipboard-check"></i> สรุปผลการวิเคราะห์</h4>
+                    <p id="report-summary-text" class="summary-report-text"></p>
                 </div>
             </div>
 
@@ -706,9 +710,7 @@
                 <hr>
                 <p>
                     เอกสารฉบับนี้จัดทำโดย Pelvic Predict ระบบจำแนกเพศจากโครงกระดูกส่วนสะโพกด้วยเทคนิคการประมวลผลภาพ
-                    <br><strong>หมายเหตุ:</strong> ระบบจำแนกเพศอาจมีข้อจำกัดในบางกรณี
-                    และควรวิเคราะห์ร่วมกับการประเมินผลโดยผู้เชี่ยวชาญ
-                    <br>อ้างอิง: https://website-url.th/
+                    <br><strong>หมายเหตุ:</strong> ระบบจำแนกเพศอาจมีข้อจำกัดในบางกรณี และอาจผิดพลาดได้
                 </p>
             </div>
         </div>

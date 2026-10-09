@@ -343,8 +343,8 @@ select {
     padding: 22px 25px;
     background-color: #fdfaf6;
     border-radius: 10px;
-    border: 1.5px solid #f6d8b9;
-    border-left: 6px solid #e67e22;
+    border: 1.5px solid #ebb181;
+    border-left: 6px solid #ef8617;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
@@ -946,24 +946,21 @@ select {
 
 /* --- Hidden Report Template --- */
 #export-container {
-    position: absolute ;
-    top: 0 ;
-    left: -9999px ;
-    opacity: 0 ;
-    pointer-events: none ;
-    z-index: -1000 ;
+    position: absolute;
+    top: 0;
+    left: -9999px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1000;
 }
 
 .a4-report {
     width: 794px;
     height: 1122px;
-    /* ล็อกไว้พอดีเป๊ะ */
     max-height: 1122px;
     overflow: hidden;
-    /* ตัดส่วนเกินทั้งหมดไม่ให้ขึ้นหน้าใหม่ */
     background-color: white;
     padding: 30px 40px;
-    /* ลด padding ลงจากเดิมเพื่อกันล้น */
     font-family: 'Prompt', sans-serif;
     color: #333;
     display: flex;
@@ -971,11 +968,10 @@ select {
     box-sizing: border-box;
 }
 
-/* ควบคุมขนาดรูปภาพในรายงาน */
 #report-image {
     width: auto;
-    max-width: 100%;
-    max-height: 520px;
+    max-width: 85%;
+    max-height: 450px;
     object-fit: contain;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -1061,6 +1057,55 @@ select {
     border: 0;
     border-top: 1px solid #ccc;
     margin-bottom: 15px;
+}
+
+/* Summary Result & Report Classes */
+.summary-box-hidden,
+.summary-report-box-hidden {
+    display: none !important;
+}
+
+/* สไตล์สำหรับกล่องสรุปผลหน้าเว็บ */
+.summary-title {
+    color: #e67e22;
+    margin-bottom: 12px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.summary-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    color: #333;
+}
+
+/* สไตล์สำหรับกล่องสรุปผลในใบ Report (PDF/A4) */
+.summary-report-box {
+    text-align: center;
+    margin-top: 0 auto;
+    padding: 10px 20px;
+    border: 2px dashed #e67e22;
+    border-radius: 8px;
+    background-color: #fff9f5;
+    width: 85%;
+    box-sizing: border-box;
+}
+
+.summary-report-title {
+    color: #e67e22;
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.summary-report-text {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: #333;
 }
 
 /* --- Custom Select Dropdown --- */
@@ -1184,7 +1229,7 @@ select {
 
 /* --- Swiper Slider Styles (LINKS) --- */
 .clients-slider {
-    padding-bottom: 40px; 
+    padding-bottom: 40px;
     overflow: hidden;
 }
 
@@ -1192,7 +1237,7 @@ select {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 150px; 
+    height: 150px;
     opacity: 0.8;
     transition: 0.3s;
 }
@@ -1202,10 +1247,10 @@ select {
 }
 
 .clients-slider .swiper-slide img.partner-logo {
-    max-width: 100% ;
-    max-height: 150px ;
-    width: auto ;
-    height: auto ;
+    max-width: 100%;
+    max-height: 150px;
+    width: auto;
+    height: auto;
     object-fit: contain;
     display: block;
 }
@@ -1226,19 +1271,19 @@ select {
 }
 
 .clients-slider .swiper-pagination .swiper-pagination-bullet-active {
-    background-color: #e08a07; 
+    background-color: #e08a07;
     border-color: #e08a07;
 }
 
 @media (min-width: 769px) {
     .container {
-        width: 100% ;
-        max-width: 1100px ; 
-        margin: 0 auto ; 
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
     }
 
-    #guide-manual, 
-    #guide-examples, 
+    #guide-manual,
+    #guide-examples,
     #predict {
         max-width: 1100px;
         margin: 0 auto;

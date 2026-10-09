@@ -366,4 +366,16 @@ body {
     .upload-dropzone {
         min-height: 100px;
     }
+
+    /* Summary Result Classes */
+
+    .summary-title {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+
+    .summary-text {
+        font-size: 1.05rem;
+    }
+
 }

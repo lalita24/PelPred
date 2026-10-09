@@ -93,7 +93,7 @@ function handleFilePreview(file) {
     reader.readAsDataURL(file);
 }
 
-// --- ส่งภาพวิเคราะห์ ---
+// ส่งภาพวิเคราะห์ 
 document.getElementById('submit-btn').addEventListener('click', async () => {
     const partSelect = document.getElementById('part-select').value;
     if (!fileInput.files[0]) {
@@ -119,24 +119,24 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
         const summaryContainer = document.getElementById('result-summary-container');
         const reportConclusion = document.getElementById('report-conclusion-container');
 
-        if (data.details && data.details.length > 0) {
-            let summaryHTML = `<p class="summary-lead">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p><div class="simple-summary-text">`;
-            
-            let reportHTML = `
-                <div style="text-align: center; color: #333; line-height: 1.6;">
-                    <p style="font-size: 20px; font-weight: bold; margin: 0 0 15px 0; color: #4d4c4b;">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p>
-            `;
+        let summaryHTML = `<p class="summary-lead">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p><div class="simple-summary-text">`;
+        let reportHTML = `
+            <div style="text-align: center; color: #333; line-height: 1.6;">
+                <p style="font-size: 20px; font-weight: bold; margin: 0 0 15px 0; color: #4d4c4b;">จากการวิเคราะห์จำแนกเพศ ได้ผลลัพธ์ดังนี้</p>
+        `;
 
-            // วนลูปสร้างข้อความสำหรับทุกจุดที่โมเดลตรวจพบ
+        if (data.details && data.details.length > 0) {
             data.details.forEach(item => {
                 const confValue = typeof item.conf === 'number' ? item.conf.toFixed(2) : item.conf;
                 const genderColor = (item.gender_code === "female") ? "#e67e22" : "#e67e22";
 
+                // เนื้อหาหน้าเว็บ
                 summaryHTML += `
                     <p><strong>${item.anatomy}</strong> มีลักษณะเป็น <span class="gender-text-inline" style="color: ${genderColor}; font-weight: bold;">${item.gender}</span></p>
                     <p style="margin-bottom: 12px;">ด้วยความเชื่อมั่น <strong>${confValue}%</strong></p>
                 `;
 
+                // เนื้อหาหน้า PDF Report
                 reportHTML += `
                     <p style="font-size: 18px; margin: 0;">${item.anatomy} มีลักษณะเป็น <span style="color: ${genderColor}; font-weight: bold;">${item.gender}</span></p>
                     <p style="font-size: 18px; margin: 0 0 15px 0;">ด้วยความเชื่อมั่น <strong>${confValue}%</strong></p>
@@ -146,16 +146,71 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
             summaryHTML += `</div>`;
             reportHTML += `</div>`;
 
-            summaryContainer.innerHTML = summaryHTML;
-            reportConclusion.innerHTML = reportHTML;
+            // ดึงข้อความสรุปภาพรวมจาก Backend
+            if (data.is_dual && data.summary_message) {
+                document.getElementById('summary-text').innerText = data.summary_message;
+                document.getElementById('report-summary-text').innerText = data.summary_message;
+
+                document.getElementById('result-summary-container').classList.remove('summary-box-hidden');
+                document.getElementById('report-conclusion-container').classList.remove('summary-report-box-hidden');
+                document.getElementById('report-conclusion-container').style.display = 'block';
+            } else {
+                document.getElementById('result-summary-container').classList.add('summary-box-hidden');
+                document.getElementById('report-conclusion-container').classList.add('summary-report-box-hidden');
+                document.getElementById('report-conclusion-container').style.display = 'none';
+            }
+
+            let existingSummaryDetails = document.getElementById("summary-details");
+            if (!existingSummaryDetails) {
+                existingSummaryDetails = document.createElement("div");
+                existingSummaryDetails.id = "summary-details";
+
+                existingSummaryDetails.className = "result-text-box-bottom";
+                existingSummaryDetails.style.marginBottom = "20px";
+
+                summaryContainer.parentNode.insertBefore(existingSummaryDetails, summaryContainer);
+            }
+            existingSummaryDetails.innerHTML = summaryHTML;
+
+            let existingReportDetails = document.getElementById("report-details");
+            if (!existingReportDetails) {
+                existingReportDetails = document.createElement("div");
+                existingReportDetails.id = "report-details";
+
+                existingReportDetails.className = "result-text-box-bottom";
+                existingReportDetails.style.width = "85%";
+                existingReportDetails.style.margin = "0 auto";
+                existingReportDetails.style.boxSizing = "border-box";
+
+                reportConclusion.parentNode.insertBefore(existingReportDetails, reportConclusion);
+            }
+            existingReportDetails.innerHTML = reportHTML;
 
         } else {
-            summaryContainer.innerHTML = `<p class="summary-lead" style="color: #c0392b;">ไม่พบบริเวณกระดูกที่เลือกในภาพนี้</p>`;
-            reportConclusion.innerHTML = `
+            // กรณีตรวจไม่พบ
+            let existingSummaryDetails = document.getElementById("summary-details");
+            if (existingSummaryDetails) {
+                existingSummaryDetails.innerHTML = `<p class="summary-lead" style="color: #c0392b;">ไม่พบบริเวณกระดูกที่เลือกในภาพนี้</p>`;
+            } else {
+                summaryContainer.insertAdjacentHTML('beforebegin', `<div id="summary-details" class="result-text-box-bottom" style="margin-bottom: 20px;"><p class="summary-lead" style="color: #c0392b;">ไม่พบบริเวณกระดูกที่เลือกในภาพนี้</p></div>`);
+            }
+
+            let existingReportDetails = document.getElementById("report-details");
+            if (existingReportDetails) {
+                existingReportDetails.innerHTML = `
                 <div style="text-align: center;">
-                    <p style="font-size: 20px; color: #c0392b;">ไม่พบบริเวณกระดูกที่ต้องการวิเคราะห์ในภาพนี้</p>
-                </div>
-            `;
+                    <p style="font-size: 20px; color: #c0392b; margin: 0; font-weight: bold;">ไม่พบบริเวณกระดูกที่ต้องการวิเคราะห์ในภาพนี้</p>
+                </div>`;
+            } else {
+                // 💡 เพิ่ม Class และ Style ให้แสดงกรอบในใบ Report เวลากรณีไม่พบกระดูก
+                reportConclusion.insertAdjacentHTML('beforebegin', `
+                <div id="report-details" class="result-text-box-bottom" style="width: 85%; margin: 0 auto 20px auto; box-sizing: border-box; text-align: center;">
+                    <p style="font-size: 20px; color: #c0392b; margin: 0; font-weight: bold;">ไม่พบบริเวณกระดูกที่ต้องการวิเคราะห์ในภาพนี้</p>
+                </div>`);
+            }
+
+            document.getElementById('result-summary-container').classList.add('summary-box-hidden');
+            document.getElementById('report-conclusion-container').style.display = 'none';
         }
 
         if (data.heatmap_base64) document.getElementById('heatmap-image').src = data.heatmap_base64;
@@ -168,6 +223,7 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
         btn.style.display = "none";
 
     } catch (error) {
+        console.error(error);
         alert("เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์");
     } finally {
         btn.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i> วิเคราะห์ผล';
@@ -175,7 +231,7 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
     }
 });
 
-/* ฟังก์ชันแปลง Base64 เป็น Blob ป้องกันเว็บบนมือถือเปลี่ยนหน้า/ไฟล์ 0KB */
+/* ฟังก์ชันแปลง Base64 เป็น Blob ป้องกันเว็บบนมือถือเปลี่ยนหน้า */
 function base64ToBlob(base64, mimeType) {
     const byteString = atob(base64.split(',')[1]);
     const ab = new ArrayBuffer(byteString.length);
@@ -217,18 +273,18 @@ window.exportResult = async function () {
     // รอ 500ms ให้เบราว์เซอร์จัดการหน้าเว็บเสร็จสมบูรณ์
     setTimeout(async () => {
         try {
-            const canvasConfig = { 
-                scale: 2, 
-                useCORS: true, 
-                scrollY: 0, 
+            const canvasConfig = {
+                scale: 2,
+                useCORS: true,
+                scrollY: 0,
                 windowWidth: document.documentElement.offsetWidth,
-                backgroundColor: '#ffffff' 
+                backgroundColor: '#ffffff'
             };
             const canvas = await html2canvas(reportElement, canvasConfig);
 
             if (exportFormat === 'pdf') {
                 const imgData = canvas.toDataURL('image/jpeg', 1.0);
-                
+
                 const pdfWrapper = document.createElement('div');
                 pdfWrapper.style.width = '794px';
                 pdfWrapper.style.height = '1122px';
@@ -251,18 +307,18 @@ window.exportResult = async function () {
                 // ส่วนของ PNG / JPG บนมือถือ 
                 const mimeType = exportFormat === 'jpg' ? 'image/jpeg' : 'image/png';
                 const imgData = canvas.toDataURL(mimeType, 1.0);
-                
+
                 const blob = base64ToBlob(imgData, mimeType);
                 const blobUrl = URL.createObjectURL(blob);
 
                 const link = document.createElement('a');
                 link.download = `Pelvic-Predict-Report.${exportFormat}`;
                 link.href = blobUrl;
-                
+
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-                
+
                 setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
                 hideContainer();
             }
@@ -271,7 +327,7 @@ window.exportResult = async function () {
             alert("เกิดข้อผิดพลาดในการบันทึกไฟล์");
             hideContainer();
         }
-    }, 500); 
+    }, 500);
 };
 
 // --- เคลียร์ค่า ---
@@ -332,7 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
             speed: 600,
             loop: true,
             autoplay: {
-                delay: 4000, 
+                delay: 4000,
                 disableOnInteraction: false
             },
             slidesPerView: 'auto',
