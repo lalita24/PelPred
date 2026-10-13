@@ -23,7 +23,7 @@ app.add_middleware(
 )
 
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
-model = YOLO(r"D:\poiter4u\DemoProject\Model\train\weights\best.pt")
+model = YOLO(r"D:\poiter4u\DemoProject\Model\all\train\weights\best.pt")
 model.to(device)
 
 def parse_gender_and_anatomy(label_raw: str):
@@ -210,7 +210,7 @@ async def predict_gender(file: UploadFile = File(...), part: str = Form(...)):
                     cv2.rectangle(overlay, (bx1, by1), (bx2, by2), (255, 255, 255), 3)
                     txt = f"{p['anatomy']} {p['conf']:.2f}%"
                     
-                    # คำนวณและปรับตำแหน่งสำหรับ Heatmap ด้วย
+                    # คำนวณและปรับตำแหน่งสำหรับ Heatmap
                     font_hm = cv2.FONT_HERSHEY_SIMPLEX
                     scale_hm = 0.8
                     thick_hm = 2
