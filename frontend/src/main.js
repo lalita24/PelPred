@@ -202,7 +202,7 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
                     <p style="font-size: 20px; color: #c0392b; margin: 0; font-weight: bold;">ไม่พบบริเวณกระดูกที่ต้องการวิเคราะห์ในภาพนี้</p>
                 </div>`;
             } else {
-                // 💡 เพิ่ม Class และ Style ให้แสดงกรอบในใบ Report เวลากรณีไม่พบกระดูก
+                // เพิ่ม Class และ Style ให้แสดงกรอบในใบ Report กรณีไม่พบกระดูก
                 reportConclusion.insertAdjacentHTML('beforebegin', `
                 <div id="report-details" class="result-text-box-bottom" style="width: 85%; margin: 0 auto 20px auto; box-sizing: border-box; text-align: center;">
                     <p style="font-size: 20px; color: #c0392b; margin: 0; font-weight: bold;">ไม่พบบริเวณกระดูกที่ต้องการวิเคราะห์ในภาพนี้</p>
@@ -248,13 +248,10 @@ window.exportResult = async function () {
     const reportElement = document.getElementById('hidden-report-template');
     const exportFormat = document.getElementById('export-format').value;
 
-    // บันทึกตำแหน่งการเลื่อนหน้าจอเดิมเอาไว้
     const currentScrollY = window.scrollY;
 
-    // เลื่อนจอไปบนสุด เพื่อแก้บั๊ก html2canvas แคปหน้าจอว่างเปล่า
     window.scrollTo(0, 0);
 
-    // เปิดคอนเทนเนอร์ให้แสดงผลขึ้นมา
     container.style.display = 'block';
     container.style.position = 'absolute';
     container.style.opacity = '1';
@@ -266,11 +263,9 @@ window.exportResult = async function () {
         container.style.opacity = '0';
         container.style.zIndex = '-1000';
         container.style.left = '-9999px';
-        // เลื่อนจอกลับมาตำแหน่งเดิมให้ผู้ใช้
         window.scrollTo(0, currentScrollY);
     };
 
-    // รอ 500ms ให้เบราว์เซอร์จัดการหน้าเว็บเสร็จสมบูรณ์
     setTimeout(async () => {
         try {
             const canvasConfig = {
@@ -299,7 +294,6 @@ window.exportResult = async function () {
                     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
                 };
 
-                // วาดรูปลง PDF
                 await html2pdf().set(opt).from(pdfWrapper).save();
                 hideContainer();
 
